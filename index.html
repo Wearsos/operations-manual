@@ -3482,30 +3482,6 @@ var wsPayUX = {
 
 <div class="costs-wrap">
 
-  <!-- Info callout -->
-  <div class="costs-info bi">
-    <span class="en">
-      <strong>How this works:</strong> Add your provider product costs here once. The <strong>Payment Calculator (Section 6)</strong> reads from this database automatically every month — no need to upload a costs file. Update costs here whenever your providers change prices.
-    </span>
-    <span class="es">
-      <strong>Cómo funciona:</strong> Agregá los costos de productos aquí una sola vez. La <strong>Calculadora de Pagos (Sección 6)</strong> los lee automáticamente cada mes — no necesitás subir un archivo de costos. Actualizálos acá cuando los proveedores cambien precios.
-    </span>
-  </div>
-
-
-
-  <!-- Toolbar -->
-  <div class="costs-toolbar">
-    <button class="costs-toolbar-btn" onclick="wsCosts.exportCSV()">
-      &#x2B07; <span class="bi"><span class="en">Export CSV</span><span class="es">Exportar CSV</span></span>
-    </button>
-    <button class="costs-toolbar-btn" onclick="wsCosts.clearAll()" style="color:#C94B4B;">
-      &#x1F5D1; <span class="bi"><span class="en">Clear all</span><span class="es">Borrar todo</span></span>
-    </button>
-    <span class="costs-count" id="costs-count"></span>
-    <span class="costs-saved-ok" id="costs-saved-ok">&#x2705; <span class="bi"><span class="en">Saved</span><span class="es">Guardado</span></span></span>
-  </div>
-
   <!-- Search -->
   <div class="costs-search-wrap">
     <input class="costs-search-input" id="costs-search" type="text"
@@ -3523,19 +3499,10 @@ var wsPayUX = {
           <th class="bi"><span class="en">Product Name</span><span class="es">Nombre del Producto</span></th>
           <th class="bi" style="text-align:right;"><span class="en">Unit Cost</span><span class="es">Costo Unit.</span></th>
           <th>Moneda</th>
-          <th style="width:36px;"></th>
         </tr>
       </thead>
       <tbody id="costs-tbody"></tbody>
     </table>
-    <div class="add-row-wrap">
-      <button class="add-row-link" onclick="wsCosts.addRow()">+ <span class="bi"><span class="en">Add product</span><span class="es">Agregar producto</span></span></button>
-    </div>
-  </div>
-
-  <div style="font-size:12px;color:var(--text3);margin-top:-12px;margin-bottom:24px;" class="bi">
-    <span class="en">Changes are saved automatically to the cloud database and shared across all team devices.</span>
-    <span class="es">Los cambios se guardan automáticamente en la base de datos y se comparten entre todos los dispositivos del equipo.</span>
   </div>
 
 </div>
@@ -3544,163 +3511,44 @@ var wsPayUX = {
 (function() {
 'use strict';
 
-var _saveTimer = null;
-var _saving = false;
-
-// ── Load / save ─────────────────────────────────────────────────────────────
-function loadDB() {
-  // Synchronously return in-memory cache (loaded from Supabase on login)
-  return window._wsCostsCache || [];
-}
-async function saveDB() {
-  if (_saving) return;
-  _saving = true;
-  try {
-    var rows = collectRows();
-    if (window._sb) {
-      // Delete all existing rows, then insert current set
-      await window._sb.from('product_costs').delete().gte('sort_order', -1);
-      if (rows.length) {
-        var toInsert = rows.map(function(r, i) {
-          return { provider: r.provider || '', name: r.name || '', cost: r.cost || 0, currency: r.currency || 'CRC', sort_order: i };
-        });
-        await window._sb.from('product_costs').insert(toInsert);
-      }
-      // Update global cache
-      window._wsCostsCache = rows;
-    }
-    var ok = document.getElementById('costs-saved-ok');
-    if (ok) { ok.style.display = 'inline'; setTimeout(function(){ ok.style.display='none'; }, 2000); }
-    updateCount(rows.length);
-  } finally {
-    _saving = false;
-  }
-}
-function collectRows() {
-  var rows = [];
-  document.querySelectorAll('#costs-tbody tr').forEach(function(tr) {
-    var inputs = tr.querySelectorAll('input, select');
-    if (!inputs.length) return;
-    var prov = inputs[0] ? inputs[0].value.trim() : '';
-    var name = inputs[1] ? inputs[1].value.trim() : '';
-    var cost = parseFloat(inputs[2] ? inputs[2].value : '0') || 0;
-    var curr = inputs[3] ? inputs[3].value : 'CRC';
-    if (prov || name) rows.push({ provider: prov, name: name, cost: cost, currency: curr });
-  });
-  return rows;
-}
-function updateCount(n) {
-  var el = document.getElementById('costs-count');
-  if (el) el.textContent = n + ' producto' + (n !== 1 ? 's' : '');
-}
-
-// ── Render table ─────────────────────────────────────────────────────────────
-function renderTable(rows) {
-  var tbody = document.getElementById('costs-tbody');
-  if (!tbody) return;
-  if (!rows || !rows.length) {
-    tbody.innerHTML = '<tr><td colspan="5"><div class="costs-empty"><div class="costs-empty-icon">&#x1F4CB;</div><div class="bi"><span class="en">No products yet. Add one below or import from CSV.</span><span class="es">Sin productos. Agrega uno abajo o importa desde CSV.</span></div></div></td></tr>';
-    updateCount(0);
-    return;
-  }
-  tbody.innerHTML = rows.map(function(r, i) {
-    return '<tr data-row="'+i+'">'
-      + '<td><input class="ci" value="'+esc(r.provider||'')+'" placeholder="Batsu..." onchange="wsCosts.schedSave()" oninput="wsCosts.schedSave()"></td>'
-      + '<td><input class="ci" value="'+esc(r.name||'')+'" placeholder="Cacao Caramelizado 40g" onchange="wsCosts.schedSave()" oninput="wsCosts.schedSave()"></td>'
-      + '<td><input class="ci-num" type="number" value="'+(r.cost||0)+'" min="0" step="1" onchange="wsCosts.schedSave()" oninput="wsCosts.schedSave()"></td>'
-      + '<td><select class="ci-sel" onchange="wsCosts.schedSave()">'
-        + '<option value="CRC"'+(r.currency==='CRC'?' selected':'')+'>CRC (&#x20A1;)</option>'
-        + '<option value="USD"'+(r.currency==='USD'?' selected':'')+'>USD ($)</option>'
-      + '</select></td>'
-      + '<td><button class="del-row-btn" onclick="wsCosts.delRow(this)" title="Eliminar">&#x2715;</button></td>'
-      + '</tr>';
-  }).join('');
-  updateCount(rows.length);
-}
 function esc(s) {
   return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-// ── Public API ───────────────────────────────────────────────────────────────
-window.wsCosts = {
+function renderTable(rows) {
+  var tbody = document.getElementById('costs-tbody');
+  if (!tbody) return;
+  if (!rows || !rows.length) {
+    tbody.innerHTML = '<tr><td colspan="4"><div class="costs-empty"><div class="costs-empty-icon">&#x1F4CB;</div><div class="bi"><span class="en">No products in database.</span><span class="es">Sin productos en la base de datos.</span></div></div></td></tr>';
+    return;
+  }
+  tbody.innerHTML = rows.map(function(r) {
+    var curr = r.currency === 'USD' ? 'USD ($)' : 'CRC (₡)';
+    return '<tr>'
+      + '<td style="padding:8px 12px;">' + esc(r.provider||'') + '</td>'
+      + '<td style="padding:8px 12px;">' + esc(r.name||'') + '</td>'
+      + '<td style="padding:8px 12px;text-align:right;">' + (r.cost||0).toLocaleString() + '</td>'
+      + '<td style="padding:8px 12px;">' + curr + '</td>'
+      + '</tr>';
+  }).join('');
+}
 
+window.wsCosts = {
   filterTable: function(q) {
     var rows = document.querySelectorAll('#costs-tbody tr');
     var term = (q || '').toLowerCase().trim();
     rows.forEach(function(tr) {
       if (!term) { tr.style.display = ''; return; }
-      var cells = tr.querySelectorAll('input');
-      var prov = cells[0] ? cells[0].value.toLowerCase() : '';
-      var name = cells[1] ? cells[1].value.toLowerCase() : '';
-      tr.style.display = (prov.indexOf(term) >= 0 || name.indexOf(term) >= 0) ? '' : 'none';
+      var text = tr.textContent.toLowerCase();
+      tr.style.display = text.indexOf(term) >= 0 ? '' : 'none';
     });
   },
-
-  schedSave: function() {
-    clearTimeout(_saveTimer);
-    _saveTimer = setTimeout(function(){ saveDB().catch(function(e){ console.error('Save failed:', e); }); }, 800);
-  },
-
-  addRow: function() {
-    var tbody = document.getElementById('costs-tbody');
-    if (!tbody) return;
-    // Remove empty state row if present
-    if (tbody.querySelector('.costs-empty')) tbody.innerHTML = '';
-    var tr = document.createElement('tr');
-    tr.innerHTML = '<td><input class="ci" placeholder="Proveedor..." onchange="wsCosts.schedSave()" oninput="wsCosts.schedSave()"></td>'
-      + '<td><input class="ci" placeholder="Nombre del producto" onchange="wsCosts.schedSave()" oninput="wsCosts.schedSave()"></td>'
-      + '<td><input class="ci-num" type="number" value="0" min="0" step="1" onchange="wsCosts.schedSave()" oninput="wsCosts.schedSave()"></td>'
-      + '<td><select class="ci-sel" onchange="wsCosts.schedSave()"><option value="CRC">CRC (&#x20A1;)</option><option value="USD">USD ($)</option></select></td>'
-      + '<td><button class="del-row-btn" onclick="wsCosts.delRow(this)">&#x2715;</button></td>';
-    tbody.appendChild(tr);
-    tr.querySelector('.ci').focus();
-    updateCount(tbody.querySelectorAll('tr').length);
-  },
-
-  delRow: function(btn) {
-    var tr = btn.closest('tr');
-    if (tr) { tr.remove(); saveDB().catch(function(e){ console.error('Save failed:', e); }); }
-    var tbody = document.getElementById('costs-tbody');
-    if (tbody && !tbody.querySelectorAll('tr').length) renderTable([]);
-  },
-
-  exportCSV: function() {
-    var rows = collectRows();
-    if (!rows.length) { alert('No hay datos para exportar.'); return; }
-    var csv = 'Proveedor,Nombre del Producto,Costo Unitario,Moneda\n';
-    rows.forEach(function(r) {
-      csv += '"' + (r.provider||'').replace(/"/g,'""') + '",'
-           + '"' + (r.name||'').replace(/"/g,'""') + '",'
-           + (r.cost||0) + ','
-           + (r.currency||'CRC') + '\n';
-    });
-    var blob = new Blob([csv], {type:'text/csv;charset=utf-8;'});
-    var a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'wearsos_costos_' + new Date().toISOString().slice(0,10) + '.csv';
-    a.click();
-  },
-
-  clearAll: async function() {
-    var isEs = document.body.classList.contains('lang-es');
-    var msg = isEs ? '¿Borrar todos los productos? Esta accion no se puede deshacer.' : 'Clear all products? This cannot be undone.';
-    if (!confirm(msg)) return;
-    if (window._sb) await window._sb.from('product_costs').delete().gte('sort_order', -1);
-    window._wsCostsCache = [];
-    renderTable([]);
-  },
-
   init: function() {
-    var rows = loadDB();
-    renderTable(rows);
+    renderTable(window._wsCostsCache || []);
   }
 };
 
-// Init on page load
-document.addEventListener('DOMContentLoaded', function() {
-  wsCosts.init();
-});
-// Also init immediately if DOM already ready
+document.addEventListener('DOMContentLoaded', function() { wsCosts.init(); });
 if (document.readyState !== 'loading') wsCosts.init();
 
 })();
