@@ -317,9 +317,6 @@ body {
     if (pill) pill.style.display = 'none';
   }
 
-  // Auth bypassed — load costs directly
-  wsLoadCosts();
-
   window.wsLogin = async function() {
     var email = (document.getElementById('pw-email').value || '').trim();
     var pw = document.getElementById('pw-input').value || '';
@@ -357,6 +354,9 @@ body {
       if (el) { el.style.display='block'; }
     }
   };
+
+  // Call after definition so wsLoadCosts is defined when invoked
+  window.wsLoadCosts();
 })();
 </script>
 
