@@ -3598,7 +3598,7 @@ if (document.readyState !== 'loading') wsCosts.init();
 <!-- ═══════════════════════════════════════════════════════ PAGE 09: TEAM -->
 <div class="pg" id="pg-team">
   <div class="pg-nav">
-    <button class="back-btn" onclick="showHome()">&#8592; <span data-lang="en">Menu</span><span data-lang="es">Menú</span></button>
+    <button class="back-btn" onclick="showPage('home')">&#8592; <span data-lang="en">Menu</span><span data-lang="es">Menú</span></button>
     <span class="pg-nav-title"><span data-lang="en">Team Structure</span><span data-lang="es">Equipo Wearsos</span></span>
     <button class="search-btn" onclick="toggleSearch()">&#x1F50D;</button>
   </div>
@@ -3608,155 +3608,235 @@ if (document.readyState !== 'loading') wsCosts.init();
       <div class="sec-num">9</div>
       <div>
         <h2 class="sec-title"><span data-lang="en">Team Structure</span><span data-lang="es">Equipo Wearsos</span></h2>
-        <p class="sec-desc"><span data-lang="en">Organizational chart and team roles at Wearsos Turrialba.</span><span data-lang="es">Estructura organizacional y roles del equipo en Wearsos Turrialba.</span></p>
+        <p class="sec-desc"><span data-lang="en">Tap any card to see role details.</span><span data-lang="es">Tocá cualquier tarjeta para ver detalles del rol.</span></p>
       </div>
     </div>
 
 <style>
-.org-wrap { overflow-x: auto; padding: 8px 0 24px; }
-.org-tree { display: flex; flex-direction: column; align-items: center; gap: 0; min-width: 600px; }
-.org-level { display: flex; justify-content: center; gap: 16px; position: relative; }
-.org-connector-v { width: 2px; height: 24px; background: #c8d5c8; margin: 0 auto; }
-.org-connector-h { display: flex; align-items: flex-start; justify-content: center; width: 100%; }
-.org-connector-h::before { content: ''; flex: 1; height: 2px; background: #c8d5c8; margin-top: 0; }
-.org-label { background: #1C3A2A; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; padding: 5px 18px; border-radius: 20px; white-space: nowrap; }
-.org-card { background: #fff; border: 1.5px solid #d8e4d8; border-radius: 10px; padding: 12px 16px; text-align: center; min-width: 150px; max-width: 180px; box-shadow: 0 1px 4px rgba(0,0,0,.06); transition: box-shadow .15s; }
-.org-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,.1); }
-.org-card-name { font-weight: 700; font-size: 13px; color: #1C3A2A; line-height: 1.3; }
-.org-card-role { font-size: 11px; color: #5a7a5a; margin-top: 3px; line-height: 1.4; }
-.org-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; margin-top: 5px; }
-.org-badge.full { background: #e8f2e8; color: #2a6a2a; }
-.org-badge.part { background: #f5f0e8; color: #7a5a00; }
-.org-badge.project { background: #ebe8f5; color: #4a2a7a; }
-.org-badge.intern { background: #e8f0f5; color: #2a4a7a; }
-.org-section-title { font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: .5px; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1.5px solid var(--border); }
-.org-dept-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin-bottom: 8px; }
+.org-wrap { overflow-x: auto; padding: 8px 0 32px; -webkit-overflow-scrolling: touch; }
+.org-tree { display: inline-flex; flex-direction: column; align-items: center; min-width: 520px; padding: 8px 24px 24px; }
+.org-vbar { width: 2px; height: 28px; background: #c8d5c8; }
+.org-children { display: flex; justify-content: center; position: relative; padding-top: 28px; }
+.org-children::before { content:''; position:absolute; top:0; left:50%; width:2px; height:28px; background:#c8d5c8; transform:translateX(-50%); }
+.org-col { display:flex; flex-direction:column; align-items:center; position:relative; padding:0 6px; }
+.org-col::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:#c8d5c8; }
+.org-col:first-child::before { left:50%; }
+.org-col:last-child::before { right:50%; }
+.org-col:only-child::before { display:none; }
+.org-col::after { content:''; position:absolute; top:0; left:50%; width:2px; height:28px; background:#c8d5c8; transform:translateX(-50%); }
+.org-col:only-child::after { top:-28px; height:56px; }
+.org-node { background:#fff; border:2px solid #d4e4d4; border-radius:12px; padding:11px 14px; min-width:130px; max-width:155px; text-align:center; cursor:pointer; transition:box-shadow .15s,border-color .15s; position:relative; z-index:1; user-select:none; -webkit-tap-highlight-color:transparent; }
+.org-node:hover { box-shadow:0 4px 16px rgba(0,0,0,.1); border-color:#1C3A2A; }
+.org-node.founder { border-color:#1C3A2A; border-width:2.5px; background:#f5faf5; }
+.org-node.dashed { border-style:dashed; }
+.org-node-name { font-weight:700; font-size:12px; color:#1C3A2A; line-height:1.3; }
+.org-node-role { font-size:10px; color:#5a7a5a; margin-top:3px; line-height:1.4; }
+.org-node-badge { display:inline-block; font-size:9px; font-weight:700; padding:2px 8px; border-radius:10px; margin-top:6px; text-transform:uppercase; letter-spacing:.3px; }
+.badge-founder { background:#e8f2e8; color:#1C3A2A; }
+.badge-ft { background:#e8f5ed; color:#1a5a2a; }
+.badge-pt { background:#f5f0e8; color:#7a5a00; }
+.badge-project { background:#ece8f5; color:#4a2a7a; }
+.badge-intern { background:#e8f0f5; color:#2a4a7a; }
+.badge-ext { background:#f5e8f0; color:#7a2a5a; }
+.org-founder-row { display:flex; align-items:center; justify-content:center; }
+.org-h-bar { height:2px; width:28px; background:#c8d5c8; }
+.org-support-label { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:.7px; color:var(--text3); background:var(--bg); padding:3px 14px; border:1.5px solid var(--border); border-radius:20px; display:inline-block; }
+.org-support-row { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:4px; }
+.org-support-row .org-node { min-width:0; flex:1; max-width:180px; }
+.org-legend { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:24px 0 0; padding-top:16px; border-top:1px solid var(--border); }
+.org-legend-item { display:flex; align-items:center; gap:5px; font-size:11px; color:var(--text2); }
+.org-legend-dot { width:9px; height:9px; border-radius:50%; flex-shrink:0; }
 </style>
 
-<!-- LEADERSHIP -->
-<div class="org-section-title"><span data-lang="en">Leadership</span><span data-lang="es">Liderazgo</span></div>
-<div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:24px;">
-  <div class="org-card" style="border-color:#1C3A2A; flex:1; min-width:200px;">
-    <div class="org-card-name">Lynne Corvaglia</div>
-    <div class="org-card-role">Co-Founder<br>Development of Strategic Alliances</div>
-    <span class="org-badge full">Co-Founder</span>
+<div class="org-wrap">
+<div class="org-tree">
+
+  <!-- CO-FOUNDERS -->
+  <div class="org-founder-row">
+    <div class="org-node founder" onclick="orgOpen('Lynne Corvaglia','Co-Founder &bull; Development of Strategic Alliances','Co-Founder','badge-founder','Leads development of strategic alliances and partnerships for Wearsos. Co-founder of the organization.')">
+      <div class="org-node-name">Lynne Corvaglia</div>
+      <div class="org-node-role">Strategic Alliances</div>
+      <span class="org-node-badge badge-founder">Co-Founder</span>
+    </div>
+    <div class="org-h-bar"></div>
+    <div class="org-node founder" onclick="orgOpen('Chris Riquelme','Co-Founder &bull; Media and Communications','Co-Founder','badge-founder','Leads media strategy, brand voice, and communications for Wearsos. Co-founder of the organization.')">
+      <div class="org-node-name">Chris Riquelme</div>
+      <div class="org-node-role">Media &amp; Communications</div>
+      <span class="org-node-badge badge-founder">Co-Founder</span>
+    </div>
   </div>
-  <div class="org-card" style="border-color:#1C3A2A; flex:1; min-width:200px;">
-    <div class="org-card-name">Chris Riquelme</div>
-    <div class="org-card-role">Co-Founder<br>Media and Communications</div>
-    <span class="org-badge full">Co-Founder</span>
+
+  <div class="org-vbar"></div>
+
+  <!-- MANAGEMENT LEVEL -->
+  <div class="org-children">
+
+    <!-- LUANA branch -->
+    <div class="org-col">
+      <div class="org-node" onclick="orgOpen('Luana Figueiredo','Manager, Programs &amp; Operations','Full-Time','badge-ft','Oversees operations, programs, and team coordination at Wearsos. Also founder of the Good Loop Internship program.')">
+        <div class="org-node-name">Luana Figueiredo</div>
+        <div class="org-node-role">Manager, Programs &amp; Operations</div>
+        <span class="org-node-badge badge-ft">Full-Time</span>
+      </div>
+
+      <div class="org-children">
+
+        <!-- Carolina branch -->
+        <div class="org-col">
+          <div class="org-node" onclick="orgOpen('Carolina Marinez Jim&eacute;nez','Workshop Production Coordinator','Full-Time','badge-ft','Coordinates workshop production and provides artisan and shop support. Full-time position.')">
+            <div class="org-node-name">Carolina Marinez</div>
+            <div class="org-node-role">Workshop Production Coordinator</div>
+            <span class="org-node-badge badge-ft">Full-Time</span>
+          </div>
+
+          <!-- Artisans under Carolina -->
+          <div class="org-children">
+            <div class="org-col">
+              <div class="org-node" onclick="orgOpen('Jonatan Solano Ram&iacute;rez','Artisan &amp; Sewing Teacher','Full-Time','badge-ft','Leads workshop sewing production and teaches techniques to the artisan team.')">
+                <div class="org-node-name">Jonatan Solano</div>
+                <div class="org-node-role">Artisan &amp; Sewing Teacher</div>
+                <span class="org-node-badge badge-ft">Full-Time</span>
+              </div>
+            </div>
+            <div class="org-col">
+              <div class="org-node" onclick="orgOpen('Teresa P&eacute;rez Badilla','Artisan','Part-Time','badge-pt','Part-time artisan contributing to workshop production.')">
+                <div class="org-node-name">Teresa Pérez</div>
+                <div class="org-node-role">Artisan</div>
+                <span class="org-node-badge badge-pt">Part-Time</span>
+              </div>
+            </div>
+            <div class="org-col">
+              <div class="org-node" onclick="orgOpen('In&eacute;s Hern&aacute;ndez Sol&iacute;s','Artisan &amp; Designer','Part-Time','badge-pt','Part-time artisan and product design contributor.')">
+                <div class="org-node-name">Inés Hernández</div>
+                <div class="org-node-role">Artisan &amp; Designer</div>
+                <span class="org-node-badge badge-pt">Part-Time</span>
+              </div>
+            </div>
+            <div class="org-col">
+              <div class="org-node dashed" onclick="orgOpen('Project Painters','Fiorella Quirros &bull; Mar&iacute;a Jes&uacute;s &bull; Fernanda Salazar','Project-Based','badge-project','Three painters engaged on a project basis: Fiorella Quirros Chaves, Mar&iacute;a Jes&uacute;s, and Fernanda Salazar.')">
+                <div class="org-node-name">Project Painters</div>
+                <div class="org-node-role">Fiorella · M. Jesús · Fernanda</div>
+                <span class="org-node-badge badge-project">Project-Based</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /Carolina col -->
+
+        <!-- Hein branch -->
+        <div class="org-col">
+          <div class="org-node" onclick="orgOpen('Hein','Tienda Manager &bull; Wearsos Turrialba','Full-Time','badge-ft','Manages day-to-day operations at the Wearsos Turrialba store.')">
+            <div class="org-node-name">Hein</div>
+            <div class="org-node-role">Tienda Manager</div>
+            <span class="org-node-badge badge-ft">Full-Time</span>
+          </div>
+
+          <div class="org-children">
+            <div class="org-col">
+              <div class="org-node" onclick="orgOpen('Sean Denzel','Tienda Assistant','Tienda','badge-pt','Assists with store operations and customer experience at Wearsos Turrialba.')">
+                <div class="org-node-name">Sean Denzel</div>
+                <div class="org-node-role">Tienda Assistant</div>
+                <span class="org-node-badge badge-pt">Tienda</span>
+              </div>
+            </div>
+            <div class="org-col">
+              <div class="org-node" onclick="orgOpen('Kayla','Tienda Assistant','Tienda','badge-pt','Assists with store operations and customer experience at Wearsos Turrialba.')">
+                <div class="org-node-name">Kayla</div>
+                <div class="org-node-role">Tienda Assistant</div>
+                <span class="org-node-badge badge-pt">Tienda</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /Hein col -->
+
+        <!-- Aiden (intern) -->
+        <div class="org-col">
+          <div class="org-node dashed" onclick="orgOpen('Aiden Marie','Projects Assistant &bull; Good Loop Intern','Intern','badge-intern','Projects assistant through the Good Loop Internship program, supervised by Luana.')">
+            <div class="org-node-name">Aiden Marie</div>
+            <div class="org-node-role">Projects Assistant</div>
+            <span class="org-node-badge badge-intern">Intern</span>
+          </div>
+        </div>
+
+      </div><!-- /children under Luana -->
+    </div><!-- /Luana col -->
+
+    <!-- CARLOS branch -->
+    <div class="org-col">
+      <div class="org-node" onclick="orgOpen('Carlos Araya','Chief Growth Officer','Business Mgmt','badge-ft','Drives business growth and commercial strategy for Wearsos.')">
+        <div class="org-node-name">Carlos Araya</div>
+        <div class="org-node-role">Chief Growth Officer</div>
+        <span class="org-node-badge badge-ft">Business Mgmt</span>
+      </div>
+    </div>
+
+  </div><!-- /management row -->
+
+</div><!-- /org-tree -->
+</div><!-- /org-wrap -->
+
+<!-- EXTERNAL / SUPPORT -->
+<div style="text-align:center; margin:24px 0 12px;">
+  <div class="org-support-label">External &amp; Support</div>
+</div>
+<div class="org-support-row">
+  <div class="org-node" onclick="orgOpen('Gabriela Artavia','Accountant','Part-Time','badge-ext','Handles financial accounting for Wearsos operations.')">
+    <div class="org-node-name">Gabriela Artavia</div>
+    <div class="org-node-role">Accountant</div>
+    <span class="org-node-badge badge-ext">Part-Time</span>
+  </div>
+  <div class="org-node" onclick="orgOpen('Marisela','Zoho Books Accountant','Part-Time','badge-ext','Manages accounting records and bookkeeping in Zoho Books.')">
+    <div class="org-node-name">Marisela</div>
+    <div class="org-node-role">Zoho Books Accountant</div>
+    <span class="org-node-badge badge-ext">Part-Time</span>
+  </div>
+  <div class="org-node" onclick="orgOpen('Dra. Laura Yur&eacute;','Psychologist','Project-Based','badge-project','Provides psychological support for the Wearsos team on a project basis.')">
+    <div class="org-node-name">Dra. Laura Yuré</div>
+    <div class="org-node-role">Psychologist</div>
+    <span class="org-node-badge badge-project">Project-Based</span>
   </div>
 </div>
 
-<!-- ADMINISTRATION -->
-<div class="org-section-title"><span data-lang="en">Administration</span><span data-lang="es">Administración</span></div>
-<div class="org-dept-grid" style="margin-bottom:24px;">
-  <div class="org-card">
-    <div class="org-card-name">Luana Figueiredo</div>
-    <div class="org-card-role">Manager, Programs &amp; Operations<br>Good Loop Internship Founder</div>
-    <span class="org-badge full">Full-Time</span>
-  </div>
-  <div class="org-card">
-    <div class="org-card-name">Carolina Marinez Jiménez</div>
-    <div class="org-card-role">Workshop Production Coordinator<br>Artisan / Shop Support</div>
-    <span class="org-badge full">Full-Time</span>
-  </div>
-  <div class="org-card">
-    <div class="org-card-name">Hein</div>
-    <div class="org-card-role">Wearsos Turrialba<br>Tienda Manager</div>
-    <span class="org-badge full">Full-Time</span>
-  </div>
+<!-- LEGEND -->
+<div class="org-legend">
+  <div class="org-legend-item"><div class="org-legend-dot" style="background:#1C3A2A;"></div>Co-Founder</div>
+  <div class="org-legend-item"><div class="org-legend-dot" style="background:#2a7a3a;"></div>Full-Time</div>
+  <div class="org-legend-item"><div class="org-legend-dot" style="background:#c8a030;"></div>Part-Time</div>
+  <div class="org-legend-item"><div class="org-legend-dot" style="background:#6a3a9a;"></div>Project-Based</div>
+  <div class="org-legend-item"><div class="org-legend-dot" style="background:#3a6a9a;"></div>Intern</div>
 </div>
 
-<!-- HUMAN RESOURCES -->
-<div class="org-section-title"><span data-lang="en">Human Resources</span><span data-lang="es">Recursos Humanos</span></div>
-<div class="org-dept-grid" style="margin-bottom:24px;">
-  <div class="org-card">
-    <div class="org-card-name">Carlos Araya</div>
-    <div class="org-card-role">Chief Growth Officer</div>
-    <span class="org-badge full">Business Management</span>
+<!-- ORG DETAIL BOTTOM SHEET -->
+<div id="org-modal-bg" onclick="closeOrgModal()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:998;"></div>
+<div id="org-modal" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;padding:24px 24px 48px;box-shadow:0 -4px 40px rgba(0,0,0,.18);z-index:999;max-height:55vh;overflow-y:auto;">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;">
+    <div style="flex:1;">
+      <div id="org-modal-name" style="font-size:18px;font-weight:700;color:#1C3A2A;line-height:1.3;"></div>
+      <div id="org-modal-role" style="font-size:13px;color:#5a7a5a;margin-top:4px;line-height:1.4;"></div>
+    </div>
+    <button onclick="closeOrgModal()" style="background:none;border:none;font-size:22px;color:#aaa;cursor:pointer;padding:0 0 0 12px;line-height:1;">&#x2715;</button>
   </div>
-  <div class="org-card">
-    <div class="org-card-name">Gabriela Artavia</div>
-    <div class="org-card-role">Accountant</div>
-    <span class="org-badge part">Part-Time</span>
-  </div>
-  <div class="org-card">
-    <div class="org-card-name">Marisela</div>
-    <div class="org-card-role">Zoho Books Accountant</div>
-    <span class="org-badge part">Part-Time</span>
-  </div>
-  <div class="org-card">
-    <div class="org-card-name">Dra. Laura Yuré</div>
-    <div class="org-card-role">Psychologist</div>
-    <span class="org-badge project">Project-Based</span>
-  </div>
+  <span id="org-modal-badge" class="org-node-badge" style="font-size:11px;padding:3px 12px;"></span>
+  <p id="org-modal-desc" style="font-size:14px;color:#333;margin-top:14px;line-height:1.7;"></p>
 </div>
 
-<!-- TIENDA TEAM -->
-<div class="org-section-title"><span data-lang="en">Tienda Team</span><span data-lang="es">Equipo Tienda</span></div>
-<div class="org-dept-grid" style="margin-bottom:24px;">
-  <div class="org-card">
-    <div class="org-card-name">Sean Denzel</div>
-    <div class="org-card-role">Tienda Assistant</div>
-    <span class="org-badge part">Tienda</span>
-  </div>
-  <div class="org-card">
-    <div class="org-card-name">Kayla</div>
-    <div class="org-card-role">Tienda Assistant</div>
-    <span class="org-badge part">Tienda</span>
-  </div>
-</div>
-
-<!-- PERMANENT ARTISANS -->
-<div class="org-section-title"><span data-lang="en">Permanent Artisans</span><span data-lang="es">Artesanos Permanentes</span></div>
-<div class="org-dept-grid" style="margin-bottom:24px;">
-  <div class="org-card">
-    <div class="org-card-name">Jonatan Solano Ramírez</div>
-    <div class="org-card-role">Artisan &amp; Sewing Teacher</div>
-    <span class="org-badge full">Full-Time</span>
-  </div>
-  <div class="org-card">
-    <div class="org-card-name">Teresa Pérez Badilla</div>
-    <div class="org-card-role">Artisan</div>
-    <span class="org-badge part">Part-Time</span>
-  </div>
-  <div class="org-card">
-    <div class="org-card-name">Inés Hernández Solís</div>
-    <div class="org-card-role">Artisan &amp; Designer</div>
-    <span class="org-badge part">Part-Time</span>
-  </div>
-</div>
-
-<!-- PROJECT BASED -->
-<div class="org-section-title"><span data-lang="en">Project-Based Artisans</span><span data-lang="es">Artesanos por Proyecto</span></div>
-<div class="org-dept-grid" style="margin-bottom:24px;">
-  <div class="org-card">
-    <div class="org-card-name">Fiorella Quirros Chaves</div>
-    <div class="org-card-role">Painter</div>
-    <span class="org-badge project">Project-Based</span>
-  </div>
-  <div class="org-card">
-    <div class="org-card-name">María Jesús</div>
-    <div class="org-card-role">Painter</div>
-    <span class="org-badge project">Project-Based</span>
-  </div>
-  <div class="org-card">
-    <div class="org-card-name">Fernanda Salazar</div>
-    <div class="org-card-role">Painter</div>
-    <span class="org-badge project">Project-Based</span>
-  </div>
-</div>
-
-<!-- INTERNS -->
-<div class="org-section-title"><span data-lang="en">Interns</span><span data-lang="es">Pasantes</span></div>
-<div class="org-dept-grid" style="margin-bottom:24px;">
-  <div class="org-card">
-    <div class="org-card-name">Aiden Marie</div>
-    <div class="org-card-role">Projects Assistant</div>
-    <span class="org-badge intern">Intern</span>
-  </div>
-</div>
+<script>
+function orgOpen(name, role, badge, badgeClass, desc) {
+  document.getElementById('org-modal-name').innerHTML = name;
+  document.getElementById('org-modal-role').innerHTML = role;
+  var b = document.getElementById('org-modal-badge');
+  b.innerHTML = badge;
+  b.className = 'org-node-badge ' + badgeClass;
+  document.getElementById('org-modal-desc').innerHTML = desc;
+  document.getElementById('org-modal').style.display = 'block';
+  document.getElementById('org-modal-bg').style.display = 'block';
+}
+function closeOrgModal() {
+  document.getElementById('org-modal').style.display = 'none';
+  document.getElementById('org-modal-bg').style.display = 'none';
+}
+</script>
 
   </div><!-- /sec-body -->
 </div><!-- /pg-team -->
@@ -3764,7 +3844,7 @@ if (document.readyState !== 'loading') wsCosts.init();
 <!-- ══════════════════════════════════════════════ PAGE 10: OPENING/CLOSING -->
 <div class="pg" id="pg-opening">
   <div class="pg-nav">
-    <button class="back-btn" onclick="showHome()">&#8592; <span data-lang="en">Menu</span><span data-lang="es">Menú</span></button>
+    <button class="back-btn" onclick="showPage('home')">&#8592; <span data-lang="en">Menu</span><span data-lang="es">Menú</span></button>
     <span class="pg-nav-title"><span data-lang="en">Opening &amp; Closing</span><span data-lang="es">Apertura y Cierre</span></span>
     <button class="search-btn" onclick="toggleSearch()">&#x1F50D;</button>
   </div>
@@ -4028,7 +4108,7 @@ function ocSwitch(panel, btn) {
 <!-- ════════════════════════════════════════════════ PAGE 11: BUILDING ALARM -->
 <div class="pg" id="pg-alarm">
   <div class="pg-nav">
-    <button class="back-btn" onclick="showHome()">&#8592; <span data-lang="en">Menu</span><span data-lang="es">Menú</span></button>
+    <button class="back-btn" onclick="showPage('home')">&#8592; <span data-lang="en">Menu</span><span data-lang="es">Menú</span></button>
     <span class="pg-nav-title"><span data-lang="en">Building Alarm</span><span data-lang="es">Alarma del Edificio</span></span>
     <button class="search-btn" onclick="toggleSearch()">&#x1F50D;</button>
   </div>
