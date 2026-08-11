@@ -3115,13 +3115,13 @@ window.wsCalc = {
           });
           var d = new Date(snap.created_at);
           var ds = d.toLocaleDateString('es-CR',{day:'numeric',month:'short',year:'numeric'});
-          html += '<div class="history-card" onclick="wsCalc.viewSnapshot('+JSON.stringify(snap.id)+')">';
+          html += '<div class="history-card" onclick="wsCalc.viewSnapshot(\''+snap.id+'\')">';
           html += '<div class="hcard-month">'+esc(snap.month_label)+'</div>';
           html += '<div class="hcard-totals">'+(totHtml||'&mdash;')+'</div>';
           html += '<div class="hcard-meta">'+snap.provider_count+' proveedores &middot; Guardado '+ds;
           if (snap.saved_by) html += ' &middot; '+esc(snap.saved_by);
           html += '</div>';
-          html += '<button class="hcard-delete" title="Delete" onclick="event.stopPropagation();wsCalc.deleteSnapshot('+JSON.stringify(snap.id)+')">&#x2715;</button>';
+          html += '<button class="hcard-delete" title="Delete" onclick="event.stopPropagation();wsCalc.deleteSnapshot(\''+snap.id+'\')">&#x2715;</button>';
           html += '</div>';
         });
         listEl.innerHTML = html;
