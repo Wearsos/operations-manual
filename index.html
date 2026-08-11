@@ -491,6 +491,43 @@ body {
         </div>
         <span class="card-arrow">&#x2192;</span>
       </div>
+
+      <div class="card" onclick="showPage('team')" style="--card-color:#3D5A3E;">
+        <div class="card-top">
+          <span class="card-icon">🌿</span>
+          <span class="card-num">09</span>
+        </div>
+        <div class="card-titles">
+          <div class="card-title" data-lang="en">Team Structure</div>
+          <div class="card-title" data-lang="es">Equipo Wearsos</div>
+        </div>
+        <span class="card-arrow">&#x2192;</span>
+      </div>
+
+      <div class="card" onclick="showPage('opening')" style="--card-color:#6B5A2E;">
+        <div class="card-top">
+          <span class="card-icon">🔑</span>
+          <span class="card-num">10</span>
+        </div>
+        <div class="card-titles">
+          <div class="card-title" data-lang="en">Opening &amp; Closing</div>
+          <div class="card-title" data-lang="es">Apertura y Cierre</div>
+        </div>
+        <span class="card-arrow">&#x2192;</span>
+      </div>
+
+      <div class="card" onclick="showPage('alarm')" style="--card-color:#3E4A6B;">
+        <div class="card-top">
+          <span class="card-icon">🔔</span>
+          <span class="card-num">11</span>
+        </div>
+        <div class="card-titles">
+          <div class="card-title" data-lang="en">Building Alarm</div>
+          <div class="card-title" data-lang="es">Alarma del Edificio</div>
+        </div>
+        <span class="card-arrow">&#x2192;</span>
+      </div>
+
   </div>
 </div>
 </div>
@@ -3557,6 +3594,507 @@ if (document.readyState !== 'loading') wsCosts.init();
     
 </div><!-- /sec-body -->
   </div><!-- /pg-costs -->
+
+<!-- ═══════════════════════════════════════════════════════ PAGE 09: TEAM -->
+<div class="pg" id="pg-team">
+  <div class="pg-nav">
+    <button class="back-btn" onclick="showHome()">&#8592; <span data-lang="en">Menu</span><span data-lang="es">Menú</span></button>
+    <span class="pg-nav-title"><span data-lang="en">Team Structure</span><span data-lang="es">Equipo Wearsos</span></span>
+    <button class="search-btn" onclick="toggleSearch()">&#x1F50D;</button>
+  </div>
+  <div class="sec-body">
+
+    <div class="sec-header">
+      <div class="sec-num">9</div>
+      <div>
+        <h2 class="sec-title"><span data-lang="en">Team Structure</span><span data-lang="es">Equipo Wearsos</span></h2>
+        <p class="sec-desc"><span data-lang="en">Organizational chart and team roles at Wearsos Turrialba.</span><span data-lang="es">Estructura organizacional y roles del equipo en Wearsos Turrialba.</span></p>
+      </div>
+    </div>
+
+<style>
+.org-wrap { overflow-x: auto; padding: 8px 0 24px; }
+.org-tree { display: flex; flex-direction: column; align-items: center; gap: 0; min-width: 600px; }
+.org-level { display: flex; justify-content: center; gap: 16px; position: relative; }
+.org-connector-v { width: 2px; height: 24px; background: #c8d5c8; margin: 0 auto; }
+.org-connector-h { display: flex; align-items: flex-start; justify-content: center; width: 100%; }
+.org-connector-h::before { content: ''; flex: 1; height: 2px; background: #c8d5c8; margin-top: 0; }
+.org-label { background: #1C3A2A; color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; padding: 5px 18px; border-radius: 20px; white-space: nowrap; }
+.org-card { background: #fff; border: 1.5px solid #d8e4d8; border-radius: 10px; padding: 12px 16px; text-align: center; min-width: 150px; max-width: 180px; box-shadow: 0 1px 4px rgba(0,0,0,.06); transition: box-shadow .15s; }
+.org-card:hover { box-shadow: 0 3px 10px rgba(0,0,0,.1); }
+.org-card-name { font-weight: 700; font-size: 13px; color: #1C3A2A; line-height: 1.3; }
+.org-card-role { font-size: 11px; color: #5a7a5a; margin-top: 3px; line-height: 1.4; }
+.org-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; margin-top: 5px; }
+.org-badge.full { background: #e8f2e8; color: #2a6a2a; }
+.org-badge.part { background: #f5f0e8; color: #7a5a00; }
+.org-badge.project { background: #ebe8f5; color: #4a2a7a; }
+.org-badge.intern { background: #e8f0f5; color: #2a4a7a; }
+.org-section-title { font-size: 11px; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: .5px; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1.5px solid var(--border); }
+.org-dept-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin-bottom: 8px; }
+</style>
+
+<!-- LEADERSHIP -->
+<div class="org-section-title"><span data-lang="en">Leadership</span><span data-lang="es">Liderazgo</span></div>
+<div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:24px;">
+  <div class="org-card" style="border-color:#1C3A2A; flex:1; min-width:200px;">
+    <div class="org-card-name">Lynne Corvaglia</div>
+    <div class="org-card-role">Co-Founder<br>Development of Strategic Alliances</div>
+    <span class="org-badge full">Co-Founder</span>
+  </div>
+  <div class="org-card" style="border-color:#1C3A2A; flex:1; min-width:200px;">
+    <div class="org-card-name">Chris Riquelme</div>
+    <div class="org-card-role">Co-Founder<br>Media and Communications</div>
+    <span class="org-badge full">Co-Founder</span>
+  </div>
+</div>
+
+<!-- ADMINISTRATION -->
+<div class="org-section-title"><span data-lang="en">Administration</span><span data-lang="es">Administración</span></div>
+<div class="org-dept-grid" style="margin-bottom:24px;">
+  <div class="org-card">
+    <div class="org-card-name">Luana Figueiredo</div>
+    <div class="org-card-role">Manager, Programs &amp; Operations<br>Good Loop Internship Founder</div>
+    <span class="org-badge full">Full-Time</span>
+  </div>
+  <div class="org-card">
+    <div class="org-card-name">Carolina Marinez Jiménez</div>
+    <div class="org-card-role">Workshop Production Coordinator<br>Artisan / Shop Support</div>
+    <span class="org-badge full">Full-Time</span>
+  </div>
+  <div class="org-card">
+    <div class="org-card-name">Hein</div>
+    <div class="org-card-role">Wearsos Turrialba<br>Tienda Manager</div>
+    <span class="org-badge full">Full-Time</span>
+  </div>
+</div>
+
+<!-- HUMAN RESOURCES -->
+<div class="org-section-title"><span data-lang="en">Human Resources</span><span data-lang="es">Recursos Humanos</span></div>
+<div class="org-dept-grid" style="margin-bottom:24px;">
+  <div class="org-card">
+    <div class="org-card-name">Carlos Araya</div>
+    <div class="org-card-role">Chief Growth Officer</div>
+    <span class="org-badge full">Business Management</span>
+  </div>
+  <div class="org-card">
+    <div class="org-card-name">Gabriela Artavia</div>
+    <div class="org-card-role">Accountant</div>
+    <span class="org-badge part">Part-Time</span>
+  </div>
+  <div class="org-card">
+    <div class="org-card-name">Marisela</div>
+    <div class="org-card-role">Zoho Books Accountant</div>
+    <span class="org-badge part">Part-Time</span>
+  </div>
+  <div class="org-card">
+    <div class="org-card-name">Dra. Laura Yuré</div>
+    <div class="org-card-role">Psychologist</div>
+    <span class="org-badge project">Project-Based</span>
+  </div>
+</div>
+
+<!-- TIENDA TEAM -->
+<div class="org-section-title"><span data-lang="en">Tienda Team</span><span data-lang="es">Equipo Tienda</span></div>
+<div class="org-dept-grid" style="margin-bottom:24px;">
+  <div class="org-card">
+    <div class="org-card-name">Sean Denzel</div>
+    <div class="org-card-role">Tienda Assistant</div>
+    <span class="org-badge part">Tienda</span>
+  </div>
+  <div class="org-card">
+    <div class="org-card-name">Kayla</div>
+    <div class="org-card-role">Tienda Assistant</div>
+    <span class="org-badge part">Tienda</span>
+  </div>
+</div>
+
+<!-- PERMANENT ARTISANS -->
+<div class="org-section-title"><span data-lang="en">Permanent Artisans</span><span data-lang="es">Artesanos Permanentes</span></div>
+<div class="org-dept-grid" style="margin-bottom:24px;">
+  <div class="org-card">
+    <div class="org-card-name">Jonatan Solano Ramírez</div>
+    <div class="org-card-role">Artisan &amp; Sewing Teacher</div>
+    <span class="org-badge full">Full-Time</span>
+  </div>
+  <div class="org-card">
+    <div class="org-card-name">Teresa Pérez Badilla</div>
+    <div class="org-card-role">Artisan</div>
+    <span class="org-badge part">Part-Time</span>
+  </div>
+  <div class="org-card">
+    <div class="org-card-name">Inés Hernández Solís</div>
+    <div class="org-card-role">Artisan &amp; Designer</div>
+    <span class="org-badge part">Part-Time</span>
+  </div>
+</div>
+
+<!-- PROJECT BASED -->
+<div class="org-section-title"><span data-lang="en">Project-Based Artisans</span><span data-lang="es">Artesanos por Proyecto</span></div>
+<div class="org-dept-grid" style="margin-bottom:24px;">
+  <div class="org-card">
+    <div class="org-card-name">Fiorella Quirros Chaves</div>
+    <div class="org-card-role">Painter</div>
+    <span class="org-badge project">Project-Based</span>
+  </div>
+  <div class="org-card">
+    <div class="org-card-name">María Jesús</div>
+    <div class="org-card-role">Painter</div>
+    <span class="org-badge project">Project-Based</span>
+  </div>
+  <div class="org-card">
+    <div class="org-card-name">Fernanda Salazar</div>
+    <div class="org-card-role">Painter</div>
+    <span class="org-badge project">Project-Based</span>
+  </div>
+</div>
+
+<!-- INTERNS -->
+<div class="org-section-title"><span data-lang="en">Interns</span><span data-lang="es">Pasantes</span></div>
+<div class="org-dept-grid" style="margin-bottom:24px;">
+  <div class="org-card">
+    <div class="org-card-name">Aiden Marie</div>
+    <div class="org-card-role">Projects Assistant</div>
+    <span class="org-badge intern">Intern</span>
+  </div>
+</div>
+
+  </div><!-- /sec-body -->
+</div><!-- /pg-team -->
+
+<!-- ══════════════════════════════════════════════ PAGE 10: OPENING/CLOSING -->
+<div class="pg" id="pg-opening">
+  <div class="pg-nav">
+    <button class="back-btn" onclick="showHome()">&#8592; <span data-lang="en">Menu</span><span data-lang="es">Menú</span></button>
+    <span class="pg-nav-title"><span data-lang="en">Opening &amp; Closing</span><span data-lang="es">Apertura y Cierre</span></span>
+    <button class="search-btn" onclick="toggleSearch()">&#x1F50D;</button>
+  </div>
+  <div class="sec-body">
+
+    <div class="sec-header">
+      <div class="sec-num">10</div>
+      <div>
+        <h2 class="sec-title"><span data-lang="en">Opening &amp; Closing Duties</span><span data-lang="es">Apertura y Cierre de Tienda</span></h2>
+        <p class="sec-desc"><span data-lang="en">Daily procedures for opening and closing Wearsos Turrialba.</span><span data-lang="es">Procedimientos diarios de apertura y cierre de la tienda.</span></p>
+      </div>
+    </div>
+
+<style>
+.oc-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+.oc-tab { flex: 1; padding: 10px; border: 2px solid var(--border); border-radius: 10px; background: var(--white); font-weight: 600; font-size: 13px; cursor: pointer; color: var(--text2); transition: all .15s; text-align: center; }
+.oc-tab.active { border-color: #1C3A2A; background: #1C3A2A; color: #fff; }
+.oc-panel { display: none; }
+.oc-panel.active { display: block; }
+.oc-time-badge { display: inline-flex; align-items: center; gap: 6px; background: #f0f5f0; border: 1.5px solid #c8d5c8; border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 700; color: #1C3A2A; margin-bottom: 20px; }
+.oc-step { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px; padding: 14px 16px; background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; }
+.oc-step-num { min-width: 28px; height: 28px; background: #1C3A2A; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+.oc-step-content { flex: 1; }
+.oc-step-es { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
+.oc-step-en { font-size: 12px; color: var(--text2); }
+.oc-sub-list { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.oc-sub-item { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--text); padding: 6px 10px; background: #f7faf7; border-radius: 6px; border-left: 3px solid #c8d5c8; }
+.oc-sub-item::before { content: '✓'; color: #4a8a4a; font-weight: 700; flex-shrink: 0; }
+.oc-sub-item-en { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.oc-form-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; background: #1C3A2A; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 24px; text-decoration: none; transition: background .15s; }
+.oc-form-btn:hover { background: #2a5a3a; }
+.sop-section { margin-top: 32px; border-top: 2px solid var(--border); padding-top: 24px; }
+.sop-title { font-size: 16px; font-weight: 700; color: #1C3A2A; margin-bottom: 16px; }
+.sop-block { margin-bottom: 20px; }
+.sop-block-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 10px; }
+.sop-item { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--text); padding: 7px 10px; background: var(--white); border: 1px solid var(--border); border-radius: 7px; margin-bottom: 6px; }
+.sop-item::before { content: '○'; color: #4a8a4a; flex-shrink: 0; margin-top: 1px; }
+.sop-note { background: #fff8ec; border-left: 4px solid #e0a830; border-radius: 0 8px 8px 0; padding: 12px 16px; font-size: 13px; color: #7a5c00; margin-top: 16px; }
+</style>
+
+<!-- Tabs -->
+<div class="oc-tabs">
+  <button class="oc-tab active" onclick="ocSwitch('open', this)">&#9728; <span data-lang="en">Opening</span><span data-lang="es">Apertura</span></button>
+  <button class="oc-tab" onclick="ocSwitch('close', this)">&#9790; <span data-lang="en">Closing</span><span data-lang="es">Cierre</span></button>
+  <button class="oc-tab" onclick="ocSwitch('sop', this)">&#x1F9F9; <span data-lang="en">Cleaning SOP</span><span data-lang="es">Limpieza SOP</span></button>
+</div>
+
+<!-- OPENING PANEL -->
+<div class="oc-panel active" id="oc-open">
+  <div class="oc-time-badge">&#x23F0; <span data-lang="en">Arrival for 9 am open</span><span data-lang="es">Llegada para las 9 am — apertura</span></div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">1</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Desactivar la alarma y abrir todas las puertas de la tienda.</div>
+      <div class="oc-step-en">After entering and turning off the alarm, unlock and open all doors of the store.</div>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">2</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Encender todas las luces y la máquina de café.</div>
+      <div class="oc-step-en">Switch on all the lights and turn on the coffee machine.</div>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">3</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Colocar los letreros de café y colgar los expositores de camisetas en el exterior.</div>
+      <div class="oc-step-en">Put the coffee signage and hang up the shirt displays outside.</div>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">4</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Iniciar sesión en Billo y abrir el registro del día.</div>
+      <div class="oc-step-en">Log into Billo and open the register for the day.</div>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">5</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Inspección de tienda.</div>
+      <div class="oc-step-en">Shop Inspection.</div>
+      <div class="oc-sub-list">
+        <div class="oc-sub-item">
+          <div>
+            <div>Asegurarse de que el espacio esté limpio y ordenado.</div>
+            <div class="oc-sub-item-en">Ensure the space is neat and tidy.</div>
+          </div>
+        </div>
+        <div class="oc-sub-item">
+          <div>
+            <div>Verificar papel higiénico en el baño y reemplazar si es necesario.</div>
+            <div class="oc-sub-item-en">Check that toilet paper is stocked and replace if needed.</div>
+          </div>
+        </div>
+        <div class="oc-sub-item">
+          <div>
+            <div>Asegurarse de que los contenedores de basura tengan bolsas limpias.</div>
+            <div class="oc-sub-item-en">Ensure trash bins have clean bags and replace any full bags.</div>
+          </div>
+        </div>
+        <div class="oc-sub-item">
+          <div>
+            <div>Rellenar el filtro de agua (EcoFiltro).</div>
+            <div class="oc-sub-item-en">Make sure the water filter (EcoFiltro) is refilled.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CLOSING PANEL -->
+<div class="oc-panel" id="oc-close">
+  <div class="oc-time-badge">&#x1F319; <span data-lang="en">Prepare for 6 pm closure</span><span data-lang="es">Prepararse para el cierre a las 6 pm</span></div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">1</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Limpiar y ordenar el espacio de trabajo.</div>
+      <div class="oc-step-en">Clean and tidy the workspace.</div>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">2</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Limpiar la máquina de café antes de apagarla.</div>
+      <div class="oc-step-en">Clean the coffee machine before switching it off.</div>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">3</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Guardar los letreros de café y los expositores de camisetas en su lugar.</div>
+      <div class="oc-step-en">Bring in the coffee signage and shirt displays, storing in their correct spot.</div>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">4</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Cerrar sesión en Billo y registrar el dinero del día antes de cerrar la caja.</div>
+      <div class="oc-step-en">Log off from Billo and record the day's earnings before closing the cash register.</div>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">5</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Completar el formulario de resumen del turno.</div>
+      <div class="oc-step-en">Complete the shift summary form.</div>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">6</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Cerrar y asegurar la puerta metálica (shutter).</div>
+      <div class="oc-step-en">Close and lock the shutter door.</div>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">7</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Activar la alarma de seguridad en el segundo piso.</div>
+      <div class="oc-step-en">Turn on the security alarm on the second floor.</div>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">8</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Asegurarse de que todas las luces estén apagadas.</div>
+      <div class="oc-step-en">Make sure all lights are switched off.</div>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">9</div>
+    <div class="oc-step-content">
+      <div class="oc-step-es">Cerrar la puerta con llave al salir.</div>
+      <div class="oc-step-en">Lock the door on your way out.</div>
+    </div>
+  </div>
+
+  <a class="oc-form-btn" href="https://forms.zoho.com/wearsos/form/StoreShiftSummaryForm" target="_blank" rel="noopener">
+    &#x1F4CB; <span data-lang="en">Complete Shift Summary Form</span><span data-lang="es">Completar Formulario de Resumen del Turno</span>
+  </a>
+</div>
+
+<!-- CLEANING SOP PANEL -->
+<div class="oc-panel" id="oc-sop">
+
+  <div class="sop-block">
+    <div class="sop-block-header">&#9728; <span data-lang="en">Opening — 15 min before opening</span><span data-lang="es">Apertura — completar 15 minutos antes de abrir</span></div>
+    <div class="sop-item">Desactivar la alarma y encender todas las luces.</div>
+    <div class="sop-item">Encender los ventiladores y la música ambiental.</div>
+    <div class="sop-item">Contar el fondo de caja e iniciar sesión en el POS.</div>
+    <div class="sop-item">Barrer el área de ventas.</div>
+    <div class="sop-item">Revisar que los estantes estén completos y reponer productos si es necesario.</div>
+    <div class="sop-item">Verificar bolsas, papel de regalo y materiales de empaque.</div>
+    <div class="sop-item">Colocar los rótulos y exhibiciones exteriores.</div>
+    <div class="sop-item">Revisar que todos los productos tengan precio y estén bien acomodados.</div>
+  </div>
+
+  <div class="sop-block">
+    <div class="sop-block-header">&#9790; <span data-lang="en">Closing — within 20 min after close</span><span data-lang="es">Cierre — completar dentro de los 20 minutos posteriores al cierre</span></div>
+    <div class="sop-item">Cerrar la puerta principal y guardar toda la exhibición exterior.</div>
+    <div class="sop-item">Ordenar los productos y acomodarlos al frente de los estantes.</div>
+    <div class="sop-item">Limpiar el área de caja y el mostrador.</div>
+    <div class="sop-item">Vaciar los basureros.</div>
+    <div class="sop-item">Barrer el piso.</div>
+    <div class="sop-item">Generar el reporte de cierre del POS.</div>
+    <div class="sop-item">Contar el efectivo, dejar el fondo de caja y guardar las ventas en la caja fuerte.</div>
+    <div class="sop-item">Apagar luces, música, ventiladores y equipos innecesarios.</div>
+    <div class="sop-item">Verificar que la caja fuerte quede cerrada.</div>
+    <div class="sop-item">Activar la alarma y revisar que todas las puertas estén bien cerradas.</div>
+  </div>
+
+  <div class="sop-block">
+    <div class="sop-block-header">&#x1F4C5; <span data-lang="en">Weekly Deep Clean</span><span data-lang="es">Limpieza Profunda Semanal</span></div>
+    <div class="sop-item">Limpiar el polvo de estantes, muebles, decoración y exhibidores.</div>
+    <div class="sop-item">Limpiar los vidrios interiores y exteriores.</div>
+    <div class="sop-item">Trapear todos los pisos.</div>
+    <div class="sop-item">Desinfectar el mostrador, el datáfono, el POS y el teléfono.</div>
+    <div class="sop-item">Revisar inventario de productos más vendidos y preparar lista de reposición.</div>
+    <div class="sop-item">Reabastecer bolsas, papel de regalo y materiales de empaque.</div>
+    <div class="sop-item">Revisar y reorganizar las exhibiciones de productos.</div>
+    <div class="sop-item">Verificar el estado de los productos y retirar los dañados.</div>
+    <div class="sop-item">Regar las plantas y limpiar el área exterior.</div>
+    <div class="sop-item">Revisar el baño y reponer papel higiénico, jabón y toallas (si aplica).</div>
+  </div>
+
+  <div class="sop-note">
+    ⚠️ Cualquier producto dañado, faltante de inventario o necesidad de mantenimiento debe reportarse de inmediato a la persona encargada de la tienda.
+  </div>
+
+</div>
+
+<script>
+function ocSwitch(panel, btn) {
+  document.querySelectorAll('#pg-opening .oc-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('#pg-opening .oc-tab').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('oc-' + panel).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+  </div><!-- /sec-body -->
+</div><!-- /pg-opening -->
+
+<!-- ════════════════════════════════════════════════ PAGE 11: BUILDING ALARM -->
+<div class="pg" id="pg-alarm">
+  <div class="pg-nav">
+    <button class="back-btn" onclick="showHome()">&#8592; <span data-lang="en">Menu</span><span data-lang="es">Menú</span></button>
+    <span class="pg-nav-title"><span data-lang="en">Building Alarm</span><span data-lang="es">Alarma del Edificio</span></span>
+    <button class="search-btn" onclick="toggleSearch()">&#x1F50D;</button>
+  </div>
+  <div class="sec-body">
+
+    <div class="sec-header">
+      <div class="sec-num">11</div>
+      <div>
+        <h2 class="sec-title"><span data-lang="en">Building Alarm SOP</span><span data-lang="es">Alarma del Edificio — SOP</span></h2>
+        <p class="sec-desc"><span data-lang="en">How to activate the building alarm at closing time.</span><span data-lang="es">Cómo activar la alarma del edificio al cerrar la tienda.</span></p>
+      </div>
+    </div>
+
+<style>
+.alarm-step { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 16px; background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+.alarm-step-num { min-width: 36px; height: 36px; background: #3E4A6B; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; flex-shrink: 0; }
+.alarm-step-content { flex: 1; }
+.alarm-step-es { font-weight: 700; font-size: 15px; color: var(--text); margin-bottom: 4px; }
+.alarm-step-en { font-size: 13px; color: var(--text2); }
+.alarm-doc-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; background: #3E4A6B; color: #fff; border-radius: 10px; font-size: 14px; font-weight: 700; text-decoration: none; margin-top: 24px; transition: background .15s; }
+.alarm-doc-btn:hover { background: #2e3a5b; }
+.alarm-warning { background: #fff8ec; border-left: 4px solid #e0a830; border-radius: 0 8px 8px 0; padding: 12px 16px; font-size: 13px; color: #7a5c00; margin-bottom: 24px; font-weight: 600; }
+</style>
+
+<div class="alarm-warning">
+  &#x1F514; <span data-lang="en">Activate the alarm every night before leaving. The panel is located on the second floor.</span><span data-lang="es">Activar la alarma todas las noches antes de salir. El panel se encuentra en el segundo piso.</span>
+</div>
+
+<div class="alarm-step">
+  <div class="alarm-step-num">1</div>
+  <div class="alarm-step-content">
+    <div class="alarm-step-es">Tocar la pantalla para comenzar.</div>
+    <div class="alarm-step-en">Tap the screen to begin — the alarm panel will wake up.</div>
+  </div>
+</div>
+
+<div class="alarm-step">
+  <div class="alarm-step-num">2</div>
+  <div class="alarm-step-content">
+    <div class="alarm-step-es">Hacer clic en el botón "Sistema Desarmado".</div>
+    <div class="alarm-step-en">Click on the "Disarmed System" button on the home screen.</div>
+  </div>
+</div>
+
+<div class="alarm-step">
+  <div class="alarm-step-num">3</div>
+  <div class="alarm-step-content">
+    <div class="alarm-step-es">Seleccionar "Armado Ausente" para comenzar a activar la alarma.</div>
+    <div class="alarm-step-en">Click "Away Arm" to begin activating the alarm.</div>
+  </div>
+</div>
+
+<div class="alarm-step">
+  <div class="alarm-step-num">4</div>
+  <div class="alarm-step-content">
+    <div class="alarm-step-es">Agregar 60 segundos para tener tiempo extra de bajar y cerrar la tienda.</div>
+    <div class="alarm-step-en">Add 60 seconds for extra time to get downstairs and lock up before the alarm activates.</div>
+  </div>
+</div>
+
+<a class="alarm-doc-btn" href="https://docs.google.com/document/d/1GQvuwrUpjcJIDyWpxgpSvLMUbhUSUzE1Q3aZOSWOUCk/edit?tab=t.3lgzkodg8fp7" target="_blank" rel="noopener">
+  &#x1F4F8; <span data-lang="en">View Photo Reference Guide</span><span data-lang="es">Ver Guía con Fotos de Referencia</span>
+</a>
+
+  </div><!-- /sec-body -->
+</div><!-- /pg-alarm -->
 
 <script>
 // ── CORE NAVIGATION & UI ─────────────────────────────────────────────────────
