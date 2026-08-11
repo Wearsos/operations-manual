@@ -528,6 +528,18 @@ body {
         <span class="card-arrow">&#x2192;</span>
       </div>
 
+      <div class="card" onclick="showPage('pos')" style="--card-color:#2A5A5A;">
+        <div class="card-top">
+          <span class="card-icon">💳</span>
+          <span class="card-num">12</span>
+        </div>
+        <div class="card-titles">
+          <div class="card-title" data-lang="en">POS &amp; Billo SOP</div>
+          <div class="card-title" data-lang="es">SOP del POS y Billo</div>
+        </div>
+        <span class="card-arrow">&#x2192;</span>
+      </div>
+
   </div>
 </div>
 </div>
@@ -3876,24 +3888,19 @@ function closeOrgModal() {
 .oc-panel { display: none; }
 .oc-panel.active { display: block; }
 .oc-time-badge { display: inline-flex; align-items: center; gap: 6px; background: #f0f5f0; border: 1.5px solid #c8d5c8; border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 700; color: #1C3A2A; margin-bottom: 20px; }
-.oc-step { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 16px; padding: 14px 16px; background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; }
+.oc-step { display: flex; gap: 14px; align-items: center; margin-bottom: 16px; padding: 14px 16px; background: var(--white); border: 1.5px solid var(--border); border-radius: 10px; }
 .oc-step-num { min-width: 28px; height: 28px; background: #1C3A2A; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
-.oc-step-content { flex: 1; }
-.oc-step-es { font-weight: 600; font-size: 14px; color: var(--text); margin-bottom: 2px; }
-.oc-step-en { font-size: 12px; color: var(--text2); }
+.oc-step-content { flex: 1; font-weight: 600; font-size: 14px; color: var(--text); }
 .oc-sub-list { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
-.oc-sub-item { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--text); padding: 6px 10px; background: #f7faf7; border-radius: 6px; border-left: 3px solid #c8d5c8; }
+.oc-sub-item { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; font-weight: 400; color: var(--text); padding: 6px 10px; background: #f7faf7; border-radius: 6px; border-left: 3px solid #c8d5c8; }
 .oc-sub-item::before { content: '✓'; color: #4a8a4a; font-weight: 700; flex-shrink: 0; }
-.oc-sub-item-en { font-size: 11px; color: var(--text3); margin-top: 2px; }
-.oc-form-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; background: #1C3A2A; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 24px; text-decoration: none; transition: background .15s; }
+.oc-form-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; background: #1C3A2A; color: #fff; border: none; border-radius: 10px; font-size: 14px; font-weight: 700; cursor: pointer; margin-top: 24px; margin-bottom: 32px; text-decoration: none; transition: background .15s; }
 .oc-form-btn:hover { background: #2a5a3a; }
-.sop-section { margin-top: 32px; border-top: 2px solid var(--border); padding-top: 24px; }
-.sop-title { font-size: 16px; font-weight: 700; color: #1C3A2A; margin-bottom: 16px; }
 .sop-block { margin-bottom: 20px; }
 .sop-block-header { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: var(--text); margin-bottom: 10px; }
 .sop-item { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--text); padding: 7px 10px; background: var(--white); border: 1px solid var(--border); border-radius: 7px; margin-bottom: 6px; }
 .sop-item::before { content: '○'; color: #4a8a4a; flex-shrink: 0; margin-top: 1px; }
-.sop-note { background: #fff8ec; border-left: 4px solid #e0a830; border-radius: 0 8px 8px 0; padding: 12px 16px; font-size: 13px; color: #7a5c00; margin-top: 16px; }
+.sop-note { background: #fff8ec; border-left: 4px solid #e0a830; border-radius: 0 8px 8px 0; padding: 12px 16px; font-size: 13px; color: #7a5c00; margin-top: 16px; margin-bottom: 32px; }
 </style>
 
 <!-- Tabs -->
@@ -3910,64 +3917,56 @@ function closeOrgModal() {
   <div class="oc-step">
     <div class="oc-step-num">1</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Desactivar la alarma y abrir todas las puertas de la tienda.</div>
-      <div class="oc-step-en">After entering and turning off the alarm, unlock and open all doors of the store.</div>
+      <span data-lang="es">Desactivar la alarma y abrir todas las puertas de la tienda.</span>
+      <span data-lang="en">Deactivate the alarm and open all store doors.</span>
     </div>
   </div>
 
   <div class="oc-step">
     <div class="oc-step-num">2</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Encender todas las luces y la máquina de café.</div>
-      <div class="oc-step-en">Switch on all the lights and turn on the coffee machine.</div>
+      <span data-lang="es">Encender todas las luces y la máquina de café.</span>
+      <span data-lang="en">Switch on all the lights and turn on the coffee machine.</span>
     </div>
   </div>
 
   <div class="oc-step">
     <div class="oc-step-num">3</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Colocar los letreros de café y colgar los expositores de camisetas en el exterior.</div>
-      <div class="oc-step-en">Put the coffee signage and hang up the shirt displays outside.</div>
+      <span data-lang="es">Colocar los letreros de café y colgar los expositores de camisetas en el exterior.</span>
+      <span data-lang="en">Put out the coffee signage and hang the shirt displays outside.</span>
     </div>
   </div>
 
   <div class="oc-step">
     <div class="oc-step-num">4</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Iniciar sesión en Billo y abrir el registro del día.</div>
-      <div class="oc-step-en">Log into Billo and open the register for the day.</div>
+      <span data-lang="es">Iniciar sesión en Billo y abrir el registro del día.</span>
+      <span data-lang="en">Log into Billo and open the register for the day.</span>
     </div>
   </div>
 
   <div class="oc-step">
     <div class="oc-step-num">5</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Inspección de tienda.</div>
-      <div class="oc-step-en">Shop Inspection.</div>
+      <span data-lang="es">Inspección de tienda.</span>
+      <span data-lang="en">Shop inspection.</span>
       <div class="oc-sub-list">
         <div class="oc-sub-item">
-          <div>
-            <div>Asegurarse de que el espacio esté limpio y ordenado.</div>
-            <div class="oc-sub-item-en">Ensure the space is neat and tidy.</div>
-          </div>
+          <span data-lang="es">Asegurarse de que el espacio esté limpio y ordenado.</span>
+          <span data-lang="en">Make sure the space is clean and tidy.</span>
         </div>
         <div class="oc-sub-item">
-          <div>
-            <div>Verificar papel higiénico en el baño y reemplazar si es necesario.</div>
-            <div class="oc-sub-item-en">Check that toilet paper is stocked and replace if needed.</div>
-          </div>
+          <span data-lang="es">Verificar papel higiénico en el baño y reemplazar si es necesario.</span>
+          <span data-lang="en">Check toilet paper in the bathroom and replace if needed.</span>
         </div>
         <div class="oc-sub-item">
-          <div>
-            <div>Asegurarse de que los contenedores de basura tengan bolsas limpias.</div>
-            <div class="oc-sub-item-en">Ensure trash bins have clean bags and replace any full bags.</div>
-          </div>
+          <span data-lang="es">Asegurarse de que los contenedores de basura tengan bolsas limpias.</span>
+          <span data-lang="en">Make sure trash bins have clean bags.</span>
         </div>
         <div class="oc-sub-item">
-          <div>
-            <div>Rellenar el filtro de agua (EcoFiltro).</div>
-            <div class="oc-sub-item-en">Make sure the water filter (EcoFiltro) is refilled.</div>
-          </div>
+          <span data-lang="es">Rellenar el filtro de agua (EcoFiltro).</span>
+          <span data-lang="en">Refill the water filter (EcoFiltro).</span>
         </div>
       </div>
     </div>
@@ -3981,72 +3980,72 @@ function closeOrgModal() {
   <div class="oc-step">
     <div class="oc-step-num">1</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Limpiar y ordenar el espacio de trabajo.</div>
-      <div class="oc-step-en">Clean and tidy the workspace.</div>
+      <span data-lang="es">Limpiar y ordenar el espacio de trabajo.</span>
+      <span data-lang="en">Clean and tidy the workspace.</span>
     </div>
   </div>
 
   <div class="oc-step">
     <div class="oc-step-num">2</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Limpiar la máquina de café antes de apagarla.</div>
-      <div class="oc-step-en">Clean the coffee machine before switching it off.</div>
+      <span data-lang="es">Limpiar la máquina de café antes de apagarla.</span>
+      <span data-lang="en">Clean the coffee machine before switching it off.</span>
     </div>
   </div>
 
   <div class="oc-step">
     <div class="oc-step-num">3</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Guardar los letreros de café y los expositores de camisetas en su lugar.</div>
-      <div class="oc-step-en">Bring in the coffee signage and shirt displays, storing in their correct spot.</div>
+      <span data-lang="es">Guardar los letreros de café y los expositores de camisetas en su lugar.</span>
+      <span data-lang="en">Bring in the coffee signage and shirt displays, storing them in their correct spot.</span>
     </div>
   </div>
 
   <div class="oc-step">
     <div class="oc-step-num">4</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Cerrar sesión en Billo y registrar el dinero del día antes de cerrar la caja.</div>
-      <div class="oc-step-en">Log off from Billo and record the day's earnings before closing the cash register.</div>
+      <span data-lang="es">Cerrar sesión en Billo y registrar el dinero del día antes de cerrar la caja.</span>
+      <span data-lang="en">Log off from Billo and record the day's earnings before closing the cash register.</span>
     </div>
   </div>
 
   <div class="oc-step">
     <div class="oc-step-num">5</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Completar el formulario de resumen del turno.</div>
-      <div class="oc-step-en">Complete the shift summary form.</div>
+      <span data-lang="es">Completar el formulario de resumen del turno.</span>
+      <span data-lang="en">Complete the shift summary form.</span>
     </div>
   </div>
 
   <div class="oc-step">
     <div class="oc-step-num">6</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Cerrar y asegurar la puerta metálica (shutter).</div>
-      <div class="oc-step-en">Close and lock the shutter door.</div>
+      <span data-lang="es">Cerrar y asegurar la puerta metálica (shutter).</span>
+      <span data-lang="en">Close and lock the shutter door.</span>
     </div>
   </div>
 
   <div class="oc-step">
     <div class="oc-step-num">7</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Activar la alarma de seguridad en el segundo piso.</div>
-      <div class="oc-step-en">Turn on the security alarm on the second floor.</div>
+      <span data-lang="es">Activar la alarma de seguridad en el segundo piso.</span>
+      <span data-lang="en">Turn on the security alarm on the second floor.</span>
     </div>
   </div>
 
   <div class="oc-step">
     <div class="oc-step-num">8</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Asegurarse de que todas las luces estén apagadas.</div>
-      <div class="oc-step-en">Make sure all lights are switched off.</div>
+      <span data-lang="es">Asegurarse de que todas las luces estén apagadas.</span>
+      <span data-lang="en">Make sure all lights are switched off.</span>
     </div>
   </div>
 
   <div class="oc-step">
     <div class="oc-step-num">9</div>
     <div class="oc-step-content">
-      <div class="oc-step-es">Cerrar la puerta con llave al salir.</div>
-      <div class="oc-step-en">Lock the door on your way out.</div>
+      <span data-lang="es">Cerrar la puerta con llave al salir.</span>
+      <span data-lang="en">Lock the door on your way out.</span>
     </div>
   </div>
 
@@ -4060,46 +4059,47 @@ function closeOrgModal() {
 
   <div class="sop-block">
     <div class="sop-block-header">&#9728; <span data-lang="en">Opening — 15 min before opening</span><span data-lang="es">Apertura — completar 15 minutos antes de abrir</span></div>
-    <div class="sop-item">Desactivar la alarma y encender todas las luces.</div>
-    <div class="sop-item">Encender los ventiladores y la música ambiental.</div>
-    <div class="sop-item">Contar el fondo de caja e iniciar sesión en el POS.</div>
-    <div class="sop-item">Barrer el área de ventas.</div>
-    <div class="sop-item">Revisar que los estantes estén completos y reponer productos si es necesario.</div>
-    <div class="sop-item">Verificar bolsas, papel de regalo y materiales de empaque.</div>
-    <div class="sop-item">Colocar los rótulos y exhibiciones exteriores.</div>
-    <div class="sop-item">Revisar que todos los productos tengan precio y estén bien acomodados.</div>
+    <div class="sop-item"><span data-lang="es">Desactivar la alarma y encender todas las luces.</span><span data-lang="en">Deactivate the alarm and switch on all lights.</span></div>
+    <div class="sop-item"><span data-lang="es">Encender los ventiladores y la música ambiental.</span><span data-lang="en">Turn on the fans and background music.</span></div>
+    <div class="sop-item"><span data-lang="es">Contar el fondo de caja e iniciar sesión en el POS.</span><span data-lang="en">Count the cash float and log into the POS.</span></div>
+    <div class="sop-item"><span data-lang="es">Barrer el área de ventas.</span><span data-lang="en">Sweep the sales floor.</span></div>
+    <div class="sop-item"><span data-lang="es">Revisar que los estantes estén completos y reponer productos si es necesario.</span><span data-lang="en">Check that shelves are fully stocked and replenish products as needed.</span></div>
+    <div class="sop-item"><span data-lang="es">Verificar bolsas, papel de regalo y materiales de empaque.</span><span data-lang="en">Check bags, gift paper, and packaging materials.</span></div>
+    <div class="sop-item"><span data-lang="es">Colocar los rótulos y exhibiciones exteriores.</span><span data-lang="en">Set up outdoor signage and displays.</span></div>
+    <div class="sop-item"><span data-lang="es">Revisar que todos los productos tengan precio y estén bien acomodados.</span><span data-lang="en">Make sure all products are priced and neatly arranged.</span></div>
   </div>
 
   <div class="sop-block">
     <div class="sop-block-header">&#9790; <span data-lang="en">Closing — within 20 min after close</span><span data-lang="es">Cierre — completar dentro de los 20 minutos posteriores al cierre</span></div>
-    <div class="sop-item">Cerrar la puerta principal y guardar toda la exhibición exterior.</div>
-    <div class="sop-item">Ordenar los productos y acomodarlos al frente de los estantes.</div>
-    <div class="sop-item">Limpiar el área de caja y el mostrador.</div>
-    <div class="sop-item">Vaciar los basureros.</div>
-    <div class="sop-item">Barrer el piso.</div>
-    <div class="sop-item">Generar el reporte de cierre del POS.</div>
-    <div class="sop-item">Contar el efectivo, dejar el fondo de caja y guardar las ventas en la caja fuerte.</div>
-    <div class="sop-item">Apagar luces, música, ventiladores y equipos innecesarios.</div>
-    <div class="sop-item">Verificar que la caja fuerte quede cerrada.</div>
-    <div class="sop-item">Activar la alarma y revisar que todas las puertas estén bien cerradas.</div>
+    <div class="sop-item"><span data-lang="es">Cerrar la puerta principal y guardar toda la exhibición exterior.</span><span data-lang="en">Close the main door and bring in all outdoor displays.</span></div>
+    <div class="sop-item"><span data-lang="es">Ordenar los productos y acomodarlos al frente de los estantes.</span><span data-lang="en">Tidy products and pull them to the front of shelves.</span></div>
+    <div class="sop-item"><span data-lang="es">Limpiar el área de caja y el mostrador.</span><span data-lang="en">Clean the checkout area and counter.</span></div>
+    <div class="sop-item"><span data-lang="es">Vaciar los basureros.</span><span data-lang="en">Empty the trash bins.</span></div>
+    <div class="sop-item"><span data-lang="es">Barrer el piso.</span><span data-lang="en">Sweep the floor.</span></div>
+    <div class="sop-item"><span data-lang="es">Generar el reporte de cierre del POS.</span><span data-lang="en">Generate the POS closing report.</span></div>
+    <div class="sop-item"><span data-lang="es">Contar el efectivo, dejar el fondo de caja y guardar las ventas en la caja fuerte.</span><span data-lang="en">Count the cash, set aside the float, and store the day's sales in the safe.</span></div>
+    <div class="sop-item"><span data-lang="es">Apagar luces, música, ventiladores y equipos innecesarios.</span><span data-lang="en">Switch off lights, music, fans, and any unnecessary equipment.</span></div>
+    <div class="sop-item"><span data-lang="es">Verificar que la caja fuerte quede cerrada.</span><span data-lang="en">Verify the safe is locked.</span></div>
+    <div class="sop-item"><span data-lang="es">Activar la alarma y revisar que todas las puertas estén bien cerradas.</span><span data-lang="en">Activate the alarm and check that all doors are properly closed.</span></div>
   </div>
 
   <div class="sop-block">
     <div class="sop-block-header">&#x1F4C5; <span data-lang="en">Weekly Deep Clean</span><span data-lang="es">Limpieza Profunda Semanal</span></div>
-    <div class="sop-item">Limpiar el polvo de estantes, muebles, decoración y exhibidores.</div>
-    <div class="sop-item">Limpiar los vidrios interiores y exteriores.</div>
-    <div class="sop-item">Trapear todos los pisos.</div>
-    <div class="sop-item">Desinfectar el mostrador, el datáfono, el POS y el teléfono.</div>
-    <div class="sop-item">Revisar inventario de productos más vendidos y preparar lista de reposición.</div>
-    <div class="sop-item">Reabastecer bolsas, papel de regalo y materiales de empaque.</div>
-    <div class="sop-item">Revisar y reorganizar las exhibiciones de productos.</div>
-    <div class="sop-item">Verificar el estado de los productos y retirar los dañados.</div>
-    <div class="sop-item">Regar las plantas y limpiar el área exterior.</div>
-    <div class="sop-item">Revisar el baño y reponer papel higiénico, jabón y toallas (si aplica).</div>
+    <div class="sop-item"><span data-lang="es">Limpiar el polvo de estantes, muebles, decoración y exhibidores.</span><span data-lang="en">Dust shelves, furniture, decor, and display fixtures.</span></div>
+    <div class="sop-item"><span data-lang="es">Limpiar los vidrios interiores y exteriores.</span><span data-lang="en">Clean interior and exterior glass.</span></div>
+    <div class="sop-item"><span data-lang="es">Trapear todos los pisos.</span><span data-lang="en">Mop all floors.</span></div>
+    <div class="sop-item"><span data-lang="es">Desinfectar el mostrador, el datáfono, el POS y el teléfono.</span><span data-lang="en">Disinfect the counter, card reader, POS, and phone.</span></div>
+    <div class="sop-item"><span data-lang="es">Revisar inventario de productos más vendidos y preparar lista de reposición.</span><span data-lang="en">Review top-selling product inventory and prepare a restocking list.</span></div>
+    <div class="sop-item"><span data-lang="es">Reabastecer bolsas, papel de regalo y materiales de empaque.</span><span data-lang="en">Restock bags, gift paper, and packaging materials.</span></div>
+    <div class="sop-item"><span data-lang="es">Revisar y reorganizar las exhibiciones de productos.</span><span data-lang="en">Review and reorganize product displays.</span></div>
+    <div class="sop-item"><span data-lang="es">Verificar el estado de los productos y retirar los dañados.</span><span data-lang="en">Check the condition of products and remove any damaged ones.</span></div>
+    <div class="sop-item"><span data-lang="es">Regar las plantas y limpiar el área exterior.</span><span data-lang="en">Water the plants and clean the exterior area.</span></div>
+    <div class="sop-item"><span data-lang="es">Revisar el baño y reponer papel higiénico, jabón y toallas (si aplica).</span><span data-lang="en">Check the bathroom and restock toilet paper, soap, and towels (if applicable).</span></div>
   </div>
 
   <div class="sop-note">
-    ⚠️ Cualquier producto dañado, faltante de inventario o necesidad de mantenimiento debe reportarse de inmediato a la persona encargada de la tienda.
+    <span data-lang="es">⚠️ Cualquier producto dañado, faltante de inventario o necesidad de mantenimiento debe reportarse de inmediato a la persona encargada de la tienda.</span>
+    <span data-lang="en">⚠️ Any damaged product, inventory shortage, or maintenance need must be reported immediately to the person in charge of the store.</span>
   </div>
 
 </div>
@@ -4198,6 +4198,338 @@ function ocSwitch(panel, btn) {
 
   </div><!-- /sec-body -->
 </div><!-- /pg-alarm -->
+
+<!-- ══════════════════════════════════════════════ PAGE 12: POS & BILLO SOP -->
+<div class="pg" id="pg-pos">
+  <div class="sec-nav">
+    <button class="back-btn" onclick="showPage('home')">
+      <span data-lang="en">&#x2190; Menu</span>
+      <span data-lang="es">&#x2190; Men&uacute;</span>
+    </button>
+    <div class="sec-nav-title">
+      <span data-lang="en">POS &amp; Billo SOP</span>
+      <span data-lang="es">SOP del POS y Billo</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="search-icon-btn" onclick="openSearch()" title="Search">&#x1F50D;</div>
+      <div class="lang-toggle">
+        <button class="lang-btn en-btn" onclick="setLang('en',this)">EN</button>
+        <button class="lang-btn es-btn active" onclick="setLang('es',this)">ES</button>
+      </div>
+    </div>
+  </div>
+  <div class="sec-body">
+
+    <div class="sec-header">
+      <div class="sec-num">12</div>
+      <div>
+        <h2 class="sec-title"><span data-lang="en">POS &amp; Billo SOP</span><span data-lang="es">SOP del POS y Billo</span></h2>
+        <p class="sec-desc"><span data-lang="en">How to open and close the register, process sales, and troubleshoot WiFi.</span><span data-lang="es">Cómo abrir y cerrar la caja, procesar ventas y solucionar problemas de WiFi.</span></p>
+      </div>
+    </div>
+
+<style>
+.pos-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.pos-tab { flex: 1; min-width: 120px; padding: 10px 8px; border: 2px solid var(--border); border-radius: 10px; background: var(--white); font-weight: 600; font-size: 12px; cursor: pointer; color: var(--text2); transition: all .15s; text-align: center; }
+.pos-tab.active { border-color: #2A5A5A; background: #2A5A5A; color: #fff; }
+.pos-panel { display: none; }
+.pos-panel.active { display: block; }
+.pos-pay-header { font-size: 12px; font-weight: 700; color: #2A5A5A; text-transform: uppercase; letter-spacing: .5px; margin: 12px 0 6px; }
+.pos-note { background: #fff8ec; border-left: 4px solid #e0a830; border-radius: 0 8px 8px 0; padding: 12px 16px; font-size: 13px; color: #7a5c00; margin-bottom: 24px; font-weight: 600; }
+</style>
+
+<div class="pos-tabs">
+  <button class="pos-tab active" onclick="posSwitch('open', this)">&#x1F513; <span data-lang="en">Open Register</span><span data-lang="es">Abrir Caja</span></button>
+  <button class="pos-tab" onclick="posSwitch('close', this)">&#x1F512; <span data-lang="en">Close Register</span><span data-lang="es">Cerrar Caja</span></button>
+  <button class="pos-tab" onclick="posSwitch('sale', this)">&#x1F6D2; <span data-lang="en">Make a Sale</span><span data-lang="es">Hacer una Venta</span></button>
+  <button class="pos-tab" onclick="posSwitch('wifi', this)">&#x1F4F6; <span data-lang="en">WiFi Issues</span><span data-lang="es">Problemas de WiFi</span></button>
+</div>
+
+<!-- OPEN REGISTER PANEL -->
+<div class="pos-panel active" id="pos-open">
+  <div class="oc-time-badge">&#x1F513; <span data-lang="en">Complete at store opening</span><span data-lang="es">Completar al abrir la tienda</span></div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">1</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Inicia sesión en Billo con tu correo electrónico y contraseña.</span>
+      <span data-lang="en">Sign into Billo with your email and password.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">2</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Ingresa la cantidad de efectivo en la caja registradora [&#x20A1;55,000 y $40] para abrirla.</span>
+      <span data-lang="en">Enter the amount of cash in the register [&#x20A1;55,000 and $40] to open it.</span>
+    </div>
+  </div>
+</div>
+
+<!-- CLOSE REGISTER PANEL -->
+<div class="pos-panel" id="pos-close">
+  <div class="oc-time-badge">&#x1F512; <span data-lang="en">Complete within 20 min of closing</span><span data-lang="es">Completar dentro de 20 min del cierre</span></div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">1</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Comienza en la tableta POS, haciendo clic en la tercera flecha para iniciar.</span>
+      <span data-lang="en">Begin on the POS tablet and click the third arrow to start.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">2</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Desplázate hacia abajo y selecciona "Reportes Totales Detallado".</span>
+      <span data-lang="en">Scroll down and select "Reportes Totales Detallado."</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">3</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Selecciona "Todos" para ver todas las ventas realizadas.</span>
+      <span data-lang="en">Select "Todos" to see all sales made.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">4</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Ingresa el código <strong>4470</strong> para continuar.</span>
+      <span data-lang="en">Enter the code <strong>4470</strong> to continue.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">5</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Selecciona "Cierre".</span>
+      <span data-lang="en">Select "Cierre."</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">6</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Vuelve a ingresar el mismo código: <strong>4470</strong>.</span>
+      <span data-lang="en">Re-enter the same code: <strong>4470</strong>.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">7</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Selecciona el botón para confirmar el cierre.</span>
+      <span data-lang="en">Select the button to confirm closure.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">8</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Imprime el recibo de las ventas del día.</span>
+      <span data-lang="en">Print the receipt for today's sales.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">9</div>
+    <div class="oc-step-content">
+      <span data-lang="es">En la tableta Billo, selecciona "Caja" para comenzar el cierre.</span>
+      <span data-lang="en">On the Billo tablet, select "Caja" to begin closure.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">10</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Selecciona "Cerrar Caja" para iniciar el proceso.</span>
+      <span data-lang="en">Select "Cerrar Caja" to begin closing the register.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">11</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Verifica la apertura de la caja de efectivo.</span>
+      <span data-lang="en">Check for the cash box opening.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">12</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Confirma la cantidad de efectivo en la caja.</span>
+      <span data-lang="en">Confirm the quantity of cash in the cash box.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">13</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Confirma el monto de efectivo en la registradora. El excedente de &#x20A1;55,000 y $40 debe colocarse en un sobre con los datos y el monto escritos.</span>
+      <span data-lang="en">Confirm the cash amount in the register. The excess over &#x20A1;55,000 and $40 goes into an envelope with the date and amount written on it.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">14</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Confirma para cerrar la caja.</span>
+      <span data-lang="en">Confirm to close the register.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">15</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Pega los recibos de ventas del día en una hoja y colócala en la carpeta.</span>
+      <span data-lang="en">Paste today's sales receipts onto a sheet of paper and place it in the binder.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">16</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Sal de la aplicación Billo para comenzar a apagar la tableta.</span>
+      <span data-lang="en">Exit the Billo app to begin turning off the tablet.</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAKE A SALE PANEL -->
+<div class="pos-panel" id="pos-sale">
+  <div class="oc-step">
+    <div class="oc-step-num">1</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Comienza en la página de "Facturación".</span>
+      <span data-lang="en">Begin on the "Facturación" page.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">2</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Busca los artículos para agregarlos al carrito.</span>
+      <span data-lang="en">Search for items to add to the cart.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">3</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Selecciona los artículos y edita para asegurar la cantidad y el precio correctos.</span>
+      <span data-lang="en">Select items for the cart and edit for accurate quantity and price.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">4</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Cuando todos los artículos estén agregados, haz clic en "Cobrar" para continuar.</span>
+      <span data-lang="en">When all items are added, click "Cobrar" to continue with the purchase.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">5</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Selecciona el método de pago.</span>
+      <span data-lang="en">Select a payment method.</span>
+      <div class="oc-sub-list">
+        <div class="pos-pay-header"><span data-lang="es">&#x1F4B3; Si es tarjeta:</span><span data-lang="en">&#x1F4B3; If paying by card:</span></div>
+        <div class="oc-sub-item"><span data-lang="es">En la máquina de tarjetas junto al POS, presiona F1 para comenzar.</span><span data-lang="en">At the card machine next to the POS tablet, press F1 to start.</span></div>
+        <div class="oc-sub-item"><span data-lang="es">Selecciona la moneda con las flechas y el botón verde.</span><span data-lang="en">Select the currency using the arrows and green button.</span></div>
+        <div class="oc-sub-item"><span data-lang="es">Ingresa el monto total de la compra.</span><span data-lang="en">Enter the total amount of the purchase.</span></div>
+        <div class="oc-sub-item"><span data-lang="es">Confirma que el precio total sea correcto.</span><span data-lang="en">Confirm the correct total price.</span></div>
+        <div class="oc-sub-item"><span data-lang="es">Entrega el dispositivo al cliente para que acerque su tarjeta.</span><span data-lang="en">Hand the machine to the customer to tap their card.</span></div>
+        <div class="oc-sub-item"><span data-lang="es">Guarda el comprobante impreso.</span><span data-lang="en">Save the printed receipt.</span></div>
+        <div class="oc-sub-item"><span data-lang="es">Ingresa el número del comprobante en Billo para completar la transacción.</span><span data-lang="en">Enter the receipt number in Billo to complete the transaction.</span></div>
+        <div class="pos-pay-header" style="margin-top:14px;"><span data-lang="es">&#x1F4B5; Si es efectivo:</span><span data-lang="en">&#x1F4B5; If paying by cash:</span></div>
+        <div class="oc-sub-item"><span data-lang="es">Selecciona la moneda.</span><span data-lang="en">Select the currency.</span></div>
+        <div class="oc-sub-item"><span data-lang="es">Ingresa el monto de efectivo recibido.</span><span data-lang="en">Enter the amount of cash received.</span></div>
+        <div class="oc-sub-item"><span data-lang="es">Confirma el monto total del cambio y confirma para abrir la caja.</span><span data-lang="en">Confirm the total change amount and confirm to open the cash register.</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">6</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Después de la venta, actualiza el inventario en la hoja maestra.</span>
+      <span data-lang="en">After the sale, update the stock on the inventory mastersheet.</span>
+    </div>
+  </div>
+</div>
+
+<!-- WIFI ISSUES PANEL -->
+<div class="pos-panel" id="pos-wifi">
+  <div class="pos-note">
+    &#x26A0;&#xFE0F; <span data-lang="es">Si Billo no se conecta al WiFi, sigue estos pasos para restablecer la conexión.</span><span data-lang="en">If Billo won't connect to WiFi, follow these steps to restore the connection.</span>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">1</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Ve a "Configuración" en la tableta.</span>
+      <span data-lang="en">Go to "Settings" on the tablet.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">2</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Desplázate hacia abajo hasta la pestaña "Sistema".</span>
+      <span data-lang="en">Scroll down to the "Sistema" tab.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">3</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Selecciona "Fecha y Hora" para cambiar la fecha y la hora.</span>
+      <span data-lang="en">Select "Fecha y Hora" to change the date and time.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">4</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Selecciona "Fecha" y "Hora" para actualizarlas manualmente.</span>
+      <span data-lang="en">Select "Fecha" and "Hora" to update them manually.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">5</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Regresa a la pestaña de WiFi en configuración y haz clic en "Actualizar".</span>
+      <span data-lang="en">Return to the WiFi tab in settings and tap "Actualizar" to refresh.</span>
+    </div>
+  </div>
+
+  <div class="oc-step">
+    <div class="oc-step-num">6</div>
+    <div class="oc-step-content">
+      <span data-lang="es">Debería indicar que está conectado. Si no, reinicia la tableta y repite el proceso desde el paso 2.</span>
+      <span data-lang="en">It should now show as connected. If not, restart the tablet and repeat from step 2.</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function posSwitch(panel, btn) {
+  document.querySelectorAll('#pg-pos .pos-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('#pg-pos .pos-tab').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('pos-' + panel).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+  </div><!-- /sec-body -->
+</div><!-- /pg-pos -->
 
 <script>
 // ── CORE NAVIGATION & UI ─────────────────────────────────────────────────────
