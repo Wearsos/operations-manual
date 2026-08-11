@@ -2600,6 +2600,8 @@ window.wsCalc = {
     });
 
     _results = { products: products, byProv: byProv, costIndexes: costIndexes, unmatched: unmatched };
+    var saveBtn = document.getElementById('save-snap-btn');
+    if (saveBtn) saveBtn.style.display = '';
     this._renderResults(byProv, unmatched, costIndexes.providers);
   },
 
@@ -3115,49 +3117,32 @@ window.wsCalc = {
   },
 
   viewSnapshot: function(id) {
-    var viewEl = document.getElementById('history-snapshot-view');
-    var listEl = document.getElementById('history-list-view');
-    viewEl.innerHTML = '<div style="color:var(--text3);padding:20px;text-align:center;">Loading...</div>';
-    viewEl.style.display = 'block';
-    listEl.style.display = 'none';
+    var self = this;
+    // Close the modal and show the full results section with a loading state
+    wsPayUX.closeModal();
+    document.getElementById('calc-history').style.display = 'none';
+    document.getElementById('results-month-label').textContent = 'Cargando...';
+    document.getElementById('provider-cards').innerHTML = '<div style="color:var(--text3);padding:20px;text-align:center;">Cargando...</div>';
+    document.getElementById('detail-tables').innerHTML = '';
+    document.getElementById('calc-results').style.display = 'block';
+    document.getElementById('calc-results').scrollIntoView({behavior:'smooth', block:'start'});
+
     window._sb.from('monthly_snapshots').select('*').eq('id', id).single().then(function(res) {
-      if (res.error || !res.data) { viewEl.innerHTML = '<div style="color:red;padding:16px;">Error loading snapshot.</div>'; return; }
+      if (res.error || !res.data) {
+        document.getElementById('provider-cards').innerHTML = '<div style="color:red;padding:16px;">Error al cargar el cálculo guardado.</div>';
+        return;
+      }
       var snap = res.data;
       var byProv = snap.snapshot;
-      var providers = Object.keys(byProv).sort(function(a,b){ return a.localeCompare(b,'es'); });
-
-      var html = '<div class="snap-view-hdr">';
-      html += '<button class="snap-back-btn" onclick="wsCalc.backToList()">&#x2190; <span class="bi"><span class="en">All months</span><span class="es">Todos los meses</span></span></button>';
-      html += '<div class="snap-view-title">'+esc(snap.month_label)+'</div>';
-      html += '</div>';
-      html += '<div class="provider-cards-grid">';
-      providers.forEach(function(pr) {
-        var prods = byProv[pr];
-        var hasCost = prods.some(function(p){ return p.hasCost; });
-        var total   = prods.reduce(function(s,p){ return s+p.totalCost; }, 0);
-        var curr    = (prods.find(function(p){ return p.hasCost; })||{currency:'CRC'}).currency;
-        var units   = prods.reduce(function(s,p){ return s+p.qty; }, 0);
-        html += '<div class="provider-card'+(hasCost?'':' missing')+'">';
-        html += '<div class="pcard-name">'+esc(pr)+'</div>';
-        if (hasCost) {
-          html += '<div class="pcard-total">'+fmtCurrency(total,curr)+'</div>';
-          html += '<div class="pcard-currency">'+curr+'</div>';
-        } else {
-          html += '<div class="pcard-missing">Sin datos de costo</div>';
-        }
-        html += '<div class="pcard-count">'+prods.length+' producto'+(prods.length!==1?'s':'')+'&nbsp;&middot;&nbsp;'+units+' uds.</div>';
-        html += '<details class="snap-details"><summary><span class="bi"><span class="en">View products</span><span class="es">Ver productos</span></span></summary>';
-        html += '<table class="snap-table"><thead><tr><th>Producto</th><th>Uds.</th><th>Costo unit.</th><th>Total</th></tr></thead><tbody>';
-        prods.forEach(function(p) {
-          html += '<tr><td>'+esc(p.name||p.fullName||'')+'</td><td>'+p.qty+'</td>';
-          html += '<td>'+(p.hasCost ? fmtCurrency(p.unitCost,p.currency) : '&mdash;')+'</td>';
-          html += '<td>'+(p.hasCost ? fmtCurrency(p.totalCost,p.currency) : '&mdash;')+'</td></tr>';
-        });
-        html += '</tbody></table></details>';
-        html += '</div>';
-      });
-      html += '</div>';
-      viewEl.innerHTML = html;
+      // Populate internal state so helper functions don't break
+      _results = { byProv: byProv, products: [], costIndexes: { providers: Object.keys(byProv) }, unmatched: [] };
+      // Set month label
+      document.getElementById('results-month-label').textContent = snap.month_label;
+      // Hide save button — this snapshot is already saved
+      var saveBtn = document.getElementById('save-snap-btn');
+      if (saveBtn) saveBtn.style.display = 'none';
+      // Render the full results view
+      self._renderResults(byProv, [], Object.keys(byProv));
     });
   },
 
@@ -3597,10 +3582,22 @@ if (document.readyState !== 'loading') wsCosts.init();
 
 <!-- ═══════════════════════════════════════════════════════ PAGE 09: TEAM -->
 <div class="pg" id="pg-team">
-  <div class="pg-nav">
-    <button class="back-btn" onclick="showPage('home')">&#8592; <span data-lang="en">Menu</span><span data-lang="es">Menú</span></button>
-    <span class="pg-nav-title"><span data-lang="en">Team Structure</span><span data-lang="es">Equipo Wearsos</span></span>
-    <button class="search-btn" onclick="toggleSearch()">&#x1F50D;</button>
+  <div class="sec-nav">
+    <button class="back-btn" onclick="showPage('home')">
+      <span data-lang="en">&#x2190; Menu</span>
+      <span data-lang="es">&#x2190; Men&uacute;</span>
+    </button>
+    <div class="sec-nav-title">
+      <span data-lang="en">Team Structure</span>
+      <span data-lang="es">Equipo Wearsos</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="search-icon-btn" onclick="openSearch()" title="Search">&#x1F50D;</div>
+      <div class="lang-toggle">
+        <button class="lang-btn en-btn" onclick="setLang('en',this)">EN</button>
+        <button class="lang-btn es-btn active" onclick="setLang('es',this)">ES</button>
+      </div>
+    </div>
   </div>
   <div class="sec-body">
 
@@ -3668,20 +3665,40 @@ if (document.readyState !== 'loading') wsCosts.init();
 
   <div class="org-vbar"></div>
 
-  <!-- MANAGEMENT LEVEL -->
+  <!-- LEVEL 2: CARLOS (above administration) -->
   <div class="org-children">
-
-    <!-- LUANA branch -->
     <div class="org-col">
-      <div class="org-node" onclick="orgOpen('Luana Figueiredo','Manager, Programs &amp; Operations','Full-Time','badge-ft','Oversees operations, programs, and team coordination at Wearsos. Also founder of the Good Loop Internship program.')">
-        <div class="org-node-name">Luana Figueiredo</div>
-        <div class="org-node-role">Manager, Programs &amp; Operations</div>
-        <span class="org-node-badge badge-ft">Full-Time</span>
+      <div class="org-node" onclick="orgOpen('Carlos Araya','Chief Growth Officer','Business Mgmt','badge-ft','Drives business growth and commercial strategy for Wearsos. Oversees the administration team.')">
+        <div class="org-node-name">Carlos Araya</div>
+        <div class="org-node-role">Chief Growth Officer</div>
+        <span class="org-node-badge badge-ft">Business Mgmt</span>
       </div>
 
+      <!-- LEVEL 3: ADMINISTRATION (Luana, Carolina, Hein — same level) -->
       <div class="org-children">
 
-        <!-- Carolina branch -->
+        <!-- LUANA branch -->
+        <div class="org-col">
+          <div class="org-node" onclick="orgOpen('Luana Figueiredo','Manager, Programs &amp; Operations','Full-Time','badge-ft','Oversees operations, programs, and team coordination at Wearsos. Also founder of the Good Loop Internship program.')">
+            <div class="org-node-name">Luana Figueiredo</div>
+            <div class="org-node-role">Manager, Programs &amp; Operations</div>
+            <span class="org-node-badge badge-ft">Full-Time</span>
+          </div>
+
+          <!-- Aiden under Luana -->
+          <div class="org-children">
+            <div class="org-col">
+              <div class="org-node dashed" onclick="orgOpen('Aiden Marie','Projects Assistant &bull; Good Loop Intern','Intern','badge-intern','Projects assistant through the Good Loop Internship program, supervised by Luana.')">
+                <div class="org-node-name">Aiden Marie</div>
+                <div class="org-node-role">Projects Assistant</div>
+                <span class="org-node-badge badge-intern">Intern</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /Luana col -->
+
+        <!-- CAROLINA branch -->
         <div class="org-col">
           <div class="org-node" onclick="orgOpen('Carolina Marinez Jim&eacute;nez','Workshop Production Coordinator','Full-Time','badge-ft','Coordinates workshop production and provides artisan and shop support. Full-time position.')">
             <div class="org-node-name">Carolina Marinez</div>
@@ -3723,7 +3740,7 @@ if (document.readyState !== 'loading') wsCosts.init();
 
         </div><!-- /Carolina col -->
 
-        <!-- Hein branch -->
+        <!-- HEIN branch -->
         <div class="org-col">
           <div class="org-node" onclick="orgOpen('Hein','Tienda Manager &bull; Wearsos Turrialba','Full-Time','badge-ft','Manages day-to-day operations at the Wearsos Turrialba store.')">
             <div class="org-node-name">Hein</div>
@@ -3731,6 +3748,7 @@ if (document.readyState !== 'loading') wsCosts.init();
             <span class="org-node-badge badge-ft">Full-Time</span>
           </div>
 
+          <!-- Tienda assistants under Hein -->
           <div class="org-children">
             <div class="org-col">
               <div class="org-node" onclick="orgOpen('Sean Denzel','Tienda Assistant','Tienda','badge-pt','Assists with store operations and customer experience at Wearsos Turrialba.')">
@@ -3750,28 +3768,9 @@ if (document.readyState !== 'loading') wsCosts.init();
 
         </div><!-- /Hein col -->
 
-        <!-- Aiden (intern) -->
-        <div class="org-col">
-          <div class="org-node dashed" onclick="orgOpen('Aiden Marie','Projects Assistant &bull; Good Loop Intern','Intern','badge-intern','Projects assistant through the Good Loop Internship program, supervised by Luana.')">
-            <div class="org-node-name">Aiden Marie</div>
-            <div class="org-node-role">Projects Assistant</div>
-            <span class="org-node-badge badge-intern">Intern</span>
-          </div>
-        </div>
-
-      </div><!-- /children under Luana -->
-    </div><!-- /Luana col -->
-
-    <!-- CARLOS branch -->
-    <div class="org-col">
-      <div class="org-node" onclick="orgOpen('Carlos Araya','Chief Growth Officer','Business Mgmt','badge-ft','Drives business growth and commercial strategy for Wearsos.')">
-        <div class="org-node-name">Carlos Araya</div>
-        <div class="org-node-role">Chief Growth Officer</div>
-        <span class="org-node-badge badge-ft">Business Mgmt</span>
-      </div>
-    </div>
-
-  </div><!-- /management row -->
+      </div><!-- /administration level -->
+    </div><!-- /Carlos col -->
+  </div><!-- /level 2 -->
 
 </div><!-- /org-tree -->
 </div><!-- /org-wrap -->
@@ -3843,10 +3842,22 @@ function closeOrgModal() {
 
 <!-- ══════════════════════════════════════════════ PAGE 10: OPENING/CLOSING -->
 <div class="pg" id="pg-opening">
-  <div class="pg-nav">
-    <button class="back-btn" onclick="showPage('home')">&#8592; <span data-lang="en">Menu</span><span data-lang="es">Menú</span></button>
-    <span class="pg-nav-title"><span data-lang="en">Opening &amp; Closing</span><span data-lang="es">Apertura y Cierre</span></span>
-    <button class="search-btn" onclick="toggleSearch()">&#x1F50D;</button>
+  <div class="sec-nav">
+    <button class="back-btn" onclick="showPage('home')">
+      <span data-lang="en">&#x2190; Menu</span>
+      <span data-lang="es">&#x2190; Men&uacute;</span>
+    </button>
+    <div class="sec-nav-title">
+      <span data-lang="en">Opening &amp; Closing</span>
+      <span data-lang="es">Apertura y Cierre</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="search-icon-btn" onclick="openSearch()" title="Search">&#x1F50D;</div>
+      <div class="lang-toggle">
+        <button class="lang-btn en-btn" onclick="setLang('en',this)">EN</button>
+        <button class="lang-btn es-btn active" onclick="setLang('es',this)">ES</button>
+      </div>
+    </div>
   </div>
   <div class="sec-body">
 
@@ -4107,10 +4118,22 @@ function ocSwitch(panel, btn) {
 
 <!-- ════════════════════════════════════════════════ PAGE 11: BUILDING ALARM -->
 <div class="pg" id="pg-alarm">
-  <div class="pg-nav">
-    <button class="back-btn" onclick="showPage('home')">&#8592; <span data-lang="en">Menu</span><span data-lang="es">Menú</span></button>
-    <span class="pg-nav-title"><span data-lang="en">Building Alarm</span><span data-lang="es">Alarma del Edificio</span></span>
-    <button class="search-btn" onclick="toggleSearch()">&#x1F50D;</button>
+  <div class="sec-nav">
+    <button class="back-btn" onclick="showPage('home')">
+      <span data-lang="en">&#x2190; Menu</span>
+      <span data-lang="es">&#x2190; Men&uacute;</span>
+    </button>
+    <div class="sec-nav-title">
+      <span data-lang="en">Building Alarm</span>
+      <span data-lang="es">Alarma del Edificio</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="search-icon-btn" onclick="openSearch()" title="Search">&#x1F50D;</div>
+      <div class="lang-toggle">
+        <button class="lang-btn en-btn" onclick="setLang('en',this)">EN</button>
+        <button class="lang-btn es-btn active" onclick="setLang('es',this)">ES</button>
+      </div>
+    </div>
   </div>
   <div class="sec-body">
 
