@@ -340,16 +340,30 @@ body {
   };
 
   window.wsLoadCosts = async function() {
-    if (!window._sb) return;
-    // Try anonymous sign-in so RLS policies can apply
-    var res = await window._sb.from('product_costs').select('*').order('sort_order').range(0, 4999);
-    if (!res.error && res.data && res.data.length > 0) {
-      window._wsCostsCache = res.data.map(function(r) {
-        return { provider: r.provider || '', name: r.name || '', cost: r.cost || 0, currency: r.currency || 'CRC' };
-      });
+    var GS_CSV = 'https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/gviz/tq?tqx=out:csv&sheet=Master%20Inventory';
+    try {
+      var resp = await fetch(GS_CSV);
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      var text = await resp.text();
+      var rows = text.trim().split('\n');
+      // Skip header row (row 0)
+      var parsed = [];
+      for (var i = 1; i < rows.length; i++) {
+        // Simple CSV parse (handles quoted fields)
+        var cols = rows[i].match(/("(?:[^"]|"")*"|[^,]*),?/g).map(function(c) {
+          return c.replace(/,?$/, '').replace(/^"|"$/g, '').replace(/""/g, '"').trim();
+        });
+        var provider = cols[0] || '';
+        var name     = cols[2] || '';
+        var costRaw  = cols[6] || '0';
+        var cost     = parseFloat(costRaw.replace(/[^\d.]/g, '')) || 0;
+        if (!provider && !name) continue;
+        parsed.push({ provider: provider, name: name, cost: cost, currency: 'CRC' });
+      }
+      window._wsCostsCache = parsed;
       if (window.wsCosts && window.wsCosts.init) window.wsCosts.init();
-    } else if (res.error) {
-      console.warn('[Wearsos] product_costs load failed:', res.error.message);
+    } catch(e) {
+      console.warn('[Wearsos] Google Sheets load failed:', e.message);
       var el = document.getElementById('costs-db-notice');
       if (el) { el.style.display='block'; }
     }
@@ -2554,13 +2568,15 @@ window.wsCalc = {
     var keys = Object.keys(_billoData[0]);
     var billoProv = detectCol(keys, ['proveedor','provider','marca','brand','supplier','fabricante']);
     var nameKey   = detectCol(keys, ['nombre.*prod','nombre.*art','nombre','producto','product.*name','product','descripci','item','name']) || keys[0];
-    var qtyKey    = detectCol(keys, ['cantidad.*vend','unidades.*vend','vendid','cantidad','qty','quantity','units','sold','unidades']) || keys[1];
+    var qtyKey      = detectCol(keys, ['cantidad.*vend','unidades.*vend','vendid','cantidad','qty','quantity','units','sold','unidades']) || keys[1];
+    var devueltaKey = detectCol(keys, ['cantidad.*devuelt','devuelt','returned','devoluc','retorn']);
 
     var costIndexes = buildCostIndexes(_costsData);
 
     var dbg = document.getElementById('cols-debug');
     if (dbg) {
       dbg.textContent = 'Columnas — Billo: nombre=' + nameKey + ' | qty=' + qtyKey +
+        (devueltaKey ? ' | devuelta=' + devueltaKey : '') +
         (billoProv ? ' | proveedor=' + billoProv : ' | (sin columna proveedor separada)') +
         ' | Costos: ' + Object.keys(costIndexes.exact).length + ' productos indexados';
     }
@@ -2570,7 +2586,13 @@ window.wsCalc = {
       var fullName = String(row[nameKey] || '').trim();
       if (!fullName) return;
       var rawQty = String(row[qtyKey] || '0').replace(/,/g,'.').replace(/[^\d.]/g,'');
-      var qty = parseFloat(rawQty) || 0;
+      var soldQty = parseFloat(rawQty) || 0;
+      var retQty = 0;
+      if (devueltaKey) {
+        var rawRet = String(row[devueltaKey] || '0').replace(/,/g,'.').replace(/[^\d.]/g,'');
+        retQty = parseFloat(rawRet) || 0;
+      }
+      var qty = soldQty - retQty;
       if (qty <= 0) return;
 
       var provName, prodName;
