@@ -340,7 +340,7 @@ body {
   };
 
   window.wsLoadCosts = async function() {
-    var GS_CSV = 'https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/gviz/tq?tqx=out:csv&sheet=Master%20Inventory';
+    var GS_CSV = 'https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/gviz/tq?tqx=out:csv&gid=1272280533';
     try {
       var resp = await fetch(GS_CSV);
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
@@ -354,7 +354,7 @@ body {
           return c.replace(/,?$/, '').replace(/^"|"$/g, '').replace(/""/g, '"').trim();
         });
         var name    = cols[0] || '';
-        var costRaw = cols[6] || '0';
+        var costRaw = cols[4] || '0';
         var cost    = parseFloat(costRaw.replace(/[^\d.]/g, '')) || 0;
         if (!name) continue;
         parsed.push({ name: name, cost: cost, currency: 'CRC' });
