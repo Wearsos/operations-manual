@@ -2410,7 +2410,7 @@ function extractProvider(name) {
 function buildCostIndexes(costsData) {
   if (!costsData || !costsData.length) return { exact: {}, norm: {}, brandName: {}, brands: [], ambiguousNames: {}, providers: [] };
   var keys = Object.keys(costsData[0]);
-  var nameKey = detectCol(keys, ['nombre.*prod','nombre.*art','nombre','producto','product','item','descripci']) || keys[0];
+  var nameKey = detectCol(keys, ['nombre.*prod','nombre.*art','nombre','producto','product','item','descripci','name']) || keys[0];
   var costKey = detectCol(keys, ['costo','cost','precio.*costo','precio','price','valor','monto','tarifa']) || keys[1];
   var currKey = detectCol(keys, ['moneda','currency','curr','divisa']);
   var provKey = detectCol(keys, ['proveedor','provider','marca','brand','supplier','fabricante']);
