@@ -2486,32 +2486,9 @@ window.wsCalc = {
       return;
     }
     _provNormMap = {};
-    // Auto-load costs from Supabase cache (Section 7 database) if not already loaded
+    // Load costs from Google Sheets cache — already in {name, cost, currency} format
     if (!_costsData || !_costsData.length) {
-      var stored = window._wsCostsCache || [];
-      if (stored.length > 0) {
-        _costsData = stored.map(function(r) {
-          return { 'Proveedor': r.provider||'', 'Nombre del Producto': r.name||'', 'Costo Unitario': r.cost||0, 'Moneda': r.currency||'CRC' };
-        });
-      }
-    }
-    // Auto-load costs from Supabase cache (Section 7 database) if not already loaded
-    if (!_costsData || !_costsData.length) {
-      var stored = window._wsCostsCache || [];
-      if (stored.length > 0) {
-        _costsData = stored.map(function(r) {
-          return { 'Proveedor': r.provider||'', 'Nombre del Producto': r.name||'', 'Costo Unitario': r.cost||0, 'Moneda': r.currency||'CRC' };
-        });
-      }
-    }
-    // Auto-load costs from Supabase cache (Section 7 database) if not already loaded
-    if (!_costsData || !_costsData.length) {
-      var stored = window._wsCostsCache || [];
-      if (stored.length > 0) {
-        _costsData = stored.map(function(r) {
-          return { 'Proveedor': r.provider||'', 'Nombre del Producto': r.name||'', 'Costo Unitario': r.cost||0, 'Moneda': r.currency||'CRC' };
-        });
-      }
+      _costsData = window._wsCostsCache || [];
     }
 
     var keys = Object.keys(_billoData[0]);
