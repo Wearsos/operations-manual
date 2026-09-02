@@ -2408,16 +2408,15 @@ function extractProvider(name) {
 
 // Build cost lookup indexes
 function buildCostIndexes(costsData) {
-  if (!costsData || !costsData.length) return { exact: {}, norm: {}, providers: [] };
+  if (!costsData || !costsData.length) return { exact: {}, norm: {}, brandName: {}, brands: [], ambiguousNames: {}, providers: [] };
   var keys = Object.keys(costsData[0]);
   var nameKey = detectCol(keys, ['nombre.*prod','nombre.*art','nombre','producto','product','item','descripci']) || keys[0];
   var costKey = detectCol(keys, ['costo','cost','precio.*costo','precio','price','valor','monto','tarifa']) || keys[1];
   var currKey = detectCol(keys, ['moneda','currency','curr','divisa']);
   var provKey = detectCol(keys, ['proveedor','provider','marca','brand','supplier','fabricante']);
-
-  var exact = {}, norm = {};
-  var provSet = {};
-
+  var exact = {}, norm = {}, brandName = {};
+  var provSet = {}, brandSet = {};
+  var namesBrandsMap = {};
   costsData.forEach(function(row) {
     var n = String(row[nameKey] || '').trim();
     if (!n) return;
@@ -2426,70 +2425,60 @@ function buildCostIndexes(costsData) {
     var curr = currKey ? String(row[currKey] || 'CRC').trim().toUpperCase() : 'CRC';
     var rowProv = provKey ? String(row[provKey] || '').trim() : '';
     var entry = { cost: c, currency: curr, provider: rowProv, name: n };
-
     exact[n] = entry;
     norm[normStr(n)] = entry;
-
-    // Also index by product part (strip provider prefix)
     var ex = extractProvider(n);
     if (ex.prod && ex.prod !== n) {
       if (!norm[normStr(ex.prod)]) norm[normStr(ex.prod)] = entry;
       if (!exact[ex.prod]) exact[ex.prod] = entry;
     }
-
-    // Track providers for WhatsApp dropdown
-    var provDisplay = rowProv || (ex.prov) || null;
-    if (provDisplay) {
-      var nk = normStr(provDisplay);
-      if (!provSet[nk]) provSet[nk] = provDisplay;
+    if (rowProv) {
+      var bnk = normStr(rowProv) + '||' + normStr(n);
+      brandName[bnk] = entry;
+      if (ex.prod && ex.prod !== n) {
+        var bnk2 = normStr(rowProv) + '||' + normStr(ex.prod);
+        if (!brandName[bnk2]) brandName[bnk2] = entry;
+      }
+      var nNorm = normStr(n);
+      if (!namesBrandsMap[nNorm]) namesBrandsMap[nNorm] = {};
+      namesBrandsMap[nNorm][normStr(rowProv)] = true;
+      if (ex.prod && ex.prod !== n) {
+        var nNorm2 = normStr(ex.prod);
+        if (!namesBrandsMap[nNorm2]) namesBrandsMap[nNorm2] = {};
+        namesBrandsMap[nNorm2][normStr(rowProv)] = true;
+      }
+      if (!brandSet[normStr(rowProv)]) brandSet[normStr(rowProv)] = rowProv;
     }
+    var provDisplay = rowProv || (ex.prov) || null;
+    if (provDisplay) { var nk = normStr(provDisplay); if (!provSet[nk]) provSet[nk] = provDisplay; }
   });
-
-  return { exact: exact, norm: norm, providers: Object.values(provSet).sort() };
+  var ambiguousNames = {};
+  Object.keys(namesBrandsMap).forEach(function(nk) {
+    if (Object.keys(namesBrandsMap[nk]).length > 1) ambiguousNames[nk] = true;
+  });
+  var brands = Object.values(brandSet).sort(function(a, b) { return b.length - a.length; });
+  return { exact: exact, norm: norm, brandName: brandName, brands: brands, ambiguousNames: ambiguousNames, providers: Object.values(provSet).sort() };
 }
 
-// Fuzzy cost match
-function findCost(productName, providerName, indexes) {
+// Cost match — brand+name composite only. No fuzzy, no guessing.
+// Billo format: "[Provider] - [Product]" — extractProvider() splits these before calling here.
+function findCost(productName, providerName, fullBilloName, indexes) {
+  if (indexes === undefined && fullBilloName && typeof fullBilloName === 'object') {
+    indexes = fullBilloName; fullBilloName = null;
+  }
   var n = String(productName || '').trim();
   if (!n) return null;
-
-  if (indexes.exact[n]) return indexes.exact[n];
   var nn = normStr(n);
-  if (indexes.norm[nn]) return indexes.norm[nn];
-
-  // Try with provider prefix combinations
-  if (providerName) {
-    var combos = [
-      providerName + ' – ' + n,
-      providerName + ' - ' + n,
-      providerName + '- ' + n,
-    ];
-    for (var i = 0; i < combos.length; i++) {
-      if (indexes.exact[combos[i]]) return indexes.exact[combos[i]];
-      if (indexes.norm[normStr(combos[i])]) return indexes.norm[normStr(combos[i])];
-    }
+  if (providerName && indexes.brandName) {
+    var bnk = normStr(providerName) + '||' + nn;
+    if (indexes.brandName[bnk]) return indexes.brandName[bnk];
   }
-
-  // Partial / contains match (>75% overlap)
-  var bestMatch = null, bestScore = 0;
-  var normKeys = Object.keys(indexes.norm);
-  for (var k = 0; k < normKeys.length; k++) {
-    var key = normKeys[k];
-    if (!key || key.length < 4) continue;
-    var longer  = key.length > nn.length ? key : nn;
-    var shorter = key.length > nn.length ? nn  : key;
-    if (shorter.length < 4) continue;
-    if (longer.indexOf(shorter) !== -1) {
-      var score = shorter.length / longer.length;
-      if (score > 0.75 && score > bestScore) {
-        bestScore = score;
-        bestMatch = indexes.norm[key];
-      }
-    }
+  if (!indexes.ambiguousNames || !indexes.ambiguousNames[nn]) {
+    if (indexes.exact[n]) return indexes.exact[n];
+    if (indexes.norm[nn]) return indexes.norm[nn];
   }
-  return bestMatch;
+  return null;
 }
-
 // Provider alias table — collapses known variant names into one canonical form
 function applyProvAlias(name) {
   if (!name) return name;
@@ -2606,16 +2595,16 @@ window.wsCalc = {
       }
 
       var canon = canonProv(provName || fullName);
-      var costInfo = findCost(prodName, canon, costIndexes)
-                  || findCost(fullName, canon, costIndexes);
+      var costInfo = findCost(prodName, canon, fullName, costIndexes);
       var unitCost = costInfo ? costInfo.cost : 0;
       var currency = costInfo ? costInfo.currency : 'CRC';
       if (!costInfo) unmatched.push(prodName || fullName);
-
+      var matchedName = costInfo ? normStr(costInfo.name) : normStr(prodName);
+      var isAmbiguous = !!(costInfo && costIndexes.ambiguousNames && costIndexes.ambiguousNames[matchedName]);
       products.push({
         fullName: fullName, name: prodName, provider: canon,
         qty: qty, unitCost: unitCost, currency: currency,
-        totalCost: unitCost * qty, hasCost: !!costInfo
+        totalCost: unitCost * qty, hasCost: !!costInfo, ambiguous: isAmbiguous
       });
     });
 
@@ -2675,7 +2664,9 @@ window.wsCalc = {
       ch += '<div class="pcard-detail" id="pcard-detail-'+pi+'" style="display:none;">';
       ch += '<table class="pcard-detail-table"><thead><tr><th>Producto</th><th>Uds.</th><th>Costo unit.</th><th>Total</th></tr></thead><tbody>';
       prods.forEach(function(pd){
-        ch += '<tr><td style="max-width:130px;word-break:break-word;">'+esc(pd.name||pd.fullName)+'</td>';
+        var nameCell = esc(pd.name||pd.fullName);
+        if (pd.ambiguous) nameCell += ' <span title="Mismo nombre en varias marcas — verificar precio manualmente" style="color:#e67e22;font-weight:bold;cursor:help;">*</span>';
+        ch += '<tr><td style="max-width:130px;word-break:break-word;">'+nameCell+'</td>';
         ch += '<td style="text-align:center;">'+pd.qty+'</td>';
         ch += '<td style="text-align:right;">'+(pd.hasCost?fmtCurrency(pd.unitCost,pd.currency):'<span style=\"color:#bbb\">\u2014</span>')+'</td>';
         ch += '<td style="text-align:right;">'+(pd.hasCost?fmtCurrency(pd.totalCost,pd.currency):'<span style=\"color:#bbb\">\u2014</span>')+'</td></tr>';
@@ -2923,7 +2914,9 @@ window.wsCalc = {
       ch += '<div class="pcard-detail" id="pcard-detail-'+pi+'" style="display:none;">';
       ch += '<table class="pcard-detail-table"><thead><tr><th>Producto</th><th>Uds.</th><th>Costo unit.</th><th>Total</th></tr></thead><tbody>';
       prods.forEach(function(pd){
-        ch += '<tr><td style="max-width:130px;word-break:break-word;">'+esc(pd.name||pd.fullName)+'</td>';
+        var nameCell2 = esc(pd.name||pd.fullName);
+        if (pd.ambiguous) nameCell2 += ' <span title="Mismo nombre en varias marcas — verificar precio manualmente" style="color:#e67e22;font-weight:bold;cursor:help;">*</span>';
+        ch += '<tr><td style="max-width:130px;word-break:break-word;">'+nameCell2+'</td>';
         ch += '<td style="text-align:center;">'+pd.qty+'</td>';
         ch += '<td style="text-align:right;">'+(pd.hasCost?fmtCurrency(pd.unitCost,pd.currency):'<span style=\"color:#bbb\">\u2014</span>')+'</td>';
         ch += '<td style="text-align:right;">'+(pd.hasCost?fmtCurrency(pd.totalCost,pd.currency):'<span style=\"color:#bbb\">\u2014</span>')+'</td></tr>';
