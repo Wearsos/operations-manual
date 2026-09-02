@@ -353,12 +353,11 @@ body {
         var cols = rows[i].match(/("(?:[^"]|"")*"|[^,]*),?/g).map(function(c) {
           return c.replace(/,?$/, '').replace(/^"|"$/g, '').replace(/""/g, '"').trim();
         });
-        var provider = cols[0] || '';
-        var name     = cols[2] || '';
-        var costRaw  = cols[6] || '0';
-        var cost     = parseFloat(costRaw.replace(/[^\d.]/g, '')) || 0;
-        if (!provider && !name) continue;
-        parsed.push({ provider: provider, name: name, cost: cost, currency: 'CRC' });
+        var name    = cols[0] || '';
+        var costRaw = cols[6] || '0';
+        var cost    = parseFloat(costRaw.replace(/[^\d.]/g, '')) || 0;
+        if (!name) continue;
+        parsed.push({ name: name, cost: cost, currency: 'CRC' });
       }
       window._wsCostsCache = parsed;
       if (window.wsCosts && window.wsCosts.init) window.wsCosts.init();
@@ -2407,75 +2406,36 @@ function extractProvider(name) {
 }
 
 // Build cost lookup indexes
+// Inventory column A: full "Provider - Product" name, identical format to Billo.
 function buildCostIndexes(costsData) {
-  if (!costsData || !costsData.length) return { exact: {}, norm: {}, brandName: {}, brands: [], ambiguousNames: {}, providers: [] };
-  var keys = Object.keys(costsData[0]);
-  var nameKey = detectCol(keys, ['nombre.*prod','nombre.*art','nombre','producto','product','item','descripci','name']) || keys[0];
-  var costKey = detectCol(keys, ['costo','cost','precio.*costo','precio','price','valor','monto','tarifa']) || keys[1];
-  var currKey = detectCol(keys, ['moneda','currency','curr','divisa']);
-  var provKey = detectCol(keys, ['proveedor','provider','marca','brand','supplier','fabricante']);
-  var exact = {}, norm = {}, brandName = {};
-  var provSet = {}, brandSet = {};
-  var namesBrandsMap = {};
+  if (!costsData || !costsData.length) return { exact: {}, norm: {}, providers: [] };
+  var exact = {}, norm = {}, provSet = {};
   costsData.forEach(function(row) {
-    var n = String(row[nameKey] || '').trim();
+    var n = String(row.name || '').trim();
     if (!n) return;
-    var rawCost = String(row[costKey] || '0').replace(/,/g,'.').replace(/[^\d.]/g,'');
-    var c = parseFloat(rawCost) || 0;
-    var curr = currKey ? String(row[currKey] || 'CRC').trim().toUpperCase() : 'CRC';
-    var rowProv = provKey ? String(row[provKey] || '').trim() : '';
-    var entry = { cost: c, currency: curr, provider: rowProv, name: n };
+    var entry = { cost: row.cost || 0, currency: row.currency || 'CRC', name: n };
     exact[n] = entry;
     norm[normStr(n)] = entry;
     var ex = extractProvider(n);
-    if (ex.prod && ex.prod !== n) {
-      if (!norm[normStr(ex.prod)]) norm[normStr(ex.prod)] = entry;
-      if (!exact[ex.prod]) exact[ex.prod] = entry;
-    }
-    if (rowProv) {
-      var bnk = normStr(rowProv) + '||' + normStr(n);
-      brandName[bnk] = entry;
-      if (ex.prod && ex.prod !== n) {
-        var bnk2 = normStr(rowProv) + '||' + normStr(ex.prod);
-        if (!brandName[bnk2]) brandName[bnk2] = entry;
-      }
-      var nNorm = normStr(n);
-      if (!namesBrandsMap[nNorm]) namesBrandsMap[nNorm] = {};
-      namesBrandsMap[nNorm][normStr(rowProv)] = true;
-      if (ex.prod && ex.prod !== n) {
-        var nNorm2 = normStr(ex.prod);
-        if (!namesBrandsMap[nNorm2]) namesBrandsMap[nNorm2] = {};
-        namesBrandsMap[nNorm2][normStr(rowProv)] = true;
-      }
-      if (!brandSet[normStr(rowProv)]) brandSet[normStr(rowProv)] = rowProv;
-    }
-    var provDisplay = rowProv || (ex.prov) || null;
-    if (provDisplay) { var nk = normStr(provDisplay); if (!provSet[nk]) provSet[nk] = provDisplay; }
+    if (ex.prov) { var pk = normStr(ex.prov); if (!provSet[pk]) provSet[pk] = ex.prov; }
   });
-  var ambiguousNames = {};
-  Object.keys(namesBrandsMap).forEach(function(nk) {
-    if (Object.keys(namesBrandsMap[nk]).length > 1) ambiguousNames[nk] = true;
-  });
-  var brands = Object.values(brandSet).sort(function(a, b) { return b.length - a.length; });
-  return { exact: exact, norm: norm, brandName: brandName, brands: brands, ambiguousNames: ambiguousNames, providers: Object.values(provSet).sort() };
+  return { exact: exact, norm: norm, providers: Object.values(provSet).sort() };
 }
 
-// Cost match — brand+name composite only. No fuzzy, no guessing.
-// Billo format: "[Provider] - [Product]" — extractProvider() splits these before calling here.
+// Cost match — exact only. Both Billo and inventory use "Provider - Product" format.
 function findCost(productName, providerName, fullBilloName, indexes) {
   if (indexes === undefined && fullBilloName && typeof fullBilloName === 'object') {
     indexes = fullBilloName; fullBilloName = null;
   }
-  var n = String(productName || '').trim();
-  if (!n) return null;
-  var nn = normStr(n);
-  if (providerName && indexes.brandName) {
-    var bnk = normStr(providerName) + '||' + nn;
-    if (indexes.brandName[bnk]) return indexes.brandName[bnk];
+  var full = String(fullBilloName || productName || '').trim();
+  if (full) {
+    if (indexes.exact[full]) return indexes.exact[full];
+    if (indexes.norm[normStr(full)]) return indexes.norm[normStr(full)];
   }
-  if (!indexes.ambiguousNames || !indexes.ambiguousNames[nn]) {
+  var n = String(productName || '').trim();
+  if (n && n !== full) {
     if (indexes.exact[n]) return indexes.exact[n];
-    if (indexes.norm[nn]) return indexes.norm[nn];
+    if (indexes.norm[normStr(n)]) return indexes.norm[normStr(n)];
   }
   return null;
 }
