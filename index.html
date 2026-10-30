@@ -406,6 +406,9 @@ body.lang-es .wq-ol[data-lang="es"], body.lang-en .wq-ol[data-lang="en"] { displ
 .wq-flash { animation: wqflash 2.2s ease-out; border-radius: 6px; }
 @keyframes wqflash { 0%, 40% { background: #FFF3CF; box-shadow: 0 0 0 6px #FFF3CF; } 100% { background: transparent; box-shadow: none; } }
 
+/* Alarm steps: show only the selected language */
+body.lang-es .alarm-step-en, body.lang-en .alarm-step-es { display: none !important; }
+
 </style>
 </head>
 <body class="lang-es">
@@ -826,9 +829,9 @@ body.lang-es .wq-ol[data-lang="es"], body.lang-en .wq-ol[data-lang="en"] { displ
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://forms.zohopublic.com/wearsos/form/FormulariodeRecepcindeInventarioInventoryReceiving/formperma/kx5REJShY_3AdvFNd3SBraTIPQxV-gfvuBBAhb-IHy4" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Receiving form<small>Zoho Forms · one per delivery</small></span><span class="es">Formulario de Recepción<small>Zoho Forms · uno por entrega</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet<small>Exact product names</small></span><span class="es">Hoja de inventario<small>Nombres exactos de los productos</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('provider');return false;"><span class="wq-lt"><span class="bi"><span class="en">03 · Creating a Provider<small>If the provider is new</small></span><span class="es">03 · Crear un Proveedor<small>Si el proveedor es nuevo</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
-<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Record of each delivery</span><span class="es">Registro de cada entrega</span></span></span><span class="wq-where"><a href="https://forms.zohopublic.com/wearsos/form/FormulariodeRecepcindeInventarioInventoryReceiving/formperma/kx5REJShY_3AdvFNd3SBraTIPQxV-gfvuBBAhb-IHy4" target="_blank" rel="noopener">Formulario de Recepción (Zoho)</a></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Record of each delivery</span><span class="es">Registro de cada entrega</span></span></span><span class="wq-where"><a href="https://forms.zohopublic.com/wearsos/form/FormulariodeRecepcindeInventarioInventoryReceiving/formperma/kx5REJShY_3AdvFNd3SBraTIPQxV-gfvuBBAhb-IHy4" target="_blank" rel="noopener"><span class="bi"><span class="en">Receiving form (Zoho)</span><span class="es">Formulario de Recepción (Zoho)</span></span></a></span></div>
 <div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Available stock</span><span class="es">Stock disponible</span></span></span><span class="wq-where">Billo</span></div>
-<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Exact product name</span><span class="es">Nombre exacto del producto</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Billo = Hoja, columna A</a></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Exact product name</span><span class="es">Nombre exacto del producto</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="bi"><span class="en">Billo = Sheet, column A</span><span class="es">Billo = Hoja, columna A</span></span></a></span></div>
 </div></section>
 </div>
 
@@ -1134,8 +1137,8 @@ body.lang-es .wq-ol[data-lang="es"], body.lang-en .wq-ol[data-lang="en"] { displ
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1902511017#gid=1902511017" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">SKU guidelines<small>Inventory sheet · SKU tab</small></span><span class="es">Guías de SKU<small>Hoja de inventario · pestaña SKU</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet · Master<small>Cost and selling price</small></span><span class="es">Hoja de inventario · Master<small>Costo y precio de venta</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('notes');return false;"><span class="wq-lt"><span class="bi"><span class="en">04 · Products &amp; Pricing<small>How to set the price</small></span><span class="es">04 · Productos y Precios<small>Cómo fijar el precio</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a><a class="wq-link" href="#" onclick="showPage('barcodes');return false;"><span class="wq-lt"><span class="bi"><span class="en">13 · Barcodes<small>Code and label</small></span><span class="es">13 · Códigos de Barras<small>Código y etiqueta</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">Costs and prices: when in doubt, the sheet wins.</span><span class="es">Costos y precios: ante la duda, la hoja gana.</span></span></span></div><div class="wq-srcgrid">
-<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Cost and selling price</span><span class="es">Costo y precio de venta</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja · columnas E y F</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
-<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">SKU format</span><span class="es">Formato del SKU</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1902511017#gid=1902511017" target="_blank" rel="noopener">Guías de SKU</a></span></div>
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Cost and selling price</span><span class="es">Costo y precio de venta</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="bi"><span class="en">Sheet · columns E and F</span><span class="es">Hoja · columnas E y F</span></span></a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">SKU format</span><span class="es">Formato del SKU</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1902511017#gid=1902511017" target="_blank" rel="noopener"><span class="bi"><span class="en">SKU guidelines</span><span class="es">Guías de SKU</span></span></a></span></div>
 <div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Product for sale</span><span class="es">Producto a la venta</span></span></span><span class="wq-where">Billo</span></div>
 </div></section>
 </div>
@@ -1413,7 +1416,7 @@ body.lang-es .wq-ol[data-lang="es"], body.lang-en .wq-ol[data-lang="en"] { displ
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Provider directory<small>Control de Pagos · Google Sheets</small></span><span class="es">Directorio de Proveedores<small>Control de Pagos · Google Sheets</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('creating');return false;"><span class="wq-lt"><span class="bi"><span class="en">02 · Creating a Product<small>The next step</small></span><span class="es">02 · Crear un Producto<small>El paso siguiente</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
-<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Contact and bank details</span><span class="es">Contacto y datos bancarios</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener">Directorio de Proveedores</a></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Contact and bank details</span><span class="es">Contacto y datos bancarios</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener"><span class="bi"><span class="en">Provider directory</span><span class="es">Directorio de Proveedores</span></span></a></span></div>
 <div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Provider in the POS</span><span class="es">Proveedor en el POS</span></span></span><span class="wq-where">Billo</span></div>
 </div></section>
 </div>
@@ -1585,9 +1588,9 @@ body.lang-es .wq-ol[data-lang="es"], body.lang-en .wq-ol[data-lang="en"] { displ
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet · Master<small>Cost, price and margin</small></span><span class="es">Hoja de inventario · Master<small>Costo, precio y margen</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1902511017#gid=1902511017" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">SKU guidelines<small>Inventory sheet</small></span><span class="es">Guías de SKU<small>Hoja de inventario</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('costs');return false;"><span class="wq-lt"><span class="bi"><span class="en">08 · Product Costs<small>Cost list</small></span><span class="es">08 · Costos de Productos<small>Lista de costos</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">The Master Sheet is the reference: when in doubt, the sheet wins.</span><span class="es">La Hoja Maestra es la referencia: ante la duda, la hoja gana.</span></span></span></div><div class="wq-srcgrid">
-<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Unit cost</span><span class="es">Costo por unidad</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja · columna E (Costo)</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
-<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Selling price with IVA</span><span class="es">Precio de venta con IVA</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja · columna F</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
-<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Price the POS charges</span><span class="es">Precio que cobra el POS</span></span></span><span class="wq-where">Billo (debe ser igual a F)</span></div>
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Unit cost</span><span class="es">Costo por unidad</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="bi"><span class="en">Sheet · column E (Costo)</span><span class="es">Hoja · columna E (Costo)</span></span></a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Selling price with IVA</span><span class="es">Precio de venta con IVA</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="bi"><span class="en">Sheet · column F</span><span class="es">Hoja · columna F</span></span></a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Price the POS charges</span><span class="es">Precio que cobra el POS</span></span></span><span class="wq-where"><span class="bi"><span class="en">Billo (must equal F)</span><span class="es">Billo (debe ser igual a F)</span></span></span></div>
 </div></section>
 </div>
 
@@ -1854,7 +1857,7 @@ body.lang-es .wq-ol[data-lang="es"], body.lang-en .wq-ol[data-lang="en"] { displ
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/document/d/19ThmR6E2_FyfXqLn-1A0EpnW4cq_0Oi7kgYPMnyPb2E/edit?tab=t.d2xl2xhd5gr7" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Discrepancy Registry<small>Google Docs · required</small></span><span class="es">Registro de Discrepancias<small>Google Docs · obligatorio</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('receiving');return false;"><span class="wq-lt"><span class="bi"><span class="en">01 · Fix stock in Billo<small>For a single product</small></span><span class="es">01 · Corregir stock en Billo<small>Para un solo producto</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">No Registry = the month&#x27;s count did not happen.</span><span class="es">Sin Registro, el conteo del mes no existe.</span></span></span></div><div class="wq-srcgrid">
 <div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Stock shown by the system</span><span class="es">Stock que muestra el sistema</span></span></span><span class="wq-where">Billo</span></div>
-<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Official count record</span><span class="es">Registro oficial del conteo</span></span></span><span class="wq-where"><a href="https://docs.google.com/document/d/19ThmR6E2_FyfXqLn-1A0EpnW4cq_0Oi7kgYPMnyPb2E/edit?tab=t.d2xl2xhd5gr7" target="_blank" rel="noopener">Registro de Discrepancias</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Official count record</span><span class="es">Registro oficial del conteo</span></span></span><span class="wq-where"><a href="https://docs.google.com/document/d/19ThmR6E2_FyfXqLn-1A0EpnW4cq_0Oi7kgYPMnyPb2E/edit?tab=t.d2xl2xhd5gr7" target="_blank" rel="noopener"><span class="bi"><span class="en">Discrepancy Registry</span><span class="es">Registro de Discrepancias</span></span></a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
 </div></section>
 </div>
 
@@ -2186,7 +2189,7 @@ body.lang-es .wq-ol[data-lang="es"], body.lang-en .wq-ol[data-lang="en"] { displ
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link" href="#" onclick="showPage('payments');wsPayUX.openModal();return false;"><span class="wq-lt"><span class="bi"><span class="en">Payment calculator<small>Open the calculator now</small></span><span class="es">Calculadora de pagos<small>Abrir la calculadora ahora</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Control de Pagos<small>Google Sheets · this month&#x27;s tab</small></span><span class="es">Control de Pagos<small>Google Sheets · pestaña del mes</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet<small>To fix costs</small></span><span class="es">Hoja de inventario<small>Para corregir costos</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('controlpagos');return false;"><span class="wq-lt"><span class="bi"><span class="en">07 · Control de Pagos<small>How to fill in the sheet</small></span><span class="es">07 · Control de Pagos<small>Cómo completar la hoja</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">Costs: when in doubt, the sheet wins.</span><span class="es">Costos: ante la duda, la hoja gana.</span></span></span></div><div class="wq-srcgrid">
 <div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Monthly sales</span><span class="es">Ventas del mes</span></span></span><span class="wq-where">Billo · Reporte de productos</span></div>
-<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Unit cost</span><span class="es">Costo por unidad</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja · columna E (Costo)</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Unit cost</span><span class="es">Costo por unidad</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="bi"><span class="en">Sheet · column E (Costo)</span><span class="es">Hoja · columna E (Costo)</span></span></a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
 <div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Status of each payment</span><span class="es">Estado de cada pago</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener">Control de Pagos</a></span></div>
 </div></section>
 </div>
@@ -2552,12 +2555,12 @@ body.lang-es .bi .es { display: inline; }
 
   <div class="billing-box">
     <div class="billing-box-title bi"><span class="en">Billing Data for Electronic Invoice</span><span class="es">Datos para Factura Electrónica</span></div>
-    <div class="billing-row"><span class="billing-label">Empresa:</span><span class="billing-val">Wearsos SRL</span></div>
-    <div class="billing-row"><span class="billing-label">C&eacute;dula Jur&iacute;dica:</span><span class="billing-val">3-102-854873</span></div>
-    <div class="billing-row"><span class="billing-label">Correo:</span><span class="billing-val">contabilidad@wearsos.co</span></div>
-    <div class="billing-row"><span class="billing-label">Tel&eacute;fono:</span><span class="billing-val">8407-8987</span></div>
-    <div class="billing-row"><span class="billing-label">Direcci&oacute;n:</span><span class="billing-val">Contiguo a la Municipalidad de Turrialba, Turrialba, Cartago. 30501</span></div>
-    <div class="billing-row"><span class="billing-label">Actividad Econ&oacute;mica:</span><span class="billing-val">4437.0</span></div>
+    <div class="billing-row"><span class="billing-label"><span class="bi"><span class="en">Company:</span><span class="es">Empresa:</span></span></span><span class="billing-val">Wearsos SRL</span></div>
+    <div class="billing-row"><span class="billing-label"><span class="bi"><span class="en">Legal ID (Cédula Jurídica):</span><span class="es">Cédula Jurídica:</span></span></span><span class="billing-val">3-102-854873</span></div>
+    <div class="billing-row"><span class="billing-label"><span class="bi"><span class="en">Email:</span><span class="es">Correo:</span></span></span><span class="billing-val">contabilidad@wearsos.co</span></div>
+    <div class="billing-row"><span class="billing-label"><span class="bi"><span class="en">Phone:</span><span class="es">Teléfono:</span></span></span><span class="billing-val">8407-8987</span></div>
+    <div class="billing-row"><span class="billing-label"><span class="bi"><span class="en">Address:</span><span class="es">Dirección:</span></span></span><span class="billing-val">Contiguo a la Municipalidad de Turrialba, Turrialba, Cartago. 30501</span></div>
+    <div class="billing-row"><span class="billing-label"><span class="bi"><span class="en">Economic activity:</span><span class="es">Actividad Económica:</span></span></span><span class="billing-val">4437.0</span></div>
     <div class="billing-warn bi">
       <span class="en">Email is .co NOT .com! Very important for the electronic invoice.</span>
       <span class="es">El correo es .co NO .com! Muy importante para la factura electr&oacute;nica.</span>
@@ -3609,7 +3612,7 @@ var wsPayUX = {
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Control de Pagos<small>Google Sheets · this month&#x27;s tab</small></span><span class="es">Control de Pagos<small>Google Sheets · pestaña del mes</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('payments');wsPayUX.openModal();return false;"><span class="wq-lt"><span class="bi"><span class="en">Payment calculator<small>This month&#x27;s amounts</small></span><span class="es">Calculadora de pagos<small>Montos del mes</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
-<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Amount to pay</span><span class="es">Monto a pagar</span></span></span><span class="wq-where">Calculadora (sección 06)</span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Amount to pay</span><span class="es">Monto a pagar</span></span></span><span class="wq-where"><span class="bi"><span class="en">Calculator (section 06)</span><span class="es">Calculadora (sección 06)</span></span></span></div>
 <div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Invoice and payment status</span><span class="es">Estado de factura y de pago</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener">Control de Pagos</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
 <div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Payment receipt</span><span class="es">Comprobante de pago</span></span></span><span class="wq-where"><a href="mailto:tienda@wearsos.co" target="_blank" rel="noopener">tienda@wearsos.co</a></span></div>
 </div></section>
@@ -3784,8 +3787,8 @@ var wsPayUX = {
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet · Master<small>Column E (Costo)</small></span><span class="es">Hoja de inventario · Master<small>Columna E (Costo)</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('payments');wsPayUX.openModal();return false;"><span class="wq-lt"><span class="bi"><span class="en">Payment calculator<small>Uses these costs</small></span><span class="es">Calculadora de pagos<small>Usa estos costos</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">This page only reads the sheet. When in doubt, the sheet wins.</span><span class="es">Esta página solo lee la hoja. Ante la duda, la hoja gana.</span></span></span></div><div class="wq-srcgrid">
-<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">This cost list</span><span class="es">Esta lista de costos</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja · columna E (Costo)</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
-<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Provider cost in Billo</span><span class="es">Costo del Proveedor en Billo</span></span></span><span class="wq-where">Billo (debe coincidir con la hoja)</span></div>
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">This cost list</span><span class="es">Esta lista de costos</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="bi"><span class="en">Sheet · column E (Costo)</span><span class="es">Hoja · columna E (Costo)</span></span></a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Provider cost in Billo</span><span class="es">Costo del Proveedor en Billo</span></span></span><span class="wq-where"><span class="bi"><span class="en">Billo (must match the sheet)</span><span class="es">Billo (debe coincidir con la hoja)</span></span></span></div>
 </div></section>
 </div>
 
@@ -4216,8 +4219,8 @@ function closeOrgModal() {
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://forms.zoho.com/wearsos/form/StoreShiftSummaryForm" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Shift summary form<small>Zoho Forms · at closing</small></span><span class="es">Formulario de Resumen del Turno<small>Zoho Forms · al cerrar</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('pos');return false;"><span class="wq-lt"><span class="bi"><span class="en">12 · Open and close register<small>POS &amp; Billo</small></span><span class="es">12 · Abrir y cerrar caja<small>POS y Billo</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a><a class="wq-link" href="#" onclick="showPage('alarm');return false;"><span class="wq-lt"><span class="bi"><span class="en">11 · Alarm<small>Second-floor panel</small></span><span class="es">11 · Alarma<small>Panel del segundo piso</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
-<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Summary of each shift</span><span class="es">Resumen de cada turno</span></span></span><span class="wq-where"><a href="https://forms.zoho.com/wearsos/form/StoreShiftSummaryForm" target="_blank" rel="noopener">Formulario de Resumen del Turno</a></span></div>
-<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Day&#x27;s sales and cash</span><span class="es">Ventas y efectivo del día</span></span></span><span class="wq-where">Billo · cierre de caja</span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Summary of each shift</span><span class="es">Resumen de cada turno</span></span></span><span class="wq-where"><a href="https://forms.zoho.com/wearsos/form/StoreShiftSummaryForm" target="_blank" rel="noopener"><span class="bi"><span class="en">Shift summary form</span><span class="es">Formulario de Resumen del Turno</span></span></a></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Day&#x27;s sales and cash</span><span class="es">Ventas y efectivo del día</span></span></span><span class="wq-where"><span class="bi"><span class="en">Billo · register close</span><span class="es">Billo · cierre de caja</span></span></span></div>
 </div></section>
 </div>
 
@@ -4584,7 +4587,7 @@ function ocSwitch(panel, btn) {
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://forms.zoho.com/wearsos/form/StoreShiftSummaryForm" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Shift summary form<small>Zoho Forms · at closing</small></span><span class="es">Formulario de Resumen del Turno<small>Zoho Forms · al cerrar</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('opening');return false;"><span class="wq-lt"><span class="bi"><span class="en">10 · Opening &amp; Closing<small>Day&#x27;s checklist</small></span><span class="es">10 · Apertura y Cierre<small>Checklist del día</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a><a class="wq-link" href="#" onclick="showPage('barcodes');return false;"><span class="wq-lt"><span class="bi"><span class="en">13 · Barcodes<small>Scanning at checkout</small></span><span class="es">13 · Códigos de Barras<small>Escanear en la venta</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
 <div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Day&#x27;s sales</span><span class="es">Ventas del día</span></span></span><span class="wq-where">Billo</span></div>
-<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Printed receipts</span><span class="es">Recibos impresos</span></span></span><span class="wq-where">Carpeta de la tienda</span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Printed receipts</span><span class="es">Recibos impresos</span></span></span><span class="wq-where"><span class="bi"><span class="en">Store binder</span><span class="es">Carpeta de la tienda</span></span></span></div>
 </div></section>
 </div>
 
@@ -4932,9 +4935,9 @@ function posSwitch(panel, btn) {
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet<small>Internal codes (SKU)</small></span><span class="es">Hoja de inventario<small>Códigos internos (SKU)</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('creating');return false;"><span class="wq-lt"><span class="bi"><span class="en">02 · Creating a Product<small>Where the code is entered</small></span><span class="es">02 · Crear un Producto<small>Dónde se carga el código</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">The label and Billo must always show the same code.</span><span class="es">La etiqueta y Billo siempre tienen que tener el mismo código.</span></span></span></div><div class="wq-srcgrid">
-<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Code the POS scans</span><span class="es">Código que escanea el POS</span></span></span><span class="wq-where">Billo · campo Código de barras</span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
-<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Internal code of each product</span><span class="es">Código interno de cada producto</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja de inventario · Código interno</a></span></div>
-<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Number of labels to print</span><span class="es">Cantidad de etiquetas a imprimir</span></span></span><span class="wq-where">Hoja de etiquetas · columna F</span></div>
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Code the POS scans</span><span class="es">Código que escanea el POS</span></span></span><span class="wq-where"><span class="bi"><span class="en">Billo · barcode field</span><span class="es">Billo · campo Código de barras</span></span></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Internal code of each product</span><span class="es">Código interno de cada producto</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="bi"><span class="en">Inventory sheet · internal code</span><span class="es">Hoja de inventario · Código interno</span></span></a></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Number of labels to print</span><span class="es">Cantidad de etiquetas a imprimir</span></span></span><span class="wq-where"><span class="bi"><span class="en">Label sheet · column F</span><span class="es">Hoja de etiquetas · columna F</span></span></span></div>
 </div></section>
 </div>
 
@@ -5506,6 +5509,28 @@ document.addEventListener('keydown', function(e) {
   }
 
   // ── 4. Team page (data-driven, editable) ────────────────────────────────────
+  var TEAM_ES = {
+    'Strategic Alliances': ['Alianzas estratégicas', 'Lidera el desarrollo de alianzas estratégicas para Wearsos. Cofundadora de la organización.'],
+    'Media & Communications': ['Medios y comunicación', 'Lidera la estrategia de medios, la voz de la marca y las comunicaciones de Wearsos. Cofundador de la organización.'],
+    'Chief Growth Officer': ['Director de crecimiento', 'Impulsa el crecimiento del negocio y la estrategia comercial de Wearsos. Supervisa al equipo de administración.'],
+    'Manager, Programs & Operations': ['Gerente de Programas y Operaciones', 'Supervisa operaciones, programas y la coordinación del equipo en Wearsos. Fundadora del programa de pasantías Good Loop.'],
+    'Workshop Production Coordinator': ['Coordinadora de producción del taller', 'Coordina la producción del taller y apoya a las artesanas y a la tienda. Puesto de tiempo completo.'],
+    'Artisan & Sewing Teacher': ['Artesano y profesor de costura', 'Lidera la producción de costura del taller y enseña técnicas al equipo de artesanas.'],
+    'Artisan': ['Artesana', 'Artesana de medio tiempo que contribuye a la producción del taller.'],
+    'Artisan & Designer': ['Artesana y diseñadora', 'Artesana de medio tiempo y colaboradora en el diseño de productos.'],
+    'Fiorella Quirros · María Jesús · Fernanda Salazar': ['Fiorella Quirros · María Jesús · Fernanda Salazar', 'Tres pintoras contratadas por proyecto: Fiorella Quirros Chaves, María Jesús y Fernanda Salazar.'],
+    'Projects Assistant · Good Loop Intern': ['Asistente de proyectos · Pasante Good Loop', 'Asistente de proyectos del programa de pasantías Good Loop, supervisada por Luana.'],
+    'Tienda Manager · Wearsos Turrialba': ['Encargado de Tienda · Wearsos Turrialba', 'Gestiona las operaciones diarias de la tienda Wearsos en Turrialba.'],
+    'Tienda Assistant': ['Asistente de tienda', 'Apoya las operaciones de la tienda y la experiencia de los clientes en Wearsos Turrialba.'],
+    'Accountant': ['Contadora', 'Lleva la contabilidad financiera de las operaciones de Wearsos.'],
+    'Zoho Books Accountant': ['Contadora de Zoho Books', 'Lleva los registros contables en Zoho Books.'],
+    'Psychologist': ['Psicóloga', 'Brinda apoyo psicológico al equipo de Wearsos por proyecto.']
+  };
+  var CONTRACT_ES = { 'Co-Founder': 'Cofundador/a', 'Business Mgmt': 'Gestión del negocio', 'Full-Time': 'Tiempo completo', 'Part-Time': 'Medio tiempo', 'Project-Based': 'Por proyecto', 'Intern': 'Pasante', 'Tienda': 'Tienda' };
+  var CONTRACT_EN = { 'Tienda': 'Store' };
+  function contractLabel(c) { return lang() === 'en' ? (CONTRACT_EN[c] || c) : (CONTRACT_ES[c] || c); }
+  function roleOf(p) { return lang() === 'en' ? (p.role_en || p.role || '') : (p.role_es || p.role || ''); }
+  function descOf(p) { return lang() === 'en' ? (p.desc_en || p.desc || '') : (p.desc_es || p.desc || ''); }
   var TEAM_DEFAULT = [
     { name: 'Lynne Corvaglia', role: 'Strategic Alliances', area: 'dir', contract: 'Co-Founder', desc: 'Leads development of strategic alliances and partnerships for Wearsos. Co-founder of the organization.' },
     { name: 'Chris Riquelme', role: 'Media & Communications', area: 'dir', contract: 'Co-Founder', desc: 'Leads media strategy, brand voice, and communications for Wearsos. Co-founder of the organization.' },
@@ -5526,6 +5551,11 @@ document.addEventListener('keydown', function(e) {
   ];
   var AREAS = [{ id: 'dir', es: 'Dirección', en: 'Leadership' }, { id: 'taller', es: 'Taller', en: 'Workshop' }, { id: 'tienda', es: 'Tienda', en: 'Store' }, { id: 'ext', es: 'Externos y apoyo', en: 'External & support' }];
   var CONTRACTS = { 'Co-Founder': ['#1B2F5B', '#FFFFFF', 'badge-founder'], 'Business Mgmt': ['#EEF1F6', '#1B2F5B', 'badge-ft'], 'Full-Time': ['#EEF1F6', '#1B2F5B', 'badge-ft'], 'Part-Time': ['#F0F1F4', '#4A5163', 'badge-pt'], 'Project-Based': ['#FBEFD2', '#6B4A00', 'badge-project'], 'Intern': ['#EAF4EF', '#1E6B4F', 'badge-intern'], 'Tienda': ['#F0E7F6', '#5E3580', 'badge-pt'] };
+  TEAM_DEFAULT.forEach(function (p) {
+    var es = TEAM_ES[p.role] || [p.role, p.desc];
+    p.role_en = p.role; p.desc_en = p.desc; p.role_es = es[0]; p.desc_es = es[1];
+    delete p.role; delete p.desc;
+  });
   var team = TEAM_DEFAULT.slice(), teamDraft = null;
 
   var teamPg = document.getElementById('pg-team');
@@ -5535,7 +5565,7 @@ document.addEventListener('keydown', function(e) {
     if (orgWrap) { orgWrap.style.display = 'none'; orgWrap.parentNode.insertBefore(root, orgWrap); }
     var oldLegend = teamPg.querySelector('.org-legend'); if (oldLegend) oldLegend.style.display = 'none';
   }
-  function tagHtml(c) { var k = CONTRACTS[c] || CONTRACTS['Full-Time']; return '<span class="wt-tag" style="background:' + k[0] + ';color:' + k[1] + '">' + esc(c) + '</span>'; }
+  function tagHtml(c) { var k = CONTRACTS[c] || CONTRACTS['Full-Time']; return '<span class="wt-tag" style="background:' + k[0] + ';color:' + k[1] + '">' + esc(contractLabel(c)) + '</span>'; }
   function initials(n) { return norm(n).split(' ').filter(Boolean).slice(0, 2).map(function (w) { return w.charAt(0).toUpperCase(); }).join('') || '?'; }
 
   function renderTeam() {
@@ -5550,14 +5580,16 @@ document.addEventListener('keydown', function(e) {
         if (teamDraft) {
           h += '<div class="wt-edit" data-i="' + i + '">'
             + '<label>' + T('Nombre', 'Name') + '<input data-f="name" value="' + esc(p.name) + '"></label>'
-            + '<label>' + T('Rol', 'Role') + '<input data-f="role" value="' + esc(p.role) + '"></label>'
+            + '<div class="wt-two"><label>Rol (ES)<input data-f="role_es" value="' + esc(p.role_es || p.role || '') + '"></label>'
+            + '<label>Role (EN)<input data-f="role_en" value="' + esc(p.role_en || p.role || '') + '"></label></div>'
             + '<div class="wt-two"><label>' + T('Área', 'Area') + '<select data-f="area">' + AREAS.map(function (x) { return '<option value="' + x.id + '"' + (x.id === p.area ? ' selected' : '') + '>' + esc(T(x.es, x.en)) + '</option>'; }).join('') + '</select></label>'
-            + '<label>' + T('Contrato', 'Contract') + '<select data-f="contract">' + Object.keys(CONTRACTS).map(function (c) { return '<option' + (c === p.contract ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join('') + '</select></label></div>'
-            + '<label>' + T('Descripción del rol', 'Role description') + '<textarea data-f="desc">' + esc(p.desc) + '</textarea></label>'
+            + '<label>' + T('Contrato', 'Contract') + '<select data-f="contract">' + Object.keys(CONTRACTS).map(function (c) { return '<option value="' + esc(c) + '"' + (c === p.contract ? ' selected' : '') + '>' + esc(contractLabel(c)) + '</option>'; }).join('') + '</select></label></div>'
+            + '<label>Descripción (ES)<textarea data-f="desc_es">' + esc(p.desc_es || p.desc || '') + '</textarea></label>'
+            + '<label>Description (EN)<textarea data-f="desc_en">' + esc(p.desc_en || p.desc || '') + '</textarea></label>'
             + '<button class="wt-remove" data-remove="' + i + '">' + T('Quitar del equipo', 'Remove from team') + '</button></div>';
         } else {
           h += '<button class="wt-card" data-open="' + i + '"><span class="wt-av' + (p.contract === 'Co-Founder' ? ' founder' : '') + '">' + esc(initials(p.name)) + '</span>'
-            + '<span class="wt-info"><span class="wt-name">' + esc(p.name) + '</span><span class="wt-role">' + esc(p.role) + '</span>' + tagHtml(p.contract) + '</span></button>';
+            + '<span class="wt-info"><span class="wt-name">' + esc(p.name) + '</span><span class="wt-role">' + esc(roleOf(p)) + '</span>' + tagHtml(p.contract) + '</span></button>';
         }
       });
       if (teamDraft) h += '<button class="wt-add" data-add="' + a.id + '">+ ' + T('Agregar persona', 'Add person') + '</button>';
@@ -5569,11 +5601,11 @@ document.addEventListener('keydown', function(e) {
     var t = ev.target.closest('[data-open],[data-remove],[data-add]'); if (!t) return;
     if (t.hasAttribute('data-open')) {
       var p = team[+t.getAttribute('data-open')]; if (!p || !window.orgOpen) return;
-      window.orgOpen(esc(p.name), esc(p.role), esc(p.contract), (CONTRACTS[p.contract] || CONTRACTS['Full-Time'])[2], esc(p.desc || ''));
+      window.orgOpen(esc(p.name), esc(roleOf(p)), esc(contractLabel(p.contract)), (CONTRACTS[p.contract] || CONTRACTS['Full-Time'])[2], esc(descOf(p)));
     } else if (t.hasAttribute('data-remove')) {
       syncDraft(); teamDraft.splice(+t.getAttribute('data-remove'), 1); renderTeam();
     } else if (t.hasAttribute('data-add')) {
-      syncDraft(); teamDraft.push({ name: '', role: '', area: t.getAttribute('data-add'), contract: 'Full-Time', desc: '' }); renderTeam();
+      syncDraft(); teamDraft.push({ name: '', role_es: '', role_en: '', area: t.getAttribute('data-add'), contract: 'Full-Time', desc_es: '', desc_en: '' }); renderTeam();
       var added = root.querySelector('.wt-edit[data-i="' + (teamDraft.length - 1) + '"] input[data-f="name"]'); if (added) added.focus();
     }
   });
@@ -5593,7 +5625,8 @@ document.addEventListener('keydown', function(e) {
   function saveTeam() {
     syncDraft();
     var clean = teamDraft.filter(function (p) { return norm(p.name); }).map(function (p) {
-      return { name: norm(p.name), role: norm(p.role), area: p.area, contract: p.contract, desc: norm(p.desc) };
+      var re_ = norm(p.role_es || p.role), rn = norm(p.role_en || p.role), de = norm(p.desc_es || p.desc), dn = norm(p.desc_en || p.desc);
+      return { name: norm(p.name), role_es: re_ || rn, role_en: rn || re_, area: p.area, contract: p.contract, desc_es: de || dn, desc_en: dn || de };
     });
     savePage('equipo', { people: clean }, function () { team = clean; endEdit(false); renderTeam(); });
   }
@@ -5601,7 +5634,7 @@ document.addEventListener('keydown', function(e) {
 
   // Re-render language-dependent pieces when the language changes
   var origSetLang = window.setLang;
-  if (origSetLang) window.setLang = function (l, btn) { origSetLang(l, btn); renderTeam(); if (menu.classList.contains('open')) renderMenu(); Object.keys(contentCache).forEach(function (k) { showUpdated(k === 'equipo' ? 'pg-team' : k); }); };
+  if (origSetLang) window.setLang = function (l, btn) { origSetLang(l, btn); renderTeam(); if (window.wsTranslateDyn) window.wsTranslateDyn(); if (menu.classList.contains('open')) renderMenu(); Object.keys(contentCache).forEach(function (k) { showUpdated(k === 'equipo' ? 'pg-team' : k); }); };
 
   // ── 5. Reminder after typing a cost by hand in the calculator ───────────────
   var noteShown = false;
@@ -5618,6 +5651,61 @@ document.addEventListener('keydown', function(e) {
     document.body.appendChild(bg);
     bg.querySelector('#wn-ok').addEventListener('click', function () { bg.parentNode.removeChild(bg); });
   };
+
+  // ── 5b. English for text the calculator and costs table generate in Spanish ─
+  var DYN = [
+    [/^Ver detalles$/, 'Show details'], [/Ver detalles/, 'Show details'], [/Ocultar detalles/, 'Hide details'],
+    [/^Sin datos de costo$/, 'No cost data'], [/^Sin costo — editalo manualmente$/, 'No cost — edit it manually'],
+    [/^Editar$/, 'Edit'], [/^Aplicar cambios$/, 'Apply changes'],
+    [/^Edita el costo unitario o reasigna el producto a otro proveedor\.$/, 'Edit the unit cost or reassign the product to another provider.'],
+    [/^Producto$/, 'Product'], [/^Uds\.$/, 'Units'], [/^Unidades$/, 'Units'], [/^Costo unit\.$/, 'Unit cost'], [/^Costo unitario$/, 'Unit cost'], [/^Reasignar$/, 'Reassign'],
+    [/^(\d+) producto\(s\) sin costo\.$/, '$1 product(s) without a cost.'],
+    [/^\s*Revisa que el archivo de costos tenga los mismos nombres.*$/, ' Check that the cost file uses the same names, or use edit mode (Edit button) to enter costs manually.'],
+    [/\(costo ₡0 en la hoja\)/, '(₡0 cost in the sheet)'],
+    [/^(\d+) producto\(s\) con costos distintos en la hoja \(\*\)\.$/, '$1 product(s) with different costs in the sheet (*).'],
+    [/^\s*El nombre aparece más de una vez en el Master Inventory.*$/, ' The name appears more than once in the Master Inventory with different costs. The last one was used; check the right cost and edit it if needed.'],
+    [/\(usado:/, '(used:'],
+    [/^(\d+) productos?/, function (m, n) { return n + (n === '1' ? ' product' : ' products'); }], [/(\d+) uds\./, '$1 units'],
+    [/^-- elegir proveedor --$/, '-- choose provider --'], [/^➕ Nuevo proveedor \(manual\)\.\.\.$/, '➕ New provider (manual)...'],
+    [/^▼ Ver (\d+) mas$/, '▼ Show $1 more'], [/Ocultar productos adicionales/, 'Hide extra products'],
+    [/^a mano$/, 'manual'], [/^⚠️ Costo ingresado a mano\.$/, '⚠️ Cost entered by hand.'],
+    [/^ Sirve solo para este cálculo\. Corregí el costo en la hoja \(columna E\) para que el mes que viene salga bien\. $/, ' It only applies to this calculation. Fix the cost in the sheet (column E) so next month comes out right. '],
+    [/^Corregir en la hoja ↗$/, 'Fix it in the sheet ↗'],
+    [/ proveedores · Guardado /, ' providers · Saved '], [/^Cargando\.\.\.$/, 'Loading...'], [/filas cargadas/, 'rows loaded'],
+    [/^Error al cargar el cálculo guardado\.$/, 'Could not load the saved calculation.'],
+    [/^Moneda$/, 'Currency'], [/^Base de datos vacia.*$/, 'Database empty']
+  ];
+  var MONTHS_EN = { Enero: 'January', Febrero: 'February', Marzo: 'March', Abril: 'April', Mayo: 'May', Junio: 'June', Julio: 'July', Agosto: 'August', Septiembre: 'September', Octubre: 'October', Noviembre: 'November', Diciembre: 'December' };
+  var DYN_ROOTS = ['pg-payments', 'pg-costs', 'calc-modal-overlay'];
+  function dynSkip(n) { var e = n.parentElement; return !e || e.closest('[data-lang], .bi, .wq-panel, script, style, #msg-preview, textarea'); }
+  function translateDyn() {
+    var en = lang() === 'en';
+    DYN_ROOTS.forEach(function (id) {
+      var root = document.getElementById(id); if (!root) return;
+      var w = document.createTreeWalker(root, 4), n;
+      while ((n = w.nextNode())) {
+        if (dynSkip(n)) continue;
+        if (en) {
+          var src = n._wsEs != null ? n._wsEs : n.nodeValue, out = src;
+          DYN.forEach(function (rule) { out = out.replace(rule[0], rule[1]); });
+          if (out !== src) { n._wsEs = src; if (n.nodeValue !== out) n.nodeValue = out; }
+        } else if (n._wsEs != null) { n.nodeValue = n._wsEs; n._wsEs = null; }
+      }
+      Array.prototype.forEach.call(root.querySelectorAll('input[placeholder]'), function (i) {
+        if (i._wsPh == null) i._wsPh = i.placeholder;
+        i.placeholder = en ? i._wsPh.replace('ingresar', 'enter') : i._wsPh;
+      });
+      Array.prototype.forEach.call(root.querySelectorAll('#calc-month option'), function (o) {
+        if (o._wsEs == null) o._wsEs = o.textContent;
+        if (!o.hasAttribute('value')) o.setAttribute('value', o._wsEs);   // keep the Spanish month as the value the calculator reads
+        o.textContent = en ? (MONTHS_EN[o._wsEs] || o._wsEs) : o._wsEs;
+      });
+    });
+  }
+  var dynTimer = null;
+  var obs = new MutationObserver(function () { if (lang() !== 'en') return; clearTimeout(dynTimer); dynTimer = setTimeout(translateDyn, 30); });
+  DYN_ROOTS.forEach(function (id) { var r = document.getElementById(id); if (r) obs.observe(r, { childList: true, subtree: true, characterData: false }); });
+  window.wsTranslateDyn = translateDyn;
 
   // ── 6. Clickable quick steps: jump to the matching step on the page ────────
   var STOP = { para: 1, como: 1, cada: 1, todo: 1, todos: 1, with: 1, from: 1, that: 1, this: 1, your: 1, the: 1, and: 1, los: 1, las: 1, del: 1, una: 1, uno: 1, que: 1, con: 1, por: 1, sus: 1 };
