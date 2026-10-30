@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wearsos — Operations Manual</title>
+<title>Wearsos — Manual de Operaciones</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -229,6 +229,176 @@ body {
 .pg > div[data-lang="es"] { padding: 0 20px 80px; max-width: 820px; margin: 0 auto; }
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style id="ws-v2-style">
+/* ── Wearsos v2: navy + gold, Inter only ── */
+:root {
+  --forest: #1B2F5B; --fern: #24396B; --sage: #3B5288; --mist: #C9D2E6;
+  --cream: #F5F6F8; --sand: #EEF1F6; --bark: #8A6A1F; --amber: #C98A12; --sky: #3B5288;
+  --text: #1A1F2E; --text2: #4A5163; --text3: #5A6275; --border: #DDE1E8;
+  --shadow: 0 1px 4px rgba(15,29,61,.08); --shadow-lg: 0 6px 20px rgba(15,29,61,.12);
+  --radius: 8px; --font-head: 'Inter', system-ui, sans-serif; --gold: #C98A12; --navy: #1B2F5B;
+}
+.home-title, .sec-title, .section-title, .sub-sec-title { font-family: var(--font); letter-spacing: -0.02em; font-weight: 700; }
+.home-hero { background: var(--navy); border-radius: 10px; border-bottom: 3px solid var(--gold); }
+.home-hero::before { display: none; }
+.home-eyebrow { color: #E2C27A; opacity: 1; }
+.home-sub { color: var(--mist); opacity: 1; }
+.home-wrap { max-width: 1100px; }
+.cards-grid { gap: 12px; }
+.card { border: 1px solid var(--border); border-radius: 8px; padding: 18px 18px 16px; display: flex; flex-direction: column; }
+.card:hover { transform: none; border-color: var(--navy); box-shadow: var(--shadow-lg); }
+.card::before { background: var(--navy); }
+.card-icon { font-size: 22px; width: 42px; height: 42px; border-radius: 8px; background: var(--sand); display: inline-flex; align-items: center; justify-content: center; }
+.card-num { font-size: 12px; color: var(--navy); }
+.card-title { color: var(--text); font-size: 15px; }
+.card-titles { margin-bottom: 6px; }
+.card-sub { font-size: 12.5px; color: var(--text3); line-height: 1.45; padding-right: 14px; }
+body.lang-es .card-sub[data-lang="es"], body.lang-en .card-sub[data-lang="en"] { display: block; }
+.card-arrow { color: var(--navy); }
+.sec-nav { background: #FFFFFF; border-bottom: 1px solid var(--border); box-shadow: 0 1px 0 rgba(15,29,61,.03); flex-wrap: wrap; }
+.back-btn { color: var(--navy); border: 1px solid #CDD3DE; border-radius: 6px; }
+.back-btn:hover { background: var(--sand); border-color: var(--navy); }
+.sec-num { font-family: var(--font); color: var(--navy); opacity: .25; }
+.sec-title { color: var(--text); }
+.step-num { background: var(--navy); }
+.step-content strong { color: var(--text); }
+.path { background: var(--sand); border-color: #D5DBE7; color: var(--navy); }
+.callout { border-left-color: var(--navy); background: var(--sand); border-radius: 6px; }
+.callout.warning { border-left-color: var(--gold); background: #FFF8E8; }
+.callout.info { border-left-color: var(--navy); background: var(--sand); }
+.callout-label, .callout.info .callout-label { color: var(--navy); }
+.callout.warning .callout-label { color: #8A5B00; }
+.cta-link { background: var(--navy); border-radius: 6px; }
+.cta-link:hover { background: #0F1D3D; }
+.page-nav-link { border-radius: 6px; background: var(--navy); }
+.page-nav-link.outline { color: var(--navy); border-color: var(--navy); background: #FFFFFF; }
+.back-to-menu-btn { background: var(--navy); border-radius: 6px; }
+.subsection-title { color: var(--navy); }
+.lang-toggle { background: var(--sand); }
+.sec-nav .lang-btn { color: var(--text3); }
+.sec-nav .lang-btn.active { background: var(--navy); color: #FFFFFF; }
+.quick-ref { display: none; }
+
+/* Quick panel: pasos rápidos · abrir directamente · fuentes */
+.wq-panel { display: flex; flex-wrap: wrap; gap: 12px; margin: 0 0 28px; }
+.wq-card { background: #FFFFFF; border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; min-width: 0; }
+.wq-steps { flex: 3 1 380px; }
+.wq-links { flex: 2 1 260px; display: flex; flex-direction: column; gap: 8px; }
+.wq-src { flex: 1 1 100%; background: #F9FAFB; }
+.wq-h { font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
+.wq-ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px 16px; counter-reset: wq; }
+body.lang-es .wq-ol[data-lang="es"], body.lang-en .wq-ol[data-lang="en"] { display: grid; }
+.wq-ol li { counter-increment: wq; display: flex; gap: 8px; font-size: 13.5px; line-height: 1.45; margin: 0; color: var(--text); }
+.wq-ol li::before { content: counter(wq); flex: none; width: 20px; height: 20px; border-radius: 50%; background: var(--navy); color: #FFFFFF; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+.wq-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; text-decoration: none; border-radius: 6px; padding: 8px 12px; min-height: 44px; background: #FFFFFF; color: var(--navy); border: 1px solid #CDD3DE; font-size: 14px; font-weight: 600; }
+.wq-link:hover { border-color: var(--navy); }
+.wq-link.ext { background: var(--navy); color: #FFFFFF; border-color: var(--navy); }
+.wq-link.ext:hover { background: #0F1D3D; }
+.wq-link small { display: block; font-size: 12px; font-weight: 400; color: var(--text3); }
+.wq-link.ext small { color: var(--mist); }
+.wq-ic { flex: none; font-weight: 700; }
+.wq-srchead { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 16px; }
+.wq-rule { font-size: 13px; font-weight: 600; color: var(--navy); }
+.wq-srcgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; }
+.wq-srcitem { display: flex; flex-direction: column; gap: 3px; background: #FFFFFF; border: 1px solid #E6E9EF; border-radius: 6px; padding: 9px 12px; }
+.wq-srcitem.wins { border-color: #B9DCC9; }
+.wq-what { font-size: 12px; color: var(--text3); }
+.wq-where { font-size: 14px; font-weight: 600; color: var(--navy); }
+.wq-where a { color: var(--navy); }
+.wq-win { align-self: flex-start; font-size: 11px; font-weight: 700; color: #1E6B4F; background: #EAF4EF; border-radius: 4px; padding: 2px 6px; }
+
+/* Header buttons (Secciones / Editar) and dropdown */
+.wm-btn { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font); font-size: 12.5px; font-weight: 600; color: var(--navy); background: #FFFFFF; border: 1px solid #CDD3DE; border-radius: 6px; padding: 6px 11px; cursor: pointer; white-space: nowrap; min-height: 32px; }
+.wm-btn:hover { border-color: var(--navy); }
+.home-controls .wm-btn { background: rgba(255,255,255,.12); color: #FFFFFF; border-color: rgba(255,255,255,.3); }
+.wm-menu { position: fixed; z-index: 1000; top: 58px; left: 50%; transform: translateX(-50%); width: min(1060px, calc(100% - 24px)); max-height: calc(100vh - 80px); overflow-y: auto; background: #FFFFFF; border: 1px solid var(--border); border-radius: 10px; box-shadow: 0 16px 40px rgba(15,29,61,.18); padding: 14px; display: none; }
+.wm-menu.open { display: block; }
+.wm-top { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.wm-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px 18px; }
+.wm-gt { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #8A6A1F; padding: 0 8px 4px; }
+.wm-item { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; font-family: var(--font); font-size: 14px; color: var(--text); background: #FFFFFF; border: 0; border-radius: 6px; padding: 7px 8px; cursor: pointer; min-height: 40px; }
+.wm-item:hover { background: var(--sand); }
+.wm-item.cur { background: var(--sand); box-shadow: inset 3px 0 0 var(--navy); font-weight: 600; }
+.wm-e { width: 30px; height: 30px; border-radius: 6px; background: var(--sand); display: inline-flex; align-items: center; justify-content: center; font-size: 16px; flex: none; }
+.wm-n { font-size: 12px; font-weight: 700; color: var(--navy); width: 20px; }
+.wm-backdrop { position: fixed; inset: 0; z-index: 999; background: rgba(15,29,61,.2); display: none; }
+.wm-backdrop.open { display: block; }
+
+/* Dialogs (editing password, sheet reminder) */
+.wd-bg { position: fixed; inset: 0; z-index: 2000; background: rgba(15,29,61,.4); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.wd { background: #FFFFFF; border-radius: 10px; border-top: 4px solid var(--navy); box-shadow: 0 20px 50px rgba(15,29,61,.25); max-width: 440px; width: 100%; padding: 22px 24px; display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: var(--text); }
+.wd.gold { border-top-color: var(--gold); }
+.wd h2 { font-size: 18px; font-weight: 700; margin: 0; }
+.wd .wd-who { background: var(--sand); border-left: 3px solid var(--navy); border-radius: 6px; padding: 10px 12px; font-size: 13.5px; line-height: 1.55; }
+.wd label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 600; }
+.wd input { height: 40px; border: 1px solid #CDD3DE; border-radius: 6px; padding: 0 10px; font-size: 15px; font-family: var(--font); }
+.wd .wd-err { color: #8E2A1C; font-size: 13px; }
+.wd .wd-row { display: flex; gap: 10px; flex-wrap: wrap; }
+.wd .wd-row > * { flex: 1 1 160px; }
+.wd-btn { font-family: var(--font); border-radius: 6px; padding: 10px 14px; font-weight: 600; font-size: 14px; cursor: pointer; text-align: center; text-decoration: none; }
+.wd-btn.primary { background: var(--navy); color: #FFFFFF; border: 1px solid var(--navy); }
+.wd-btn.secondary { background: #FFFFFF; color: var(--navy); border: 1px solid #CDD3DE; }
+
+/* Edit mode */
+.we-bar { position: fixed; z-index: 1500; left: 50%; bottom: 16px; transform: translateX(-50%); width: min(760px, calc(100% - 24px)); background: var(--navy); color: #FFFFFF; border-radius: 10px; box-shadow: 0 10px 30px rgba(15,29,61,.3); padding: 12px 16px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; font-size: 13.5px; }
+.we-bar button { font-family: var(--font); border-radius: 6px; padding: 8px 14px; font-weight: 600; font-size: 14px; cursor: pointer; }
+.we-bar .we-save { background: #FFFFFF; color: var(--navy); border: 0; }
+.we-bar .we-cancel { background: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,.5); }
+[data-we-editable="1"] { outline: 1px dashed #B8C0CE; outline-offset: 2px; border-radius: 3px; cursor: text; }
+[data-we-editable="1"]:focus { outline: 2px solid var(--gold); background: #FFFDF6; }
+.we-toast { position: fixed; z-index: 2100; left: 50%; top: 16px; transform: translateX(-50%); background: #EAF4EF; color: #164F3A; border: 1px solid #B9DCC9; border-radius: 8px; padding: 10px 16px; font-size: 14px; font-weight: 600; box-shadow: var(--shadow-lg); }
+.we-toast.err { background: #FBE4E1; color: #8E2A1C; border-color: #F0B7AE; }
+.we-updated { font-size: 12px; color: var(--text3); margin-top: 6px; }
+
+/* Team page (data-driven) */
+.wt-legend { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 18px; }
+.wt-tag { font-size: 11px; font-weight: 600; border-radius: 4px; padding: 2px 7px; align-self: flex-start; }
+.wt-group { margin-bottom: 22px; }
+.wt-gtitle { font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text3); margin-bottom: 10px; }
+.wt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+.wt-card { background: #FFFFFF; border: 1px solid var(--border); border-radius: 8px; padding: 14px; display: flex; gap: 12px; align-items: center; cursor: pointer; text-align: left; font-family: var(--font); width: 100%; }
+.wt-card:hover { border-color: var(--navy); }
+.wt-av { flex: none; width: 40px; height: 40px; border-radius: 50%; background: #3B5288; color: #FFFFFF; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+.wt-av.founder { background: var(--navy); }
+.wt-info { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.wt-name { font-size: 15px; font-weight: 700; color: var(--text); }
+.wt-role { font-size: 13px; color: var(--text3); }
+.wt-edit { background: #FFFFFF; border: 1px solid #B8C0CE; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.wt-edit label { display: flex; flex-direction: column; gap: 3px; font-size: 12px; font-weight: 600; color: var(--text3); }
+.wt-edit input, .wt-edit select, .wt-edit textarea { border: 1px solid #CDD3DE; border-radius: 6px; padding: 6px 8px; font-size: 14px; font-family: var(--font); color: var(--text); background: #FFFFFF; }
+.wt-edit textarea { min-height: 54px; resize: vertical; }
+.wt-two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.wt-remove { align-self: flex-start; background: none; border: 0; color: #8E2A1C; font-weight: 600; font-size: 13px; cursor: pointer; padding: 2px 0; font-family: var(--font); }
+.wt-add { border: 1px dashed #B8C0CE; background: transparent; color: var(--navy); border-radius: 8px; padding: 14px; font-weight: 600; font-size: 14px; cursor: pointer; min-height: 70px; font-family: var(--font); }
+
+/* Payment calculator: manual cost */
+.ws-manual-cost { width: 110px; height: 30px; border: 1px solid #EBCB80; background: #FFFBF2; border-radius: 6px; padding: 0 6px; font-size: 13px; font-family: var(--font); text-align: right; }
+.ws-manual-tag { font-size: 10px; font-weight: 700; color: #6B4A00; background: #FBEFD2; border-radius: 4px; padding: 1px 5px; }
+.ws-manual-warn { margin-top: 10px; background: #FFF8E8; border: 1px solid #EBCB80; border-left: 3px solid var(--gold); border-radius: 6px; padding: 10px 12px; font-size: 13px; line-height: 1.5; color: #4D3500; }
+.ws-manual-warn a { display: inline-block; margin-top: 6px; background: var(--navy); color: #FFFFFF; text-decoration: none; border-radius: 6px; padding: 6px 10px; font-weight: 600; }
+
+@media (max-width: 640px) { .wm-menu { top: 8px; } .we-bar { bottom: 8px; } }
+
+/* Fix: language switch readable on the navy home banner */
+.home-controls .lang-toggle { background: rgba(255,255,255,.12); }
+.home-controls .lang-btn { color: rgba(255,255,255,.7); }
+.home-controls .lang-btn.active { background: #FFFFFF; color: var(--navy); }
+
+/* Fix: no sideways scrolling on phones */
+.sec-nav { margin: 0; padding: 10px 16px; }
+.sec-nav-title { min-width: 0; flex: 1 1 120px; }
+.step, .step-content { min-width: 0; }
+.step-content { overflow-wrap: anywhere; }
+.step-content img, img.screenshot, .sec-body img { max-width: 100% !important; height: auto; box-sizing: border-box; }
+.step-content table, .sec-body table { display: block; max-width: 100%; overflow-x: auto; }
+@media (max-width: 640px) {
+  .sec-nav-title { display: none; }
+  .sec-body, .pg > div[data-lang="es"] { padding-left: 16px; padding-right: 16px; }
+  .sec-hero { padding-left: 16px; padding-right: 16px; }
+  .sec-num { font-size: 36px; }
+}
+
+</style>
 </head>
 <body class="lang-es">
 
@@ -447,6 +617,7 @@ body {
           <div class="card-title" data-lang="en">Receiving Inventory</div>
           <div class="card-title" data-lang="es">Recepción de Inventario</div>
         </div>
+        <div class="card-sub" data-lang="en">Zoho form per delivery · Photo · Fix stock in Billo</div><div class="card-sub" data-lang="es">Formulario Zoho por entrega · Foto · Corregir stock en Billo</div>
         <span class="card-arrow">→</span>
       </div>
       <div class="card" onclick="showPage('creating')" style="--card-color:#4A7A5C;">
@@ -458,6 +629,7 @@ body {
           <div class="card-title" data-lang="en">Creating a Product</div>
           <div class="card-title" data-lang="es">Crear un Producto en Billo</div>
         </div>
+        <div class="card-sub" data-lang="en">Name · Unique SKU · Category = provider · Tax info</div><div class="card-sub" data-lang="es">Nombre · SKU único · Categoría = proveedor · Info tributaria</div>
         <span class="card-arrow">→</span>
       </div>
       <div class="card" onclick="showPage('provider')" style="--card-color:#7A4F6A;">
@@ -469,39 +641,43 @@ body {
           <div class="card-title" data-lang="en">Creating a Provider</div>
           <div class="card-title" data-lang="es">Crear un Proveedor</div>
         </div>
+        <div class="card-sub" data-lang="en">Lynne &amp; Chris approval · Directory · GoBillo</div><div class="card-sub" data-lang="es">Aprobación de Lynne y Chris · Directorio · GoBillo</div>
         <span class="card-arrow">→</span>
       </div>
       <div class="card" onclick="showPage('notes')" style="--card-color:#5C7A8A;">
         <div class="card-top">
-          <span class="card-icon">💡</span>
+          <span class="card-icon">📈</span>
           <span class="card-num">04</span>
         </div>
         <div class="card-titles">
           <div class="card-title" data-lang="en">Products & Pricing</div>
           <div class="card-title" data-lang="es">Productos y Precios</div>
         </div>
+        <div class="card-sub" data-lang="en">Target margin · Master sheet · Price changes</div><div class="card-sub" data-lang="es">Margen objetivo · Hoja maestra · Cambios de precio</div>
         <span class="card-arrow">→</span>
       </div>
       <div class="card" onclick="showPage('counting')" style="--card-color:#7A5C3E;">
         <div class="card-top">
-          <span class="card-icon">📊</span>
+          <span class="card-icon">🔢</span>
           <span class="card-num">05</span>
         </div>
         <div class="card-titles">
           <div class="card-title" data-lang="en">Monthly Stock Count</div>
           <div class="card-title" data-lang="es">Conteo Mensual de Inventario</div>
         </div>
+        <div class="card-sub" data-lang="en">Download from Billo · Count · Registry · Upload</div><div class="card-sub" data-lang="es">Descargar de Billo · Contar · Registro · Subir</div>
         <span class="card-arrow">→</span>
       </div>
       <div class="card" onclick="showPage('payments')" style="--card-color:#3A5C7A;">
         <div class="card-top">
-          <span class="card-icon">💳</span>
+          <span class="card-icon">🧮</span>
           <span class="card-num">06</span>
         </div>
         <div class="card-titles">
           <div class="card-title" data-lang="en">Provider Payments</div>
           <div class="card-title" data-lang="es">Pagos a Proveedores</div>
         </div>
+        <div class="card-sub" data-lang="en">Billo report · Calculator · WhatsApp · Invoice</div><div class="card-sub" data-lang="es">Reporte de Billo · Calculadora · WhatsApp · Factura</div>
         <span class="card-arrow">→</span>
       </div>
       <div class="card" onclick="showPage('controlpagos')" style="--card-color:#1A6B5A;">
@@ -513,6 +689,7 @@ body {
           <div class="card-title" data-lang="en">Control de Pagos</div>
           <div class="card-title" data-lang="es">Control de Pagos</div>
         </div>
+        <div class="card-sub" data-lang="en">Amounts · Invoice status · No Consigna · Receipts</div><div class="card-sub" data-lang="es">Montos · Estado de factura · No Consigna · Comprobantes</div>
         <span class="card-arrow">→</span>
       </div>
 
@@ -527,18 +704,20 @@ body {
           <div class="card-title" data-lang="en">Product Costs</div>
           <div class="card-title" data-lang="es">Costos de Productos</div>
         </div>
+        <div class="card-sub" data-lang="en">Live unit costs from the inventory sheet</div><div class="card-sub" data-lang="es">Costos unitarios en vivo desde la hoja</div>
         <span class="card-arrow">&#x2192;</span>
       </div>
 
       <div class="card" onclick="showPage('team')" style="--card-color:#3D5A3E;">
         <div class="card-top">
-          <span class="card-icon">🌿</span>
+          <span class="card-icon">👥</span>
           <span class="card-num">09</span>
         </div>
         <div class="card-titles">
           <div class="card-title" data-lang="en">Team Structure</div>
           <div class="card-title" data-lang="es">Equipo Wearsos</div>
         </div>
+        <div class="card-sub" data-lang="en">Org chart · Roles · Who to ask</div><div class="card-sub" data-lang="es">Organigrama · Roles · A quién preguntar</div>
         <span class="card-arrow">&#x2192;</span>
       </div>
 
@@ -551,18 +730,20 @@ body {
           <div class="card-title" data-lang="en">Opening &amp; Closing</div>
           <div class="card-title" data-lang="es">Apertura y Cierre</div>
         </div>
+        <div class="card-sub" data-lang="en">9 am opening · 6 pm closing · Weekly clean</div><div class="card-sub" data-lang="es">Apertura 9 am · Cierre 6 pm · Limpieza semanal</div>
         <span class="card-arrow">&#x2192;</span>
       </div>
 
       <div class="card" onclick="showPage('alarm')" style="--card-color:#3E4A6B;">
         <div class="card-top">
-          <span class="card-icon">🔔</span>
+          <span class="card-icon">🚨</span>
           <span class="card-num">11</span>
         </div>
         <div class="card-titles">
           <div class="card-title" data-lang="en">Building Alarm</div>
           <div class="card-title" data-lang="es">Alarma del Edificio</div>
         </div>
+        <div class="card-sub" data-lang="en">Arming the alarm at closing</div><div class="card-sub" data-lang="es">Activar la alarma al cerrar</div>
         <span class="card-arrow">&#x2192;</span>
       </div>
 
@@ -575,6 +756,20 @@ body {
           <div class="card-title" data-lang="en">POS &amp; Billo SOP</div>
           <div class="card-title" data-lang="es">SOP del POS y Billo</div>
         </div>
+        <div class="card-sub" data-lang="en">Open register · Sale · Close register · WiFi</div><div class="card-sub" data-lang="es">Abrir caja · Venta · Cerrar caja · WiFi</div>
+        <span class="card-arrow">&#x2192;</span>
+      </div>
+
+      <div class="card" onclick="showPage('barcodes')" style="--card-color:#1B2F5B;">
+        <div class="card-top">
+          <span class="card-icon">🔍</span>
+          <span class="card-num">13</span>
+        </div>
+        <div class="card-titles">
+          <div class="card-title" data-lang="en">Barcodes &amp; Labels</div>
+          <div class="card-title" data-lang="es">Códigos de Barras y Etiquetas</div>
+        </div>
+        <div class="card-sub" data-lang="en">How codes work · Print labels · Damaged label</div><div class="card-sub" data-lang="es">Cómo funcionan · Imprimir etiquetas · Etiqueta dañada</div>
         <span class="card-arrow">&#x2192;</span>
       </div>
 
@@ -616,6 +811,19 @@ body {
       </div>
     </div>
     <div class="sec-body" style="--hero-color:#C97B4B;">
+<div class="wq-panel">
+<section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
+<ol class="wq-ol" data-lang="en"><li>Open the Zoho form: arrival date and your name</li><li>Select the provider</li><li>Add each product and what arrived today</li><li>Take one photo of everything</li><li>Add the stock in Billo (Modificar stock)</li><li>Mark &quot;Added to Billo → Yes&quot; and submit</li></ol>
+<ol class="wq-ol" data-lang="es"><li>Abrí el formulario Zoho: fecha de llegada y tu nombre</li><li>Seleccioná el proveedor</li><li>Agregá cada producto y lo que llegó hoy</li><li>Sacá una foto de todo junto</li><li>Sumá el stock en Billo (Modificar stock)</li><li>Marcá «Agregado a Billo → Sí» y enviá</li></ol>
+</section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://forms.zohopublic.com/wearsos/form/FormulariodeRecepcindeInventarioInventoryReceiving/formperma/kx5REJShY_3AdvFNd3SBraTIPQxV-gfvuBBAhb-IHy4" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Receiving form<small>Zoho Forms · one per delivery</small></span><span class="es">Formulario de Recepción<small>Zoho Forms · uno por entrega</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet<small>Exact product names</small></span><span class="es">Hoja de inventario<small>Nombres exactos de los productos</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('provider');return false;"><span class="wq-lt"><span class="bi"><span class="en">03 · Creating a Provider<small>If the provider is new</small></span><span class="es">03 · Crear un Proveedor<small>Si el proveedor es nuevo</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Record of each delivery</span><span class="es">Registro de cada entrega</span></span></span><span class="wq-where"><a href="https://forms.zohopublic.com/wearsos/form/FormulariodeRecepcindeInventarioInventoryReceiving/formperma/kx5REJShY_3AdvFNd3SBraTIPQxV-gfvuBBAhb-IHy4" target="_blank" rel="noopener">Formulario de Recepción (Zoho)</a></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Available stock</span><span class="es">Stock disponible</span></span></span><span class="wq-where">Billo</span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Exact product name</span><span class="es">Nombre exacto del producto</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Billo = Hoja, columna A</a></span></div>
+</div></section>
+</div>
+
 <div class="page-nav-bar">
   <a class="page-nav-link" onclick="window.scrollTo({top:0,behavior:'smooth'});" href="#">
     <span class="bi"><span class="en">📦 Receiving Inventory</span><span class="es">📦 Recepción de Inventario</span></span>
@@ -911,6 +1119,19 @@ body {
       </div>
     </div>
     <div class="sec-body">
+<div class="wq-panel">
+<section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
+<ol class="wq-ol" data-lang="en"><li>GoBillo: Inventario → Productos → Crear Producto</li><li>Type: Bien</li><li>Name: Provider - Product (specs)</li><li>Clear product photo</li><li>Unique SKU: search the sheet with Ctrl+F</li><li>Barcode = SKU (section 13)</li><li>Category = provider name</li><li>Stock, cost and provider</li><li>CAByS, unit and price with IVA</li></ol>
+<ol class="wq-ol" data-lang="es"><li>GoBillo: Inventario → Productos → Crear Producto</li><li>Tipo: Bien</li><li>Nombre: Proveedor - Producto (specs)</li><li>Foto clara del producto</li><li>SKU único: buscalo en la hoja con Ctrl+F</li><li>Código de barras = SKU (sección 13)</li><li>Categoría = nombre del proveedor</li><li>Stock, costo y proveedor</li><li>CAByS, unidad y precio con IVA</li></ol>
+</section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1902511017#gid=1902511017" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">SKU guidelines<small>Inventory sheet · SKU tab</small></span><span class="es">Guías de SKU<small>Hoja de inventario · pestaña SKU</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet · Master<small>Cost and selling price</small></span><span class="es">Hoja de inventario · Master<small>Costo y precio de venta</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('notes');return false;"><span class="wq-lt"><span class="bi"><span class="en">04 · Products &amp; Pricing<small>How to set the price</small></span><span class="es">04 · Productos y Precios<small>Cómo fijar el precio</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a><a class="wq-link" href="#" onclick="showPage('barcodes');return false;"><span class="wq-lt"><span class="bi"><span class="en">13 · Barcodes<small>Code and label</small></span><span class="es">13 · Códigos de Barras<small>Código y etiqueta</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">Costs and prices: when in doubt, the sheet wins.</span><span class="es">Costos y precios: ante la duda, la hoja gana.</span></span></span></div><div class="wq-srcgrid">
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Cost and selling price</span><span class="es">Costo y precio de venta</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja · columnas E y F</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">SKU format</span><span class="es">Formato del SKU</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1902511017#gid=1902511017" target="_blank" rel="noopener">Guías de SKU</a></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Product for sale</span><span class="es">Producto a la venta</span></span></span><span class="wq-where">Billo</span></div>
+</div></section>
+</div>
+
       
 
       <!-- STEP 1 -->
@@ -975,7 +1196,7 @@ body {
           <div class="step">
             <div class="step-num"></div>
             <div class="step-content">
-              <p><strong>Leave Código de Barras empty.</strong> We do not work with barcodes at this time.</p>
+              <p><strong>Código de Barras: use the same internal code (SKU).</strong> The barcode in Billo must match the label on the product. See <a href="#" onclick="showPage('barcodes');return false;">13 · Barcodes</a>.</p>
             </div>
           </div>
 
@@ -1092,7 +1313,7 @@ body {
           <div class="step">
             <div class="step-num"></div>
             <div class="step-content">
-              <p><strong>Dejá el Código de Barras vacío.</strong> Por el momento no trabajamos con códigos de barras.</p>
+              <p><strong>Código de Barras: usá el mismo código interno (SKU).</strong> El código en Billo tiene que coincidir con la etiqueta del producto. Ver <a href="#" onclick="showPage('barcodes');return false;">13 · Códigos de Barras</a>.</p>
             </div>
           </div>
 
@@ -1177,6 +1398,18 @@ body {
       </div>
     </div>
     <div class="sec-body">
+<div class="wq-panel">
+<section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
+<ol class="wq-ol" data-lang="en"><li>Confirm Lynne and Chris approved</li><li>Directory: new row in A–Z order</li><li>Contact, email, WhatsApp, bank, IBAN and Sinpe</li><li>GoBillo: Inventario → Proveedores → Crear proveedor</li><li>Same name as in the Directory</li><li>Create and leave &quot;Productos asociados&quot; empty</li></ol>
+<ol class="wq-ol" data-lang="es"><li>Confirmá que Lynne y Chris aprobaron</li><li>Directorio: fila nueva en orden A–Z</li><li>Contacto, correo, WhatsApp, banco, IBAN y Sinpe</li><li>GoBillo: Inventario → Proveedores → Crear proveedor</li><li>Mismo nombre que en el Directorio</li><li>Crear y dejar «Productos asociados» vacío</li></ol>
+</section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Provider directory<small>Control de Pagos · Google Sheets</small></span><span class="es">Directorio de Proveedores<small>Control de Pagos · Google Sheets</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('creating');return false;"><span class="wq-lt"><span class="bi"><span class="en">02 · Creating a Product<small>The next step</small></span><span class="es">02 · Crear un Producto<small>El paso siguiente</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Contact and bank details</span><span class="es">Contacto y datos bancarios</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener">Directorio de Proveedores</a></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Provider in the POS</span><span class="es">Proveedor en el POS</span></span></span><span class="wq-where">Billo</span></div>
+</div></section>
+</div>
+
 
 <div data-lang="en">
   <div class="callout warning" style="margin-bottom:20px;">
@@ -1337,6 +1570,19 @@ body {
       </div>
     </div>
     <div class="sec-body" style="--hero-color:#5C7A8A;">
+<div class="wq-panel">
+<section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
+<ol class="wq-ol" data-lang="en"><li>New products: 35–50% target margin</li><li>Propose a specific price to the provider</li><li>Cost change: update column E</li><li>Check the margin in column G</li><li>Tell Lynne and Chris before touching the POS</li><li>Once approved: GoBillo and column F must match</li></ol>
+<ol class="wq-ol" data-lang="es"><li>Productos nuevos: margen objetivo 35–50%</li><li>Proponé un precio concreto al proveedor</li><li>Cambio de costo: actualizá la columna E</li><li>Revisá el margen en la columna G</li><li>Avisá a Lynne y Chris antes de tocar el POS</li><li>Con aprobación: GoBillo y columna F iguales</li></ol>
+</section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet · Master<small>Cost, price and margin</small></span><span class="es">Hoja de inventario · Master<small>Costo, precio y margen</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1902511017#gid=1902511017" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">SKU guidelines<small>Inventory sheet</small></span><span class="es">Guías de SKU<small>Hoja de inventario</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('costs');return false;"><span class="wq-lt"><span class="bi"><span class="en">08 · Product Costs<small>Cost list</small></span><span class="es">08 · Costos de Productos<small>Lista de costos</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">The Master Sheet is the reference: when in doubt, the sheet wins.</span><span class="es">La Hoja Maestra es la referencia: ante la duda, la hoja gana.</span></span></span></div><div class="wq-srcgrid">
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Unit cost</span><span class="es">Costo por unidad</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja · columna E (Costo)</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Selling price with IVA</span><span class="es">Precio de venta con IVA</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja · columna F</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Price the POS charges</span><span class="es">Precio que cobra el POS</span></span></span><span class="wq-where">Billo (debe ser igual a F)</span></div>
+</div></section>
+</div>
+
 <div class="page-nav-bar">
   <a class="page-nav-link" onclick="window.scrollTo({top:0,behavior:'smooth'});" href="#">
     <span class="bi"><span class="en">💰 Pricing & Margins</span><span class="es">💰 Precios y Márgenes</span></span>
@@ -1592,6 +1838,18 @@ body {
       </div>
     </div>
     <div class="sec-body">
+<div class="wq-panel">
+<section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
+<ol class="wq-ol" data-lang="en"><li>Download the inventory from Billo (.xlsx)</li><li>Hide everything except columns B and F</li><li>Count brand by brand; fix F and highlight yellow</li><li>Log every difference in the Registry</li><li>Keep about 200 rows; never delete row 1</li><li>Check yellow rows against the Registry</li><li>Upload the file to Billo</li></ol>
+<ol class="wq-ol" data-lang="es"><li>Descargá el inventario de Billo (.xlsx)</li><li>Ocultá todo menos las columnas B y F</li><li>Contá marca por marca; corregí F y marcá en amarillo</li><li>Anotá cada diferencia en el Registro</li><li>Dejá unas 200 filas; nunca borrés la fila 1</li><li>Compará filas amarillas con el Registro</li><li>Subí el archivo a Billo</li></ol>
+</section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/document/d/19ThmR6E2_FyfXqLn-1A0EpnW4cq_0Oi7kgYPMnyPb2E/edit?tab=t.d2xl2xhd5gr7" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Discrepancy Registry<small>Google Docs · required</small></span><span class="es">Registro de Discrepancias<small>Google Docs · obligatorio</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('receiving');return false;"><span class="wq-lt"><span class="bi"><span class="en">01 · Fix stock in Billo<small>For a single product</small></span><span class="es">01 · Corregir stock en Billo<small>Para un solo producto</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">No Registry = the month&#x27;s count did not happen.</span><span class="es">Sin Registro, el conteo del mes no existe.</span></span></span></div><div class="wq-srcgrid">
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Stock shown by the system</span><span class="es">Stock que muestra el sistema</span></span></span><span class="wq-where">Billo</span></div>
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Official count record</span><span class="es">Registro oficial del conteo</span></span></span><span class="wq-where"><a href="https://docs.google.com/document/d/19ThmR6E2_FyfXqLn-1A0EpnW4cq_0Oi7kgYPMnyPb2E/edit?tab=t.d2xl2xhd5gr7" target="_blank" rel="noopener">Registro de Discrepancias</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+</div></section>
+</div>
+
       
 
       <div data-lang="en">
@@ -1912,6 +2170,19 @@ body {
       </div>
     </div>
     <div class="sec-body">
+<div class="wq-panel">
+<section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
+<ol class="wq-ol" data-lang="en"><li>Billo → Reportes: monthly Reporte de productos</li><li>Upload it to the calculator</li><li>Check alerts and missing costs</li><li>Send the WhatsApp and request the invoice</li><li>Log the amount in Control de Pagos</li><li>Forward the receipt to the provider</li></ol>
+<ol class="wq-ol" data-lang="es"><li>Billo → Reportes: Reporte de productos del mes</li><li>Subilo a la calculadora</li><li>Revisá alertas y costos faltantes</li><li>Enviá el WhatsApp y pedí la factura</li><li>Registrá el monto en Control de Pagos</li><li>Reenviá el comprobante al proveedor</li></ol>
+</section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Control de Pagos<small>Google Sheets · this month&#x27;s tab</small></span><span class="es">Control de Pagos<small>Google Sheets · pestaña del mes</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet<small>To fix costs</small></span><span class="es">Hoja de inventario<small>Para corregir costos</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('controlpagos');return false;"><span class="wq-lt"><span class="bi"><span class="en">07 · Control de Pagos<small>How to fill in the sheet</small></span><span class="es">07 · Control de Pagos<small>Cómo completar la hoja</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">Costs: when in doubt, the sheet wins.</span><span class="es">Costos: ante la duda, la hoja gana.</span></span></span></div><div class="wq-srcgrid">
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Monthly sales</span><span class="es">Ventas del mes</span></span></span><span class="wq-where">Billo · Reporte de productos</span></div>
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Unit cost</span><span class="es">Costo por unidad</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja · columna E (Costo)</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Status of each payment</span><span class="es">Estado de cada pago</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener">Control de Pagos</a></span></div>
+</div></section>
+</div>
+
 
 <!-- CALCULATOR STYLES -->
 <style>
@@ -2355,6 +2626,8 @@ var _billoData = null;
 var _costsData = null;
 var _results   = null;
 var _allExpanded = false;
+var _lastRender = null;
+var WS_INV_URL = 'https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533';
 
 function parseFile(event, onSuccess, statusId, cardId) {
   var file = event.target.files[0];
@@ -2598,6 +2871,7 @@ window.wsCalc = {
   },
 
   _renderResults: function(byProv, unmatched, knownProviders, ambiguousSold) {
+    _lastRender = [byProv, unmatched, knownProviders, ambiguousSold];
     var providers = Object.keys(byProv).sort(function(a,b){ return a.localeCompare(b,'es'); });
 
     // Unmatched warning
@@ -2646,10 +2920,12 @@ window.wsCalc = {
         if (pd.ambiguous) nameCell += ' <span title="Mismo nombre en varias marcas — verificar precio manualmente" style="color:#e67e22;font-weight:bold;cursor:help;">*</span>';
         ch += '<tr><td style="max-width:130px;word-break:break-word;">'+nameCell+'</td>';
         ch += '<td style="text-align:center;">'+pd.qty+'</td>';
-        ch += '<td style="text-align:right;">'+(pd.hasCost?fmtCurrency(pd.unitCost,pd.currency):'<span style=\"color:#bbb\">\u2014</span>')+'</td>';
+        ch += '<td style="text-align:right;">'+(pd.hasCost?fmtCurrency(pd.unitCost,pd.currency)+(pd.manual?' <span class=\"ws-manual-tag\">a mano</span>':''):'<input type="number" min="0" step="50" class="ws-manual-cost" placeholder="\u20a1 ingresar" aria-label="Costo unitario de '+esc(pd.name||pd.fullName)+'" onchange="wsCalc.setManualCost('+pi+','+prods.indexOf(pd)+',this.value)">')+'</td>';
         ch += '<td style="text-align:right;">'+(pd.hasCost?fmtCurrency(pd.totalCost,pd.currency):'<span style=\"color:#bbb\">\u2014</span>')+'</td></tr>';
       });
-      ch += '</tbody></table></div>';
+      ch += '</tbody></table>';
+      if (prods.some(function(p){return p.manual;})) ch += '<div class="ws-manual-warn" role="alert"><strong>\u26a0\ufe0f Costo ingresado a mano.</strong> Sirve solo para este c\u00e1lculo. Correg\u00ed el costo en la hoja (columna E) para que el mes que viene salga bien. <a href="'+WS_INV_URL+'" target="_blank" rel="noopener">Corregir en la hoja \u2197</a></div>';
+      ch += '</div>';
       ch += '</div>';
     });
     document.getElementById('provider-cards').innerHTML = ch;
@@ -2771,6 +3047,20 @@ window.wsCalc = {
       : '<span class="bi"><span class="en">&#9660; Show all</span><span class="es">&#9660; Ver todos</span></span>';
     btn.querySelectorAll('.en').forEach(function(el){ el.style.display = isEs?'none':'inline'; });
     btn.querySelectorAll('.es').forEach(function(el){ el.style.display = isEs?'inline':'none'; });
+  },
+
+  // Manual cost for a product with no cost in the sheet: applies to this calculation only.
+  setManualCost: function(pi, ri, value) {
+    var v = parseFloat(String(value).replace(/,/g, '.'));
+    if (!(v > 0) || !_lastRender) return;
+    var byProv = _lastRender[0];
+    var providers = Object.keys(byProv).sort(function(a,b){ return a.localeCompare(b,'es'); });
+    var p = byProv[providers[pi]] && byProv[providers[pi]][ri];
+    if (!p) return;
+    p.unitCost = v; p.totalCost = v * p.qty; p.hasCost = true; p.manual = true; p.currency = p.currency || 'CRC';
+    this._renderResults(_lastRender[0], _lastRender[1], _lastRender[2], _lastRender[3]);
+    this.toggleProvDetail(pi);
+    if (window.wsShowSheetNote) window.wsShowSheetNote();
   },
 
   toggleProvDetail: function(pi) {
@@ -2896,10 +3186,12 @@ window.wsCalc = {
         if (pd.ambiguous) nameCell2 += ' <span title="Mismo nombre en varias marcas — verificar precio manualmente" style="color:#e67e22;font-weight:bold;cursor:help;">*</span>';
         ch += '<tr><td style="max-width:130px;word-break:break-word;">'+nameCell2+'</td>';
         ch += '<td style="text-align:center;">'+pd.qty+'</td>';
-        ch += '<td style="text-align:right;">'+(pd.hasCost?fmtCurrency(pd.unitCost,pd.currency):'<span style=\"color:#bbb\">\u2014</span>')+'</td>';
+        ch += '<td style="text-align:right;">'+(pd.hasCost?fmtCurrency(pd.unitCost,pd.currency)+(pd.manual?' <span class=\"ws-manual-tag\">a mano</span>':''):'<input type="number" min="0" step="50" class="ws-manual-cost" placeholder="\u20a1 ingresar" aria-label="Costo unitario de '+esc(pd.name||pd.fullName)+'" onchange="wsCalc.setManualCost('+pi+','+prods.indexOf(pd)+',this.value)">')+'</td>';
         ch += '<td style="text-align:right;">'+(pd.hasCost?fmtCurrency(pd.totalCost,pd.currency):'<span style=\"color:#bbb\">\u2014</span>')+'</td></tr>';
       });
-      ch += '</tbody></table></div>';
+      ch += '</tbody></table>';
+      if (prods.some(function(p){return p.manual;})) ch += '<div class="ws-manual-warn" role="alert"><strong>\u26a0\ufe0f Costo ingresado a mano.</strong> Sirve solo para este c\u00e1lculo. Correg\u00ed el costo en la hoja (columna E) para que el mes que viene salga bien. <a href="'+WS_INV_URL+'" target="_blank" rel="noopener">Corregir en la hoja \u2197</a></div>';
+      ch += '</div>';
       ch += '</div>';
     });
     document.getElementById('provider-cards').innerHTML = ch;
@@ -3302,6 +3594,19 @@ var wsPayUX = {
       </div>
     </div>
     <div class="sec-body">
+<div class="wq-panel">
+<section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
+<ol class="wq-ol" data-lang="en"><li>Open this month&#x27;s tab (duplicate the last one if missing)</li><li>Provider and amount from the calculator</li><li>Tick WhatsApp sent and invoice request date</li><li>Invoice status: Solicitada → Recibida</li><li>No Consigna: Estado de Pago = No Consigna</li><li>Check daily; close with receipt and Proceso finalizado</li></ol>
+<ol class="wq-ol" data-lang="es"><li>Abrí la pestaña del mes (si falta, duplicá la anterior)</li><li>Proveedor y monto de la calculadora</li><li>Marcá el WhatsApp enviado y la fecha de factura</li><li>Estado de factura: Solicitada → Recibida</li><li>No Consigna: Estado de Pago = No Consigna</li><li>Revisá a diario; cerrá con comprobante y Proceso finalizado</li></ol>
+</section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Control de Pagos<small>Google Sheets · this month&#x27;s tab</small></span><span class="es">Control de Pagos<small>Google Sheets · pestaña del mes</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('payments');return false;"><span class="wq-lt"><span class="bi"><span class="en">06 · Payment calculator<small>This month&#x27;s amounts</small></span><span class="es">06 · Calculadora de pagos<small>Montos del mes</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Amount to pay</span><span class="es">Monto a pagar</span></span></span><span class="wq-where">Calculadora (sección 06)</span></div>
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Invoice and payment status</span><span class="es">Estado de factura y de pago</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener">Control de Pagos</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Payment receipt</span><span class="es">Comprobante de pago</span></span></span><span class="wq-where"><a href="mailto:tienda@wearsos.co" target="_blank" rel="noopener">tienda@wearsos.co</a></span></div>
+</div></section>
+</div>
+
 
 <div data-lang="en">
   <div class="callout info" style="margin-bottom:24px;">
@@ -3464,6 +3769,18 @@ var wsPayUX = {
       </div>
     </div>
     <div class="sec-body">
+<div class="wq-panel">
+<section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
+<ol class="wq-ol" data-lang="en"><li>Search for the provider or product</li><li>Cost at ₡0 = the cost is missing in the sheet</li><li>Fix the cost in the sheet, column E</li><li>Reload this page to see the change</li></ol>
+<ol class="wq-ol" data-lang="es"><li>Buscá el proveedor o el producto</li><li>Costo en ₡0 = falta el costo en la hoja</li><li>Corregí el costo en la hoja, columna E</li><li>Recargá esta página para ver el cambio</li></ol>
+</section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet · Master<small>Column E (Costo)</small></span><span class="es">Hoja de inventario · Master<small>Columna E (Costo)</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('payments');return false;"><span class="wq-lt"><span class="bi"><span class="en">06 · Payment calculator<small>Uses these costs</small></span><span class="es">06 · Calculadora de pagos<small>Usa estos costos</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">This page only reads the sheet. When in doubt, the sheet wins.</span><span class="es">Esta página solo lee la hoja. Ante la duda, la hoja gana.</span></span></span></div><div class="wq-srcgrid">
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">This cost list</span><span class="es">Esta lista de costos</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja · columna E (Costo)</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Provider cost in Billo</span><span class="es">Costo del Proveedor en Billo</span></span></span><span class="wq-where">Billo (debe coincidir con la hoja)</span></div>
+</div></section>
+</div>
+
 
 <style>
 /* ── Costs section styles ── */
@@ -3616,6 +3933,14 @@ if (document.readyState !== 'loading') wsCosts.init();
         <p class="sec-desc"><span data-lang="en">Tap any card to see role details.</span><span data-lang="es">Tocá cualquier tarjeta para ver detalles del rol.</span></p>
       </div>
     </div>
+<div class="wq-panel">
+<section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Who to ask</span><span class="es">A quién preguntar</span></span></div>
+<ol class="wq-ol" data-lang="en"><li>Store and shifts: Tienda Manager</li><li>Approving providers and prices: Lynne and Chris</li><li>Electronic invoices: contabilidad@wearsos.co</li><li>Workshop and production: Carolina</li></ol>
+<ol class="wq-ol" data-lang="es"><li>Tienda y turnos: Tienda Manager</li><li>Aprobar proveedores y precios: Lynne y Chris</li><li>Facturas electrónicas: contabilidad@wearsos.co</li><li>Taller y producción: Carolina</li></ol>
+</section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="mailto:contabilidad@wearsos.co" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">contabilidad@wearsos.co<small>Invoices · note: .co, not .com</small></span><span class="es">contabilidad@wearsos.co<small>Facturas · ojo: .co, no .com</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="mailto:tienda@wearsos.co" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">tienda@wearsos.co<small>Receipts and store</small></span><span class="es">tienda@wearsos.co<small>Comprobantes y tienda</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a></section>
+</div>
+
 
 <style>
 .org-wrap { overflow-x: auto; padding: 8px 0 32px; -webkit-overflow-scrolling: touch; }
@@ -3876,6 +4201,18 @@ function closeOrgModal() {
         <p class="sec-desc"><span data-lang="en">Daily procedures for opening and closing Wearsos Turrialba.</span><span data-lang="es">Procedimientos diarios de apertura y cierre de la tienda.</span></p>
       </div>
     </div>
+<div class="wq-panel">
+<section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
+<ol class="wq-ol" data-lang="en"><li>Arrive 15 minutes before opening</li><li>Alarm off and doors open</li><li>Lights, fans, music and coffee</li><li>Cash float and Billo register</li><li>Signs and displays outside</li><li>Store inspection</li><li>At closing: shift summary form</li></ol>
+<ol class="wq-ol" data-lang="es"><li>Llegá 15 minutos antes de abrir</li><li>Alarma desactivada y puertas abiertas</li><li>Luces, ventiladores, música y café</li><li>Fondo de caja y registro en Billo</li><li>Letreros y exhibidores afuera</li><li>Inspección de la tienda</li><li>Al cerrar: formulario de resumen del turno</li></ol>
+</section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://forms.zoho.com/wearsos/form/StoreShiftSummaryForm" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Shift summary form<small>Zoho Forms · at closing</small></span><span class="es">Formulario de Resumen del Turno<small>Zoho Forms · al cerrar</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('pos');return false;"><span class="wq-lt"><span class="bi"><span class="en">12 · Open and close register<small>POS &amp; Billo</small></span><span class="es">12 · Abrir y cerrar caja<small>POS y Billo</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a><a class="wq-link" href="#" onclick="showPage('alarm');return false;"><span class="wq-lt"><span class="bi"><span class="en">11 · Alarm<small>Second-floor panel</small></span><span class="es">11 · Alarma<small>Panel del segundo piso</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Summary of each shift</span><span class="es">Resumen de cada turno</span></span></span><span class="wq-where"><a href="https://forms.zoho.com/wearsos/form/StoreShiftSummaryForm" target="_blank" rel="noopener">Formulario de Resumen del Turno</a></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Day&#x27;s sales and cash</span><span class="es">Ventas y efectivo del día</span></span></span><span class="wq-where">Billo · cierre de caja</span></div>
+</div></section>
+</div>
+
 
 <style>
 .oc-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
@@ -4140,6 +4477,14 @@ function ocSwitch(panel, btn) {
         <p class="sec-desc"><span data-lang="en">How to activate the building alarm at closing time.</span><span data-lang="es">Cómo activar la alarma del edificio al cerrar la tienda.</span></p>
       </div>
     </div>
+<div class="wq-panel">
+<section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
+<ol class="wq-ol" data-lang="en"><li>Tap the panel screen</li><li>&quot;Disarmed System&quot;</li><li>&quot;Away Arm&quot;</li><li>Add 60 seconds and leave</li></ol>
+<ol class="wq-ol" data-lang="es"><li>Tocá la pantalla del panel</li><li>«Sistema Desarmado»</li><li>«Armado Ausente»</li><li>Agregá 60 segundos y salí</li></ol>
+</section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/document/d/1GQvuwrUpjcJIDyWpxgpSvLMUbhUSUzE1Q3aZOSWOUCk/edit?tab=t.3lgzkodg8fp7" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Photo guide<small>Google Docs</small></span><span class="es">Guía con fotos<small>Google Docs</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('opening');return false;"><span class="wq-lt"><span class="bi"><span class="en">10 · Closing checklist<small>Opening &amp; Closing</small></span><span class="es">10 · Checklist de cierre<small>Apertura y Cierre</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+</div>
+
 
 <style>
 .alarm-step { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 16px; background: var(--white); border: 1.5px solid var(--border); border-radius: 12px; padding: 18px 20px; }
@@ -4223,6 +4568,18 @@ function ocSwitch(panel, btn) {
         <p class="sec-desc"><span data-lang="en">How to open and close the register, process sales, and troubleshoot WiFi.</span><span data-lang="es">Cómo abrir y cerrar la caja, procesar ventas y solucionar problemas de WiFi.</span></p>
       </div>
     </div>
+<div class="wq-panel">
+<section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
+<ol class="wq-ol" data-lang="en"><li>Open: Billo and ₡55,000 and $40 float</li><li>Sale: Facturación → Cobrar → payment method</li><li>Card: card machine F1; enter receipt no. in Billo</li><li>Close: POS report, then Caja in Billo</li><li>Excess in an envelope with date and amount</li><li>No WiFi: Date and time → Refresh</li></ol>
+<ol class="wq-ol" data-lang="es"><li>Abrir: Billo y fondo de ₡55,000 y $40</li><li>Venta: Facturación → Cobrar → método de pago</li><li>Tarjeta: datáfono F1; anotá el comprobante en Billo</li><li>Cerrar: reporte del POS, después Caja en Billo</li><li>Excedente en un sobre con fecha y monto</li><li>Sin WiFi: Fecha y hora → Actualizar</li></ol>
+</section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://forms.zoho.com/wearsos/form/StoreShiftSummaryForm" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Shift summary form<small>Zoho Forms · at closing</small></span><span class="es">Formulario de Resumen del Turno<small>Zoho Forms · al cerrar</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('opening');return false;"><span class="wq-lt"><span class="bi"><span class="en">10 · Opening &amp; Closing<small>Day&#x27;s checklist</small></span><span class="es">10 · Apertura y Cierre<small>Checklist del día</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a><a class="wq-link" href="#" onclick="showPage('barcodes');return false;"><span class="wq-lt"><span class="bi"><span class="en">13 · Barcodes<small>Scanning at checkout</small></span><span class="es">13 · Códigos de Barras<small>Escanear en la venta</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Day&#x27;s sales</span><span class="es">Ventas del día</span></span></span><span class="wq-where">Billo</span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Printed receipts</span><span class="es">Recibos impresos</span></span></span><span class="wq-where">Carpeta de la tienda</span></div>
+</div></section>
+</div>
+
 
 <style>
 .pos-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
@@ -4525,7 +4882,191 @@ function posSwitch(panel, btn) {
 </script>
 
   </div><!-- /sec-body -->
-</div><!-- /pg-pos -->
+</div>
+
+<!-- ══════════════════════════════════════════════ PAGE 13: BARCODES -->
+<div class="pg" id="pg-barcodes">
+  <div class="sec-nav">
+    <button class="back-btn" onclick="showPage('home')">
+      <span data-lang="en">&#x2190; Menu</span>
+      <span data-lang="es">&#x2190; Men&uacute;</span>
+    </button>
+    <div class="sec-nav-title">
+      <span data-lang="en">Barcodes &amp; Labels</span>
+      <span data-lang="es">Códigos de Barras y Etiquetas</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="search-icon-btn" onclick="openSearch()" title="Search">&#x1F50D;</div>
+      <div class="lang-toggle">
+        <button class="lang-btn en-btn" onclick="setLang('en',this)">EN</button>
+        <button class="lang-btn es-btn active" onclick="setLang('es',this)">ES</button>
+      </div>
+    </div>
+  </div>
+  <div class="sec-hero" style="--hero-color:#1B2F5B;">
+    <div class="sec-num">13</div>
+    <div>
+      <h1 class="sec-title">
+        <span data-lang="en">Barcodes &amp; Labels</span>
+        <span data-lang="es">Códigos de Barras y Etiquetas</span>
+      </h1>
+      <p class="sec-sub">
+        <span data-lang="en">How our barcodes work and how to print labels.</span>
+        <span data-lang="es">Cómo funcionan nuestros códigos y cómo imprimir etiquetas.</span>
+      </p>
+    </div>
+  </div>
+  <div class="sec-body" style="--hero-color:#1B2F5B;">
+<div class="wq-panel">
+<section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
+<ol class="wq-ol" data-lang="en"><li>Barcode = internal code (SKU)</li><li>The code in Billo must match the label</li><li>Label sheet: code in E, stock in F</li><li>Printer: 40 × 20 mm labels, calibrate at start</li><li>ZebraDesigner 3: &quot;WEARSOS Product Label 2.0&quot;</li><li>Import the sheet; &quot;en stock&quot; sets the copies</li><li>Print (the preview may look off)</li></ol>
+<ol class="wq-ol" data-lang="es"><li>Código de barras = código interno (SKU)</li><li>El código en Billo tiene que coincidir con la etiqueta</li><li>Hoja de etiquetas: código en E, stock en F</li><li>Impresora: etiquetas 40 × 20 mm, calibrar al empezar</li><li>ZebraDesigner 3: «WEARSOS Product Label 2.0»</li><li>Importar la hoja y elegir «en stock» como copias</li><li>Imprimir (la vista previa puede verse mal)</li></ol>
+</section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet<small>Internal codes (SKU)</small></span><span class="es">Hoja de inventario<small>Códigos internos (SKU)</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('creating');return false;"><span class="wq-lt"><span class="bi"><span class="en">02 · Creating a Product<small>Where the code is entered</small></span><span class="es">02 · Crear un Producto<small>Dónde se carga el código</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">The label and Billo must always show the same code.</span><span class="es">La etiqueta y Billo siempre tienen que tener el mismo código.</span></span></span></div><div class="wq-srcgrid">
+<div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Code the POS scans</span><span class="es">Código que escanea el POS</span></span></span><span class="wq-where">Billo · campo Código de barras</span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Internal code of each product</span><span class="es">Código interno de cada producto</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja de inventario · Código interno</a></span></div>
+<div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Number of labels to print</span><span class="es">Cantidad de etiquetas a imprimir</span></span></span><span class="wq-where">Hoja de etiquetas · columna F</span></div>
+</div></section>
+</div>
+
+
+<div data-lang="es">
+  <div class="callout info">
+    <div class="callout-label">📌 Cómo funciona</div>
+    <p>El sistema usa códigos de barras que coinciden con nuestro <strong>código interno</strong> (SKU). Para algunos productos de mucho volumen, como las <strong>postales de Flor &amp; Fauna</strong>, usamos el código de barras del proveedor para no imprimir tantas etiquetas.</p>
+    <p>Para que funcione, <strong>el código de barras en la página del producto en Billo tiene que coincidir con el código del producto</strong>.</p>
+  </div>
+  <div class="callout warning">
+    <div class="callout-label">⚠️ Aquiares Café</div>
+    <p>El código del proveedor no funcionó con Aquiares, porque usa códigos distintos para el mismo producto. Para Aquiares usá siempre nuestro código interno.</p>
+  </div>
+
+  <h2 class="subsection-title">🖨️ Imprimir etiquetas en cantidad</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Prepará la hoja de etiquetas.</strong> Descargá y editá la exportación de Billo, o actualizá la hoja de códigos de barras del proyecto. Completá a mano las columnas <strong>E</strong> y <strong>F</strong>:</p>
+      <ul><li><strong>Columna E:</strong> el código de barras. Para la mayoría de los productos, copiá el código interno de la columna anterior. Para productos de mucho volumen (como las postales de Flor &amp; Fauna), usá el código del proveedor.</li>
+      <li><strong>Columna F:</strong> el stock. Define cuántas etiquetas se imprimen de cada producto.</li></ul>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Prepará la impresora.</strong> Usá etiquetas de <strong>40 × 20 mm</strong>. Al empezar cada sesión, mantené presionado el botón de la derecha hasta que parpadee dos veces: la impresora se recalibra e imprime unas páginas de prueba. Conectala a la <strong>Lenovo</strong> por USB.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Abrí ZebraDesigner 3</strong> y el archivo reciente <strong>WEARSOS Product Label 2.0</strong>. El diseño combina texto fijo con campos que toman los datos de la hoja .xlsx importada.</p>
+      <div class="callout warning"><div class="callout-label">⚠️ Licencia</div><p>Importar desde Excel va a requerir una licencia paga a partir de mediados de noviembre de 2026. Confirmá el estado de la licencia antes del próximo lote.</p></div>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Importá la hoja.</strong> En la pestaña <strong>Data</strong>, hacé clic en <strong>Edit Database</strong> y seguí el asistente. Elegí las columnas del producto y poné como cantidad de etiquetas a imprimir la columna <strong>en stock</strong>, así la cantidad de etiquetas coincide con el stock de la hoja.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Si un campo no encuentra su columna,</strong> abrí sus propiedades y elegí la fuente de datos correcta en la pestaña Home.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Imprimí.</strong> La vista previa puede no verse bien: no te preocupes. En la pantalla de impresión todas las filas vienen seleccionadas y cada producto imprime tantas copias como su stock. Los productos con stock en cero o vacío no se imprimen.</p>
+    </div></div>
+  </div>
+
+  <h2 class="subsection-title">🩹 Si una etiqueta se daña o no escanea</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Mientras tanto, vendé igual:</strong> buscá el producto por nombre en Facturación de Billo.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Revisá que el código coincida.</strong> El código de barras en la página del producto en Billo tiene que ser igual al de la etiqueta. Si no coincide, corregilo en Billo.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Reimprimí solo esa etiqueta.</strong> Seguí los pasos de impresión y, en la pantalla de impresión, quitá la selección con la casilla junto a <strong>Copies</strong>, elegí solo ese producto, poné la cantidad de copias y hacé clic en <strong>Print</strong>.</p>
+    </div></div>
+  </div>
+
+  <h2 class="subsection-title">➕ Producto nuevo</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Al crear el producto en Billo,</strong> poné en Código de barras el mismo código interno (SKU), o el código del proveedor si es un producto de mucho volumen. Ver <a href="#" onclick="showPage('creating');return false;">02 · Crear un Producto</a>.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Imprimí sus etiquetas</strong> agregándolo a la hoja de etiquetas con su stock en la columna F.</p>
+    </div></div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-label">📦 Papel de etiquetas</div>
+    <p>El último producto que se pudo imprimir fue <strong>Lorenas Crochet - Unicornio CRC 15000</strong>. Hace falta conseguir papel de etiquetas nuevo (40 × 20 mm) para seguir desde ahí.</p>
+  </div>
+</div>
+
+<div data-lang="en">
+  <div class="callout info">
+    <div class="callout-label">📌 How it works</div>
+    <p>The system uses barcodes that match our <strong>internal code</strong> (SKU). For some high-volume products, such as <strong>Flor &amp; Fauna postcards</strong>, we use the supplier's barcode to avoid printing large quantities of labels.</p>
+    <p>To make this work, <strong>the barcode on the Billo product page must match the code on the product</strong>.</p>
+  </div>
+  <div class="callout warning">
+    <div class="callout-label">⚠️ Aquiares Café</div>
+    <p>The supplier barcode did not work for Aquiares, because it uses different codes for the same product. For Aquiares, always use our internal code.</p>
+  </div>
+
+  <h2 class="subsection-title">🖨️ Bulk label printing</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Prepare the label sheet.</strong> Download and edit the export from Billo, or update the existing project barcode sheet. Fill in columns <strong>E</strong> and <strong>F</strong> manually:</p>
+      <ul><li><strong>Column E:</strong> the barcode. For most products, copy the internal code from the preceding column. For high-volume items such as Flor &amp; Fauna postcards, use the supplier barcode.</li>
+      <li><strong>Column F:</strong> the stock count, which sets how many labels print.</li></ul>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Set up the printer.</strong> Use <strong>40 × 20 mm</strong> labels. At the start of each session, press and hold the right-hand button until it flashes twice; the printer recalibrates and prints a few test pages. Connect it to the <strong>Lenovo</strong> by USB.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Open ZebraDesigner 3</strong> and the recent file <strong>WEARSOS Product Label 2.0</strong>. The layout combines fixed text with placeholders that pull data from the imported .xlsx workbook.</p>
+      <div class="callout warning"><div class="callout-label">⚠️ License</div><p>Excel imports will require a paid license from mid-November 2026. Confirm the license status before the next batch.</p></div>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Import the sheet.</strong> On the <strong>Data</strong> tab, click <strong>Edit Database</strong> and follow the wizard. Select the product columns and set the number of labels to print to <strong>en stock</strong>, so the label count matches the stock in the sheet.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>If a placeholder cannot find its column,</strong> open its properties and select the correct data source on the Home tab.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Print.</strong> The preview may not display accurately; don't worry if it looks off. On the print screen all rows are selected by default and each product prints as many copies as its stock. Products with a stock of zero or blank do not print.</p>
+    </div></div>
+  </div>
+
+  <h2 class="subsection-title">🩹 If a label is damaged or won't scan</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Keep selling meanwhile:</strong> search for the product by name in Billo's Facturación page.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Check that the code matches.</strong> The barcode on the Billo product page must match the label. If it doesn't, fix it in Billo.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Reprint just that label.</strong> Follow the printing steps; on the print screen, clear the selection using the checkbox next to <strong>Copies</strong>, select only that product, set the number of copies and click <strong>Print</strong>.</p>
+    </div></div>
+  </div>
+
+  <h2 class="subsection-title">➕ New product</h2>
+  <div class="steps">
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>When creating the product in Billo,</strong> enter the same internal code (SKU) as the barcode, or the supplier barcode for high-volume products. See <a href="#" onclick="showPage('creating');return false;">02 · Creating a Product</a>.</p>
+    </div></div>
+    <div class="step"><div class="step-num"></div><div class="step-content">
+      <p><strong>Print its labels</strong> by adding it to the label sheet with its stock in column F.</p>
+    </div></div>
+  </div>
+
+  <div class="callout info">
+    <div class="callout-label">📦 Label paper</div>
+    <p>The last product printed was <strong>Lorenas Crochet - Unicornio CRC 15000</strong>. New label paper (40 × 20 mm) is needed to continue from there.</p>
+  </div>
+</div>
+
+    <div class="back-to-menu-footer">
+      <button class="back-to-menu-btn" onclick="showPage('home')"><span data-lang="en">&#x2190; Back to Menu</span><span data-lang="es">&#x2190; Volver al Menú</span></button>
+    </div>
+  </div><!-- /sec-body -->
+</div><!-- /pg-barcodes -->
+<!-- /pg-pos -->
 
 <script>
 // ── CORE NAVIGATION & UI ─────────────────────────────────────────────────────
@@ -4657,6 +5198,422 @@ function runSearch(query) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeSearch();
 });
+</script>
+<script id="ws-v2-script">
+// ── Wearsos Operations Manual v2 enhancements ────────────────────────────────
+// Section menu · browser back/forward · password-protected editing saved in Supabase
+// · editable team list · reminder to fix the inventory sheet after a manual cost.
+(function () {
+  'use strict';
+
+  var SECTIONS = [
+    { id: 'receiving', n: '01', e: '📦', es: 'Recepción de Inventario', en: 'Receiving Inventory', g: 1 },
+    { id: 'creating', n: '02', e: '🏷️', es: 'Crear un Producto', en: 'Creating a Product', g: 1 },
+    { id: 'provider', n: '03', e: '🤝', es: 'Crear un Proveedor', en: 'Creating a Provider', g: 1 },
+    { id: 'notes', n: '04', e: '📈', es: 'Productos y Precios', en: 'Products & Pricing', g: 1 },
+    { id: 'counting', n: '05', e: '🔢', es: 'Conteo Mensual', en: 'Monthly Stock Count', g: 2 },
+    { id: 'payments', n: '06', e: '🧮', es: 'Pagos a Proveedores', en: 'Provider Payments', g: 2 },
+    { id: 'controlpagos', n: '07', e: '📋', es: 'Control de Pagos', en: 'Control de Pagos', g: 2 },
+    { id: 'costs', n: '08', e: '💰', es: 'Costos de Productos', en: 'Product Costs', g: 2 },
+    { id: 'opening', n: '10', e: '🔑', es: 'Apertura y Cierre', en: 'Opening & Closing', g: 3 },
+    { id: 'alarm', n: '11', e: '🚨', es: 'Alarma del Edificio', en: 'Building Alarm', g: 3 },
+    { id: 'pos', n: '12', e: '💳', es: 'POS y Billo', en: 'POS & Billo', g: 3 },
+    { id: 'barcodes', n: '13', e: '🔍', es: 'Códigos de Barras', en: 'Barcodes', g: 3 },
+    { id: 'team', n: '09', e: '👥', es: 'Equipo Wearsos', en: 'Team Structure', g: 4 }
+  ];
+  var GROUPS = [
+    { id: 1, es: 'Inventario y productos', en: 'Inventory & products' },
+    { id: 2, es: 'Fin de mes y pagos', en: 'Month-end & payments' },
+    { id: 3, es: 'Tienda día a día', en: 'Store day to day' },
+    { id: 4, es: 'Equipo', en: 'Team' }
+  ];
+  var INV_URL = 'https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533';
+
+  var current = 'home';
+  var PW = null, EDITOR = '';          // kept in memory only, never stored
+  var contentCache = {};               // page -> { data, updated_at, updated_by }
+  var editing = null;                  // { page, els } while a page is in edit mode
+
+  function lang() { return (window.currentLang === 'en') ? 'en' : 'es'; }
+  function T(es, en) { return lang() === 'en' ? en : es; }
+  function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  function el(tag, cls, htmlStr) { var e = document.createElement(tag); if (cls) e.className = cls; if (htmlStr != null) e.innerHTML = htmlStr; return e; }
+  function toast(msg, isErr) {
+    var t = el('div', 'we-toast' + (isErr ? ' err' : ''), esc(msg));
+    t.setAttribute('role', isErr ? 'alert' : 'status');
+    document.body.appendChild(t);
+    setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, isErr ? 6000 : 3500);
+  }
+  function sb() { return window._sb || null; }
+
+  // ── 1. Section menu ─────────────────────────────────────────────────────────
+  var backdrop = el('div', 'wm-backdrop');
+  var menu = el('nav', 'wm-menu');
+  menu.id = 'wm-menu';
+  menu.setAttribute('aria-label', 'Secciones');
+  document.body.appendChild(backdrop);
+  document.body.appendChild(menu);
+
+  function renderMenu() {
+    var h = '<div class="wm-top"><button class="wd-btn secondary" data-go="home">🏠 ' + T('Inicio', 'Home') + '</button>'
+      + '<button class="wd-btn secondary" data-close="1">✕ ' + T('Cerrar', 'Close') + '</button></div><div class="wm-groups">';
+    GROUPS.forEach(function (g) {
+      h += '<div><div class="wm-gt">' + esc(T(g.es, g.en)) + '</div>';
+      SECTIONS.filter(function (s) { return s.g === g.id; }).forEach(function (s) {
+        var cur = s.id === current;
+        h += '<button class="wm-item' + (cur ? ' cur' : '') + '" data-go="' + s.id + '"' + (cur ? ' aria-current="page"' : '') + '>'
+          + '<span class="wm-e" aria-hidden="true">' + s.e + '</span><span class="wm-n">' + s.n + '</span><span>' + esc(T(s.es, s.en)) + '</span></button>';
+      });
+      h += '</div>';
+    });
+    menu.innerHTML = h + '</div>';
+  }
+  function openMenu() { renderMenu(); menu.classList.add('open'); backdrop.classList.add('open'); var b = menu.querySelector('.wm-item.cur, .wm-item'); if (b) b.focus(); }
+  function closeMenu() { menu.classList.remove('open'); backdrop.classList.remove('open'); }
+  backdrop.addEventListener('click', closeMenu);
+  menu.addEventListener('click', function (ev) {
+    var b = ev.target.closest('button'); if (!b) return;
+    if (b.getAttribute('data-close')) { closeMenu(); return; }
+    var go = b.getAttribute('data-go'); if (go) { closeMenu(); window.showPage(go); }
+  });
+  document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape') { closeMenu(); } });
+
+  function menuButton() {
+    var b = el('button', 'wm-btn', '☰ <span class="bi"><span class="en">Sections</span><span class="es">Secciones</span></span>');
+    b.type = 'button'; b.setAttribute('aria-haspopup', 'true'); b.setAttribute('aria-controls', 'wm-menu');
+    b.addEventListener('click', openMenu);
+    return b;
+  }
+  function editButton() {
+    var b = el('button', 'wm-btn', '🔒 <span class="bi"><span class="en">Edit</span><span class="es">Editar</span></span>');
+    b.type = 'button';
+    b.addEventListener('click', function () { requestEdit(current); });
+    return b;
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.pg .sec-nav'), function (nav) {
+    var back = nav.querySelector('.back-btn');
+    if (back && back.nextSibling) nav.insertBefore(menuButton(), back.nextSibling);
+    var right = nav.lastElementChild;
+    if (right && right.tagName === 'DIV') right.insertBefore(editButton(), right.firstChild);
+  });
+  var homeControls = document.querySelector('#pg-home .home-controls');
+  if (homeControls) { homeControls.appendChild(menuButton()); homeControls.appendChild(editButton()); }
+
+  // ── 2. Browser back/forward between sections ────────────────────────────────
+  var origShow = window.showPage;
+  window.showPage = function (id, fromHistory) {
+    if (editing && editing.page !== id) cancelEdit();
+    origShow(id);
+    current = id;
+    closeMenu();
+    if (fromHistory !== true) {
+      try { history.pushState({ pg: id }, '', id === 'home' ? location.pathname + location.search : '#' + id); } catch (e) {}
+    }
+  };
+  window.addEventListener('popstate', function (ev) {
+    var id = (ev.state && ev.state.pg) || (location.hash || '').replace('#', '') || 'home';
+    if (document.getElementById('pg-' + id)) window.showPage(id, true);
+  });
+  try { history.replaceState({ pg: 'home' }, '', location.href); } catch (e) {}
+  (function () {
+    var h = (location.hash || '').replace('#', '');
+    if (h && h !== 'home' && document.getElementById('pg-' + h)) window.showPage(h, true);
+  })();
+
+  // ── 3. Editable text, saved in Supabase ─────────────────────────────────────
+  var EDIT_SEL = 'h1,h2,h3,h4,p,li,td,th,.callout,.card-title,.card-sub,.sec-sub,.oc-step-content > span,.oc-step-content > div,.wq-where';
+  var EXCLUDE = '.sec-nav,script,style,#calc-modal-overlay,#calc-results,#provider-cards,#costs-tbody,.org-wrap,#wt-root,.search-overlay,#pw-gate,.wm-menu,.cards-grid .card-num';
+  var BLOCKERS = 'img,input,select,button,textarea,canvas,table,iframe';
+
+  function editableList(pg) {
+    var all = Array.prototype.slice.call(pg.querySelectorAll(EDIT_SEL));
+    return all.filter(function (e) {
+      if (e.closest(EXCLUDE)) return false;
+      if (e.querySelector(EDIT_SEL)) return false;
+      if (e.querySelector(BLOCKERS)) return false;
+      return true;
+    });
+  }
+  function norm(t) { return String(t || '').replace(/\s+/g, ' ').trim(); }
+  function sanitize(htmlStr) {
+    var tpl = document.createElement('template');
+    tpl.innerHTML = String(htmlStr || '');
+    Array.prototype.forEach.call(tpl.content.querySelectorAll('script,style,iframe,object,embed,form,input,button'), function (x) { x.parentNode.removeChild(x); });
+    Array.prototype.forEach.call(tpl.content.querySelectorAll('*'), function (x) {
+      Array.prototype.slice.call(x.attributes).forEach(function (a) {
+        var n = a.name.toLowerCase();
+        if (n.indexOf('on') === 0 || n === 'contenteditable' || n.indexOf('data-we') === 0) x.removeAttribute(a.name);
+        if ((n === 'href' || n === 'src') && /^\s*javascript:/i.test(a.value)) x.removeAttribute(a.name);
+      });
+    });
+    return tpl.innerHTML;
+  }
+  function applyPageEdits(pageKey, data) {
+    var pg = document.getElementById(pageKey);
+    if (!pg || !data || !data.edits) return;
+    var list = editableList(pg);
+    Object.keys(data.edits).forEach(function (k) {
+      var item = data.edits[k], node = list[parseInt(k, 10)];
+      if (!node || !item) return;
+      var orig = node.getAttribute('data-we-orig');
+      var nowText = norm(orig != null ? orig : node.textContent);
+      if (nowText !== norm(item.from)) return;   // the page changed underneath: skip safely
+      if (orig == null) node.setAttribute('data-we-orig', norm(node.textContent));
+      node.innerHTML = sanitize(item.to);
+    });
+  }
+  function showUpdated(pageKey) {
+    var pg = document.getElementById(pageKey), c = contentCache[pageKey];
+    if (!pg || !c) return;
+    var host = pg.querySelector('.sec-hero > div, .sec-header > div:last-child, .home-hero');
+    if (!host) return;
+    var note = host.querySelector('.we-updated');
+    if (!note) { note = el('div', 'we-updated'); host.appendChild(note); }
+    var d = new Date(c.updated_at);
+    var when = isNaN(d) ? '' : d.toLocaleDateString(lang() === 'en' ? 'en-CA' : 'es-CR', { day: 'numeric', month: 'short', year: 'numeric' });
+    note.textContent = T('Editado el ', 'Edited ') + when + (c.updated_by ? T(' por ', ' by ') + c.updated_by : '');
+  }
+
+  function loadContent() {
+    var client = sb();
+    if (!client) return;
+    client.from('manual_content').select('page,data,updated_at,updated_by').then(function (res) {
+      if (res.error || !res.data) return;
+      res.data.forEach(function (row) {
+        contentCache[row.page] = row;
+        if (row.page === 'equipo') { team = (row.data && row.data.people) || team; renderTeam(); }
+        else { applyPageEdits(row.page, row.data); }
+        showUpdated(row.page === 'equipo' ? 'pg-team' : row.page);
+      });
+    });
+  }
+
+  // Password dialog
+  function requestEdit(pageId) {
+    closeMenu();
+    if (PW) { startEdit(pageId); return; }
+    var bg = el('div', 'wd-bg');
+    bg.innerHTML = '<div class="wd" role="dialog" aria-modal="true" aria-labelledby="wd-t">'
+      + '<h2 id="wd-t">' + T('Editar esta página', 'Edit this page') + '</h2>'
+      + '<div class="wd-who">' + T('Solo para la Tienda Manager y la gerencia. Otras personas pueden editar únicamente con aprobación previa de la gerencia.', 'Only for the Tienda Manager and management. Anyone else may edit only with prior approval from management.') + '</div>'
+      + '<p>' + T('Cada cambio queda guardado con tu nombre y la fecha, y la versión anterior se conserva.', 'Every change is saved with your name and the date, and the previous version is kept.') + '</p>'
+      + '<label>' + T('Tu nombre', 'Your name') + '<input type="text" id="wd-name" autocomplete="name"></label>'
+      + '<label>' + T('Contraseña de edición', 'Edit password') + '<input type="password" id="wd-pw" autocomplete="current-password"></label>'
+      + '<div class="wd-err" id="wd-err" role="alert"></div>'
+      + '<div class="wd-row"><button class="wd-btn secondary" id="wd-cancel">' + T('Cancelar', 'Cancel') + '</button><button class="wd-btn primary" id="wd-ok">' + T('Entrar a edición', 'Enter edit mode') + '</button></div></div>';
+    document.body.appendChild(bg);
+    var nameIn = bg.querySelector('#wd-name'), pwIn = bg.querySelector('#wd-pw'), err = bg.querySelector('#wd-err');
+    nameIn.value = EDITOR;
+    (EDITOR ? pwIn : nameIn).focus();
+    function close() { if (bg.parentNode) bg.parentNode.removeChild(bg); }
+    bg.querySelector('#wd-cancel').addEventListener('click', close);
+    function submit() {
+      var name = norm(nameIn.value), pw = pwIn.value;
+      if (!name) { err.textContent = T('Escribí tu nombre.', 'Enter your name.'); nameIn.focus(); return; }
+      if (!pw) { err.textContent = T('Escribí la contraseña.', 'Enter the password.'); pwIn.focus(); return; }
+      var client = sb();
+      if (!client) { err.textContent = T('No hay conexión con la base de datos.', 'No connection to the database.'); return; }
+      err.textContent = T('Verificando…', 'Checking…');
+      client.rpc('check_edit_password', { p_password: pw }).then(function (res) {
+        if (res.error) { err.textContent = T('No se pudo verificar. Revisá la conexión.', 'Could not check. Check the connection.'); return; }
+        if (res.data !== true) { err.textContent = T('Contraseña incorrecta.', 'Wrong password.'); pwIn.select(); return; }
+        PW = pw; EDITOR = name; close(); startEdit(pageId);
+      });
+    }
+    bg.querySelector('#wd-ok').addEventListener('click', submit);
+    pwIn.addEventListener('keydown', function (ev) { if (ev.key === 'Enter') submit(); });
+  }
+
+  var bar = null;
+  function showBar(text, onSave, onCancel) {
+    hideBar();
+    bar = el('div', 'we-bar');
+    bar.innerHTML = '<span><strong>' + T('Modo edición.', 'Edit mode.') + '</strong> ' + text + '</span>'
+      + '<span style="display:flex;gap:8px"><button class="we-cancel">' + T('Cancelar', 'Cancel') + '</button><button class="we-save">' + T('Guardar cambios', 'Save changes') + '</button></span>';
+    bar.querySelector('.we-cancel').addEventListener('click', onCancel);
+    bar.querySelector('.we-save').addEventListener('click', onSave);
+    document.body.appendChild(bar);
+  }
+  function hideBar() { if (bar && bar.parentNode) bar.parentNode.removeChild(bar); bar = null; }
+  function blockLinks(ev) { if (editing && ev.target.closest('[data-we-editable="1"] a')) ev.preventDefault(); }
+  document.addEventListener('click', blockLinks, true);
+
+  function startEdit(pageId) {
+    if (pageId === 'team') { startTeamEdit(); return; }
+    var key = 'pg-' + pageId, pg = document.getElementById(key);
+    if (!pg) return;
+    var list = editableList(pg);
+    // Only the text in the language on screen (the other language stays as it is)
+    var other = lang() === 'en' ? 'es' : 'en';
+    var visible = list.filter(function (e) { return !e.closest('[data-lang="' + other + '"]') && !e.closest('.bi .' + other); });
+    visible.forEach(function (e) {
+      e.setAttribute('contenteditable', 'true');
+      e.setAttribute('data-we-editable', '1');
+      e._weBase = e.innerHTML;
+      if (e.getAttribute('data-we-orig') == null) e.setAttribute('data-we-orig', norm(e.textContent));
+    });
+    editing = { page: pageId, key: key, list: list, els: visible };
+    showBar(T('Tocá cualquier texto con borde punteado para cambiarlo.', 'Click any text with a dotted outline to change it.'), saveEdit, cancelEdit);
+    if (visible[0]) visible[0].focus();
+  }
+  function endEdit(restore) {
+    if (!editing) return;
+    if (editing.page === 'team') { teamDraft = null; renderTeam(); }
+    else editing.els.forEach(function (e) {
+      if (restore) e.innerHTML = e._weBase;
+      e.removeAttribute('contenteditable'); e.removeAttribute('data-we-editable'); delete e._weBase;
+    });
+    editing = null; hideBar();
+  }
+  function cancelEdit() { endEdit(true); }
+  function savePage(pageKey, data, done) {
+    sb().rpc('save_manual_content', { p_page: pageKey, p_data: data, p_password: PW, p_editor: EDITOR }).then(function (res) {
+      if (res.error) {
+        if (/incorrecta/i.test(res.error.message || '')) { PW = null; toast(T('La contraseña cambió. Volvé a entrar.', 'The password changed. Enter it again.'), true); }
+        else toast(T('No se pudo guardar: ', 'Could not save: ') + (res.error.message || ''), true);
+        return;
+      }
+      contentCache[pageKey] = { page: pageKey, data: data, updated_at: res.data || new Date().toISOString(), updated_by: EDITOR };
+      done();
+      showUpdated(pageKey === 'equipo' ? 'pg-team' : pageKey);
+      toast(T('Cambios guardados. Todos ven la versión nueva al recargar.', 'Changes saved. Everyone sees the new version on reload.'));
+    });
+  }
+  function saveEdit() {
+    if (!editing) return;
+    if (editing.page === 'team') { saveTeam(); return; }
+    var key = editing.key, prev = (contentCache[key] && contentCache[key].data && contentCache[key].data.edits) || {};
+    var edits = JSON.parse(JSON.stringify(prev)), changed = 0;
+    editing.els.forEach(function (e) {
+      if (e.innerHTML === e._weBase) return;
+      var idx = editing.list.indexOf(e);
+      var orig = e.getAttribute('data-we-orig');
+      var clean = sanitize(e.innerHTML);
+      if (norm(e.textContent) === norm(orig)) delete edits[idx];     // back to the original wording
+      else edits[idx] = { from: orig, to: clean };
+      changed++;
+    });
+    if (!changed) { endEdit(false); toast(T('No había cambios.', 'No changes.')); return; }
+    savePage(key, { edits: edits }, function () { endEdit(false); });
+  }
+
+  // ── 4. Team page (data-driven, editable) ────────────────────────────────────
+  var TEAM_DEFAULT = [
+    { name: 'Lynne Corvaglia', role: 'Strategic Alliances', area: 'dir', contract: 'Co-Founder', desc: 'Leads development of strategic alliances and partnerships for Wearsos. Co-founder of the organization.' },
+    { name: 'Chris Riquelme', role: 'Media & Communications', area: 'dir', contract: 'Co-Founder', desc: 'Leads media strategy, brand voice, and communications for Wearsos. Co-founder of the organization.' },
+    { name: 'Carlos Araya', role: 'Chief Growth Officer', area: 'dir', contract: 'Business Mgmt', desc: 'Drives business growth and commercial strategy for Wearsos. Oversees the administration team.' },
+    { name: 'Luana Figueiredo', role: 'Manager, Programs & Operations', area: 'dir', contract: 'Full-Time', desc: 'Oversees operations, programs, and team coordination at Wearsos. Also founder of the Good Loop Internship program.' },
+    { name: 'Carolina Marinez Jiménez', role: 'Workshop Production Coordinator', area: 'taller', contract: 'Full-Time', desc: 'Coordinates workshop production and provides artisan and shop support. Full-time position.' },
+    { name: 'Jonatan Solano Ramírez', role: 'Artisan & Sewing Teacher', area: 'taller', contract: 'Full-Time', desc: 'Leads workshop sewing production and teaches techniques to the artisan team.' },
+    { name: 'Teresa Pérez Badilla', role: 'Artisan', area: 'taller', contract: 'Part-Time', desc: 'Part-time artisan contributing to workshop production.' },
+    { name: 'Inés Hernández Solís', role: 'Artisan & Designer', area: 'taller', contract: 'Part-Time', desc: 'Part-time artisan and product design contributor.' },
+    { name: 'Project Painters', role: 'Fiorella Quirros · María Jesús · Fernanda Salazar', area: 'taller', contract: 'Project-Based', desc: 'Three painters engaged on a project basis: Fiorella Quirros Chaves, María Jesús, and Fernanda Salazar.' },
+    { name: 'Aiden Marie', role: 'Projects Assistant · Good Loop Intern', area: 'taller', contract: 'Intern', desc: 'Projects assistant through the Good Loop Internship program, supervised by Luana.' },
+    { name: 'Hein', role: 'Tienda Manager · Wearsos Turrialba', area: 'tienda', contract: 'Full-Time', desc: 'Manages day-to-day operations at the Wearsos Turrialba store.' },
+    { name: 'Sean Denzel', role: 'Tienda Assistant', area: 'tienda', contract: 'Tienda', desc: 'Assists with store operations and customer experience at Wearsos Turrialba.' },
+    { name: 'Kayla', role: 'Tienda Assistant', area: 'tienda', contract: 'Tienda', desc: 'Assists with store operations and customer experience at Wearsos Turrialba.' },
+    { name: 'Gabriela Artavia', role: 'Accountant', area: 'ext', contract: 'Part-Time', desc: 'Handles financial accounting for Wearsos operations.' },
+    { name: 'Marisela', role: 'Zoho Books Accountant', area: 'ext', contract: 'Part-Time', desc: 'Manages accounting records and bookkeeping in Zoho Books.' },
+    { name: 'Dra. Laura Yuré', role: 'Psychologist', area: 'ext', contract: 'Project-Based', desc: 'Provides psychological support for the Wearsos team on a project basis.' }
+  ];
+  var AREAS = [{ id: 'dir', es: 'Dirección', en: 'Leadership' }, { id: 'taller', es: 'Taller', en: 'Workshop' }, { id: 'tienda', es: 'Tienda', en: 'Store' }, { id: 'ext', es: 'Externos y apoyo', en: 'External & support' }];
+  var CONTRACTS = { 'Co-Founder': ['#1B2F5B', '#FFFFFF', 'badge-founder'], 'Business Mgmt': ['#EEF1F6', '#1B2F5B', 'badge-ft'], 'Full-Time': ['#EEF1F6', '#1B2F5B', 'badge-ft'], 'Part-Time': ['#F0F1F4', '#4A5163', 'badge-pt'], 'Project-Based': ['#FBEFD2', '#6B4A00', 'badge-project'], 'Intern': ['#EAF4EF', '#1E6B4F', 'badge-intern'], 'Tienda': ['#F0E7F6', '#5E3580', 'badge-pt'] };
+  var team = TEAM_DEFAULT.slice(), teamDraft = null;
+
+  var teamPg = document.getElementById('pg-team');
+  var root = el('div', ''); root.id = 'wt-root';
+  if (teamPg) {
+    var orgWrap = teamPg.querySelector('.org-wrap');
+    if (orgWrap) { orgWrap.style.display = 'none'; orgWrap.parentNode.insertBefore(root, orgWrap); }
+    var oldLegend = teamPg.querySelector('.org-legend'); if (oldLegend) oldLegend.style.display = 'none';
+  }
+  function tagHtml(c) { var k = CONTRACTS[c] || CONTRACTS['Full-Time']; return '<span class="wt-tag" style="background:' + k[0] + ';color:' + k[1] + '">' + esc(c) + '</span>'; }
+  function initials(n) { return norm(n).split(' ').filter(Boolean).slice(0, 2).map(function (w) { return w.charAt(0).toUpperCase(); }).join('') || '?'; }
+
+  function renderTeam() {
+    if (!teamPg) return;
+    var list = teamDraft || team, h = '<div class="wt-legend">' + Object.keys(CONTRACTS).map(tagHtml).join('') + '</div>';
+    AREAS.forEach(function (a) {
+      var rows = []; list.forEach(function (p, i) { if (p.area === a.id) rows.push([p, i]); });
+      if (!rows.length && !teamDraft) return;
+      h += '<div class="wt-group"><div class="wt-gtitle">' + esc(T(a.es, a.en)) + '</div><div class="wt-grid">';
+      rows.forEach(function (r) {
+        var p = r[0], i = r[1];
+        if (teamDraft) {
+          h += '<div class="wt-edit" data-i="' + i + '">'
+            + '<label>' + T('Nombre', 'Name') + '<input data-f="name" value="' + esc(p.name) + '"></label>'
+            + '<label>' + T('Rol', 'Role') + '<input data-f="role" value="' + esc(p.role) + '"></label>'
+            + '<div class="wt-two"><label>' + T('Área', 'Area') + '<select data-f="area">' + AREAS.map(function (x) { return '<option value="' + x.id + '"' + (x.id === p.area ? ' selected' : '') + '>' + esc(T(x.es, x.en)) + '</option>'; }).join('') + '</select></label>'
+            + '<label>' + T('Contrato', 'Contract') + '<select data-f="contract">' + Object.keys(CONTRACTS).map(function (c) { return '<option' + (c === p.contract ? ' selected' : '') + '>' + esc(c) + '</option>'; }).join('') + '</select></label></div>'
+            + '<label>' + T('Descripción del rol', 'Role description') + '<textarea data-f="desc">' + esc(p.desc) + '</textarea></label>'
+            + '<button class="wt-remove" data-remove="' + i + '">' + T('Quitar del equipo', 'Remove from team') + '</button></div>';
+        } else {
+          h += '<button class="wt-card" data-open="' + i + '"><span class="wt-av' + (p.contract === 'Co-Founder' ? ' founder' : '') + '">' + esc(initials(p.name)) + '</span>'
+            + '<span class="wt-info"><span class="wt-name">' + esc(p.name) + '</span><span class="wt-role">' + esc(p.role) + '</span>' + tagHtml(p.contract) + '</span></button>';
+        }
+      });
+      if (teamDraft) h += '<button class="wt-add" data-add="' + a.id + '">+ ' + T('Agregar persona', 'Add person') + '</button>';
+      h += '</div></div>';
+    });
+    root.innerHTML = h;
+  }
+  root.addEventListener('click', function (ev) {
+    var t = ev.target.closest('[data-open],[data-remove],[data-add]'); if (!t) return;
+    if (t.hasAttribute('data-open')) {
+      var p = team[+t.getAttribute('data-open')]; if (!p || !window.orgOpen) return;
+      window.orgOpen(esc(p.name), esc(p.role), esc(p.contract), (CONTRACTS[p.contract] || CONTRACTS['Full-Time'])[2], esc(p.desc || ''));
+    } else if (t.hasAttribute('data-remove')) {
+      syncDraft(); teamDraft.splice(+t.getAttribute('data-remove'), 1); renderTeam();
+    } else if (t.hasAttribute('data-add')) {
+      syncDraft(); teamDraft.push({ name: '', role: '', area: t.getAttribute('data-add'), contract: 'Full-Time', desc: '' }); renderTeam();
+      var added = root.querySelector('.wt-edit[data-i="' + (teamDraft.length - 1) + '"] input[data-f="name"]'); if (added) added.focus();
+    }
+  });
+  function syncDraft() {
+    if (!teamDraft) return;
+    Array.prototype.forEach.call(root.querySelectorAll('.wt-edit'), function (box) {
+      var p = teamDraft[+box.getAttribute('data-i')]; if (!p) return;
+      Array.prototype.forEach.call(box.querySelectorAll('[data-f]'), function (f) { p[f.getAttribute('data-f')] = f.value; });
+    });
+  }
+  function startTeamEdit() {
+    teamDraft = team.map(function (p) { return Object.assign({}, p); });
+    editing = { page: 'team' };
+    renderTeam();
+    showBar(T('Cambiá nombres, roles, área y contrato, o agregá y quitá personas.', 'Change names, roles, area and contract, or add and remove people.'), saveEdit, cancelEdit);
+  }
+  function saveTeam() {
+    syncDraft();
+    var clean = teamDraft.filter(function (p) { return norm(p.name); }).map(function (p) {
+      return { name: norm(p.name), role: norm(p.role), area: p.area, contract: p.contract, desc: norm(p.desc) };
+    });
+    savePage('equipo', { people: clean }, function () { team = clean; endEdit(false); renderTeam(); });
+  }
+  renderTeam();
+
+  // Re-render language-dependent pieces when the language changes
+  var origSetLang = window.setLang;
+  if (origSetLang) window.setLang = function (l, btn) { origSetLang(l, btn); renderTeam(); if (menu.classList.contains('open')) renderMenu(); Object.keys(contentCache).forEach(function (k) { showUpdated(k === 'equipo' ? 'pg-team' : k); }); };
+
+  // ── 5. Reminder after typing a cost by hand in the calculator ───────────────
+  var noteShown = false;
+  window.wsShowSheetNote = function () {
+    if (noteShown) return;
+    noteShown = true;
+    var bg = el('div', 'wd-bg');
+    bg.innerHTML = '<div class="wd gold" role="alertdialog" aria-modal="true" aria-labelledby="wn-t">'
+      + '<h2 id="wn-t">⚠️ ' + T('Corregí también la hoja', 'Fix the sheet too') + '</h2>'
+      + '<p>' + T('El costo que escribiste se usa solo en este cálculo. La hoja de inventario es la fuente de verdad: si no la corregís, el mes que viene vuelve a faltar el costo.', 'The cost you typed is only used for this calculation. The inventory sheet is the source of truth: if you do not fix it, the cost will be missing again next month.') + '</p>'
+      + '<p style="color:#5A6275;font-size:13px">' + T('Columna E (Costo) de la pestaña Master Inventory.', 'Column E (Costo) on the Master Inventory tab.') + '</p>'
+      + '<div class="wd-row"><a class="wd-btn primary" href="' + INV_URL + '" target="_blank" rel="noopener">' + T('Corregir en la hoja ↗', 'Fix it in the sheet ↗') + '</a>'
+      + '<button class="wd-btn secondary" id="wn-ok">' + T('Entendido, la corrijo después', 'Got it, I will fix it') + '</button></div></div>';
+    document.body.appendChild(bg);
+    bg.querySelector('#wn-ok').addEventListener('click', function () { bg.parentNode.removeChild(bg); });
+  };
+
+  loadContent();
+})();
+
 </script>
 </body>
 </html>
