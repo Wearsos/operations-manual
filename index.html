@@ -398,6 +398,14 @@ body.lang-es .wq-ol[data-lang="es"], body.lang-en .wq-ol[data-lang="en"] { displ
   .sec-num { font-size: 36px; }
 }
 
+/* Clickable quick steps */
+.wq-ol li { cursor: pointer; border-radius: 4px; }
+.wq-ol li:hover, .wq-ol li:focus { color: var(--navy); text-decoration: underline; outline: none; }
+.wq-ol li:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+.step, .oc-step, .subsection-title { scroll-margin-top: 80px; }
+.wq-flash { animation: wqflash 2.2s ease-out; border-radius: 6px; }
+@keyframes wqflash { 0%, 40% { background: #FFF3CF; box-shadow: 0 0 0 6px #FFF3CF; } 100% { background: transparent; box-shadow: none; } }
+
 </style>
 </head>
 <body class="lang-es">
@@ -813,8 +821,8 @@ body.lang-es .wq-ol[data-lang="es"], body.lang-en .wq-ol[data-lang="en"] { displ
     <div class="sec-body" style="--hero-color:#C97B4B;">
 <div class="wq-panel">
 <section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
-<ol class="wq-ol" data-lang="en"><li>Open the Zoho form: arrival date and your name</li><li>Select the provider</li><li>Add each product and what arrived today</li><li>Take one photo of everything</li><li>Add the stock in Billo (Modificar stock)</li><li>Mark &quot;Added to Billo → Yes&quot; and submit</li></ol>
-<ol class="wq-ol" data-lang="es"><li>Abrí el formulario Zoho: fecha de llegada y tu nombre</li><li>Seleccioná el proveedor</li><li>Agregá cada producto y lo que llegó hoy</li><li>Sacá una foto de todo junto</li><li>Sumá el stock en Billo (Modificar stock)</li><li>Marcá «Agregado a Billo → Sí» y enviá</li></ol>
+<ol class="wq-ol" data-lang="en"><li data-go="n:1">Open the Zoho form: arrival date and your name</li><li data-go="n:2">Select the provider</li><li data-go="n:3">Add each product and what arrived today</li><li data-go="n:4">Take one photo of everything</li><li data-go="n:5">Add the stock in Billo (Modificar stock)</li><li data-go="n:5">Mark &quot;Added to Billo → Yes&quot; and submit</li></ol>
+<ol class="wq-ol" data-lang="es"><li data-go="n:1">Abrí el formulario Zoho: fecha de llegada y tu nombre</li><li data-go="n:2">Seleccioná el proveedor</li><li data-go="n:3">Agregá cada producto y lo que llegó hoy</li><li data-go="n:4">Sacá una foto de todo junto</li><li data-go="n:5">Sumá el stock en Billo (Modificar stock)</li><li data-go="n:5">Marcá «Agregado a Billo → Sí» y enviá</li></ol>
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://forms.zohopublic.com/wearsos/form/FormulariodeRecepcindeInventarioInventoryReceiving/formperma/kx5REJShY_3AdvFNd3SBraTIPQxV-gfvuBBAhb-IHy4" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Receiving form<small>Zoho Forms · one per delivery</small></span><span class="es">Formulario de Recepción<small>Zoho Forms · uno por entrega</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet<small>Exact product names</small></span><span class="es">Hoja de inventario<small>Nombres exactos de los productos</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('provider');return false;"><span class="wq-lt"><span class="bi"><span class="en">03 · Creating a Provider<small>If the provider is new</small></span><span class="es">03 · Crear un Proveedor<small>Si el proveedor es nuevo</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
@@ -1400,8 +1408,8 @@ body.lang-es .wq-ol[data-lang="es"], body.lang-en .wq-ol[data-lang="en"] { displ
     <div class="sec-body">
 <div class="wq-panel">
 <section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
-<ol class="wq-ol" data-lang="en"><li>Confirm Lynne and Chris approved</li><li>Directory: new row in A–Z order</li><li>Contact, email, WhatsApp, bank, IBAN and Sinpe</li><li>GoBillo: Inventario → Proveedores → Crear proveedor</li><li>Same name as in the Directory</li><li>Create and leave &quot;Productos asociados&quot; empty</li></ol>
-<ol class="wq-ol" data-lang="es"><li>Confirmá que Lynne y Chris aprobaron</li><li>Directorio: fila nueva en orden A–Z</li><li>Contacto, correo, WhatsApp, banco, IBAN y Sinpe</li><li>GoBillo: Inventario → Proveedores → Crear proveedor</li><li>Mismo nombre que en el Directorio</li><li>Crear y dejar «Productos asociados» vacío</li></ol>
+<ol class="wq-ol" data-lang="en"><li data-go="s:.callout.warning">Confirm Lynne and Chris approved</li><li data-go="n:2">Directory: new row in A–Z order</li><li data-go="n:2">Contact, email, WhatsApp, bank, IBAN and Sinpe</li><li data-go="n:3">GoBillo: Inventario → Proveedores → Crear proveedor</li><li data-go="n:4">Same name as in the Directory</li><li data-go="n:5">Create and leave &quot;Productos asociados&quot; empty</li></ol>
+<ol class="wq-ol" data-lang="es"><li data-go="s:.callout.warning">Confirmá que Lynne y Chris aprobaron</li><li data-go="n:2">Directorio: fila nueva en orden A–Z</li><li data-go="n:2">Contacto, correo, WhatsApp, banco, IBAN y Sinpe</li><li data-go="n:3">GoBillo: Inventario → Proveedores → Crear proveedor</li><li data-go="n:4">Mismo nombre que en el Directorio</li><li data-go="n:5">Crear y dejar «Productos asociados» vacío</li></ol>
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Provider directory<small>Control de Pagos · Google Sheets</small></span><span class="es">Directorio de Proveedores<small>Control de Pagos · Google Sheets</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('creating');return false;"><span class="wq-lt"><span class="bi"><span class="en">02 · Creating a Product<small>The next step</small></span><span class="es">02 · Crear un Producto<small>El paso siguiente</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
@@ -1572,8 +1580,8 @@ body.lang-es .wq-ol[data-lang="es"], body.lang-en .wq-ol[data-lang="en"] { displ
     <div class="sec-body" style="--hero-color:#5C7A8A;">
 <div class="wq-panel">
 <section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
-<ol class="wq-ol" data-lang="en"><li>New products: 35–50% target margin</li><li>Propose a specific price to the provider</li><li>Cost change: update column E</li><li>Check the margin in column G</li><li>Tell Lynne and Chris before touching the POS</li><li>Once approved: GoBillo and column F must match</li></ol>
-<ol class="wq-ol" data-lang="es"><li>Productos nuevos: margen objetivo 35–50%</li><li>Proponé un precio concreto al proveedor</li><li>Cambio de costo: actualizá la columna E</li><li>Revisá el margen en la columna G</li><li>Avisá a Lynne y Chris antes de tocar el POS</li><li>Con aprobación: GoBillo y columna F iguales</li></ol>
+<ol class="wq-ol" data-lang="en"><li data-go="t:35–50%">New products: 35–50% target margin</li><li data-go="t:35–50%">Propose a specific price to the provider</li><li data-go="n:2">Cost change: update column E</li><li data-go="n:2">Check the margin in column G</li><li data-go="n:3">Tell Lynne and Chris before touching the POS</li><li data-go="n:5">Once approved: GoBillo and column F must match</li></ol>
+<ol class="wq-ol" data-lang="es"><li data-go="t:35–50%">Productos nuevos: margen objetivo 35–50%</li><li data-go="t:35–50%">Proponé un precio concreto al proveedor</li><li data-go="n:2">Cambio de costo: actualizá la columna E</li><li data-go="n:2">Revisá el margen en la columna G</li><li data-go="n:3">Avisá a Lynne y Chris antes de tocar el POS</li><li data-go="n:5">Con aprobación: GoBillo y columna F iguales</li></ol>
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet · Master<small>Cost, price and margin</small></span><span class="es">Hoja de inventario · Master<small>Costo, precio y margen</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1902511017#gid=1902511017" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">SKU guidelines<small>Inventory sheet</small></span><span class="es">Guías de SKU<small>Hoja de inventario</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('costs');return false;"><span class="wq-lt"><span class="bi"><span class="en">08 · Product Costs<small>Cost list</small></span><span class="es">08 · Costos de Productos<small>Lista de costos</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">The Master Sheet is the reference: when in doubt, the sheet wins.</span><span class="es">La Hoja Maestra es la referencia: ante la duda, la hoja gana.</span></span></span></div><div class="wq-srcgrid">
@@ -2172,10 +2180,10 @@ body.lang-es .wq-ol[data-lang="es"], body.lang-en .wq-ol[data-lang="en"] { displ
     <div class="sec-body">
 <div class="wq-panel">
 <section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
-<ol class="wq-ol" data-lang="en"><li>Billo → Reportes: monthly Reporte de productos</li><li>Upload it to the calculator</li><li>Check alerts and missing costs</li><li>Send the WhatsApp and request the invoice</li><li>Log the amount in Control de Pagos</li><li>Forward the receipt to the provider</li></ol>
-<ol class="wq-ol" data-lang="es"><li>Billo → Reportes: Reporte de productos del mes</li><li>Subilo a la calculadora</li><li>Revisá alertas y costos faltantes</li><li>Enviá el WhatsApp y pedí la factura</li><li>Registrá el monto en Control de Pagos</li><li>Reenviá el comprobante al proveedor</li></ol>
+<ol class="wq-ol" data-lang="en"><li data-go="n:1">Billo → Reportes: monthly Reporte de productos</li><li data-go="n:2">Upload it to the calculator</li><li data-go="n:2">Check alerts and missing costs</li><li data-go="n:3">Send the WhatsApp and request the invoice</li><li data-go="n:4">Log the amount in Control de Pagos</li><li data-go="n:6">Forward the receipt to the provider</li></ol>
+<ol class="wq-ol" data-lang="es"><li data-go="n:1">Billo → Reportes: Reporte de productos del mes</li><li data-go="n:2">Subilo a la calculadora</li><li data-go="n:2">Revisá alertas y costos faltantes</li><li data-go="n:3">Enviá el WhatsApp y pedí la factura</li><li data-go="n:4">Registrá el monto en Control de Pagos</li><li data-go="n:6">Reenviá el comprobante al proveedor</li></ol>
 </section>
-<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Control de Pagos<small>Google Sheets · this month&#x27;s tab</small></span><span class="es">Control de Pagos<small>Google Sheets · pestaña del mes</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet<small>To fix costs</small></span><span class="es">Hoja de inventario<small>Para corregir costos</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('controlpagos');return false;"><span class="wq-lt"><span class="bi"><span class="en">07 · Control de Pagos<small>How to fill in the sheet</small></span><span class="es">07 · Control de Pagos<small>Cómo completar la hoja</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link" href="#" onclick="showPage('payments');wsPayUX.openModal();return false;"><span class="wq-lt"><span class="bi"><span class="en">Payment calculator<small>Open the calculator now</small></span><span class="es">Calculadora de pagos<small>Abrir la calculadora ahora</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Control de Pagos<small>Google Sheets · this month&#x27;s tab</small></span><span class="es">Control de Pagos<small>Google Sheets · pestaña del mes</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet<small>To fix costs</small></span><span class="es">Hoja de inventario<small>Para corregir costos</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('controlpagos');return false;"><span class="wq-lt"><span class="bi"><span class="en">07 · Control de Pagos<small>How to fill in the sheet</small></span><span class="es">07 · Control de Pagos<small>Cómo completar la hoja</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">Costs: when in doubt, the sheet wins.</span><span class="es">Costos: ante la duda, la hoja gana.</span></span></span></div><div class="wq-srcgrid">
 <div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Monthly sales</span><span class="es">Ventas del mes</span></span></span><span class="wq-where">Billo · Reporte de productos</span></div>
 <div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Unit cost</span><span class="es">Costo por unidad</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja · columna E (Costo)</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
@@ -2549,7 +2557,7 @@ body.lang-es .bi .es { display: inline; }
     <div class="billing-row"><span class="billing-label">Correo:</span><span class="billing-val">contabilidad@wearsos.co</span></div>
     <div class="billing-row"><span class="billing-label">Tel&eacute;fono:</span><span class="billing-val">8407-8987</span></div>
     <div class="billing-row"><span class="billing-label">Direcci&oacute;n:</span><span class="billing-val">Contiguo a la Municipalidad de Turrialba, Turrialba, Cartago. 30501</span></div>
-    <div class="billing-row"><span class="billing-label">Actividad Econ&oacute;mica:</span><span class="billing-val">4773.0</span></div>
+    <div class="billing-row"><span class="billing-label">Actividad Econ&oacute;mica:</span><span class="billing-val">4437.0</span></div>
     <div class="billing-warn bi">
       <span class="en">Email is .co NOT .com! Very important for the electronic invoice.</span>
       <span class="es">El correo es .co NO .com! Muy importante para la factura electr&oacute;nica.</span>
@@ -3477,7 +3485,7 @@ function buildWAMsg(prov, month, year, lines, total, hasCost, missingProds) {
   msg += '• Cédula Jurídica: 3-102-854873\n';
   msg += '• Teléfono: 8407-8987\n';
   msg += '• Dirección: Contiguo a la Municipalidad de Turrialba, Turrialba, Cartago. 30501\n';
-  msg += '• Actividad Económica: 4773.0\n\n';
+  msg += '• Actividad Económica: 4437.0\n\n';
   msg += '*¿Cómo funciona el pago?*\n';
   msg += 'Cuando recibimos su factura, la enviamos a nuestra contadora y ella procesa el pago. Normalmente el pago se deposita en un plazo de una semana.\n\n';
   msg += 'Por favor revisen su cuenta bancaria. Si no han recibido el pago 7 días después de enviarnos la factura, escríbannos y lo revisamos.\n\n';
@@ -3599,7 +3607,7 @@ var wsPayUX = {
 <ol class="wq-ol" data-lang="en"><li>Open this month&#x27;s tab (duplicate the last one if missing)</li><li>Provider and amount from the calculator</li><li>Tick WhatsApp sent and invoice request date</li><li>Invoice status: Solicitada → Recibida</li><li>No Consigna: Estado de Pago = No Consigna</li><li>Check daily; close with receipt and Proceso finalizado</li></ol>
 <ol class="wq-ol" data-lang="es"><li>Abrí la pestaña del mes (si falta, duplicá la anterior)</li><li>Proveedor y monto de la calculadora</li><li>Marcá el WhatsApp enviado y la fecha de factura</li><li>Estado de factura: Solicitada → Recibida</li><li>No Consigna: Estado de Pago = No Consigna</li><li>Revisá a diario; cerrá con comprobante y Proceso finalizado</li></ol>
 </section>
-<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Control de Pagos<small>Google Sheets · this month&#x27;s tab</small></span><span class="es">Control de Pagos<small>Google Sheets · pestaña del mes</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('payments');return false;"><span class="wq-lt"><span class="bi"><span class="en">06 · Payment calculator<small>This month&#x27;s amounts</small></span><span class="es">06 · Calculadora de pagos<small>Montos del mes</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Control de Pagos<small>Google Sheets · this month&#x27;s tab</small></span><span class="es">Control de Pagos<small>Google Sheets · pestaña del mes</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('payments');wsPayUX.openModal();return false;"><span class="wq-lt"><span class="bi"><span class="en">Payment calculator<small>This month&#x27;s amounts</small></span><span class="es">Calculadora de pagos<small>Montos del mes</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
 <div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Amount to pay</span><span class="es">Monto a pagar</span></span></span><span class="wq-where">Calculadora (sección 06)</span></div>
 <div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">Invoice and payment status</span><span class="es">Estado de factura y de pago</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1WZ_3As8n9F8SSFxiBrkI0yfXsmzm4ji7/edit?gid=1207943655#gid=1207943655" target="_blank" rel="noopener">Control de Pagos</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
@@ -3771,10 +3779,10 @@ var wsPayUX = {
     <div class="sec-body">
 <div class="wq-panel">
 <section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
-<ol class="wq-ol" data-lang="en"><li>Search for the provider or product</li><li>Cost at ₡0 = the cost is missing in the sheet</li><li>Fix the cost in the sheet, column E</li><li>Reload this page to see the change</li></ol>
-<ol class="wq-ol" data-lang="es"><li>Buscá el proveedor o el producto</li><li>Costo en ₡0 = falta el costo en la hoja</li><li>Corregí el costo en la hoja, columna E</li><li>Recargá esta página para ver el cambio</li></ol>
+<ol class="wq-ol" data-lang="en"><li data-go="s:#costs-tbody">Search for the provider or product</li><li data-go="s:#costs-tbody">Cost at ₡0 = the cost is missing in the sheet</li><li data-go="s:#costs-tbody">Fix the cost in the sheet, column E</li><li data-go="s:#costs-tbody">Reload this page to see the change</li></ol>
+<ol class="wq-ol" data-lang="es"><li data-go="s:#costs-tbody">Buscá el proveedor o el producto</li><li data-go="s:#costs-tbody">Costo en ₡0 = falta el costo en la hoja</li><li data-go="s:#costs-tbody">Corregí el costo en la hoja, columna E</li><li data-go="s:#costs-tbody">Recargá esta página para ver el cambio</li></ol>
 </section>
-<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet · Master<small>Column E (Costo)</small></span><span class="es">Hoja de inventario · Master<small>Columna E (Costo)</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('payments');return false;"><span class="wq-lt"><span class="bi"><span class="en">06 · Payment calculator<small>Uses these costs</small></span><span class="es">06 · Calculadora de pagos<small>Usa estos costos</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
+<section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Inventory sheet · Master<small>Column E (Costo)</small></span><span class="es">Hoja de inventario · Master<small>Columna E (Costo)</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('payments');wsPayUX.openModal();return false;"><span class="wq-lt"><span class="bi"><span class="en">Payment calculator<small>Uses these costs</small></span><span class="es">Calculadora de pagos<small>Usa estos costos</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div><span class="wq-rule"><span class="bi"><span class="en">This page only reads the sheet. When in doubt, the sheet wins.</span><span class="es">Esta página solo lee la hoja. Ante la duda, la hoja gana.</span></span></span></div><div class="wq-srcgrid">
 <div class="wq-srcitem wins"><span class="wq-what"><span class="bi"><span class="en">This cost list</span><span class="es">Esta lista de costos</span></span></span><span class="wq-where"><a href="https://docs.google.com/spreadsheets/d/1kVRvXk_Fd5LwWbCtNtoyq66NA8DBGxY4uDrGJD1Ahdo/edit?gid=1272280533#gid=1272280533" target="_blank" rel="noopener">Hoja · columna E (Costo)</a></span><span class="wq-win"><span class="bi"><span class="en">Source of truth</span><span class="es">Fuente de verdad</span></span></span></div>
 <div class="wq-srcitem"><span class="wq-what"><span class="bi"><span class="en">Provider cost in Billo</span><span class="es">Costo del Proveedor en Billo</span></span></span><span class="wq-where">Billo (debe coincidir con la hoja)</span></div>
@@ -3935,8 +3943,8 @@ if (document.readyState !== 'loading') wsCosts.init();
     </div>
 <div class="wq-panel">
 <section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Who to ask</span><span class="es">A quién preguntar</span></span></div>
-<ol class="wq-ol" data-lang="en"><li>Store and shifts: Tienda Manager</li><li>Approving providers and prices: Lynne and Chris</li><li>Electronic invoices: contabilidad@wearsos.co</li><li>Workshop and production: Carolina</li></ol>
-<ol class="wq-ol" data-lang="es"><li>Tienda y turnos: Tienda Manager</li><li>Aprobar proveedores y precios: Lynne y Chris</li><li>Facturas electrónicas: contabilidad@wearsos.co</li><li>Taller y producción: Carolina</li></ol>
+<ol class="wq-ol" data-lang="en"><li data-go="s:#wt-root">Store and shifts: Tienda Manager</li><li data-go="s:#wt-root">Approving providers and prices: Lynne and Chris</li><li data-go="s:#wt-root">Electronic invoices: contabilidad@wearsos.co</li><li data-go="s:#wt-root">Workshop and production: Carolina</li></ol>
+<ol class="wq-ol" data-lang="es"><li data-go="s:#wt-root">Tienda y turnos: Tienda Manager</li><li data-go="s:#wt-root">Aprobar proveedores y precios: Lynne y Chris</li><li data-go="s:#wt-root">Facturas electrónicas: contabilidad@wearsos.co</li><li data-go="s:#wt-root">Taller y producción: Carolina</li></ol>
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="mailto:contabilidad@wearsos.co" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">contabilidad@wearsos.co<small>Invoices · note: .co, not .com</small></span><span class="es">contabilidad@wearsos.co<small>Facturas · ojo: .co, no .com</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link ext" href="mailto:tienda@wearsos.co" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">tienda@wearsos.co<small>Receipts and store</small></span><span class="es">tienda@wearsos.co<small>Comprobantes y tienda</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a></section>
 </div>
@@ -4203,8 +4211,8 @@ function closeOrgModal() {
     </div>
 <div class="wq-panel">
 <section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
-<ol class="wq-ol" data-lang="en"><li>Arrive 15 minutes before opening</li><li>Alarm off and doors open</li><li>Lights, fans, music and coffee</li><li>Cash float and Billo register</li><li>Signs and displays outside</li><li>Store inspection</li><li>At closing: shift summary form</li></ol>
-<ol class="wq-ol" data-lang="es"><li>Llegá 15 minutos antes de abrir</li><li>Alarma desactivada y puertas abiertas</li><li>Luces, ventiladores, música y café</li><li>Fondo de caja y registro en Billo</li><li>Letreros y exhibidores afuera</li><li>Inspección de la tienda</li><li>Al cerrar: formulario de resumen del turno</li></ol>
+<ol class="wq-ol" data-lang="en"><li>Arrive 15 minutes before opening</li><li>Alarm off and doors open</li><li>Lights, fans, music and coffee</li><li data-go="t:Iniciar sesión en Billo">Cash float and Billo register</li><li>Signs and displays outside</li><li>Store inspection</li><li>At closing: shift summary form</li></ol>
+<ol class="wq-ol" data-lang="es"><li>Llegá 15 minutos antes de abrir</li><li>Alarma desactivada y puertas abiertas</li><li>Luces, ventiladores, música y café</li><li data-go="t:Iniciar sesión en Billo">Fondo de caja y registro en Billo</li><li>Letreros y exhibidores afuera</li><li>Inspección de la tienda</li><li>Al cerrar: formulario de resumen del turno</li></ol>
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://forms.zoho.com/wearsos/form/StoreShiftSummaryForm" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Shift summary form<small>Zoho Forms · at closing</small></span><span class="es">Formulario de Resumen del Turno<small>Zoho Forms · al cerrar</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('pos');return false;"><span class="wq-lt"><span class="bi"><span class="en">12 · Open and close register<small>POS &amp; Billo</small></span><span class="es">12 · Abrir y cerrar caja<small>POS y Billo</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a><a class="wq-link" href="#" onclick="showPage('alarm');return false;"><span class="wq-lt"><span class="bi"><span class="en">11 · Alarm<small>Second-floor panel</small></span><span class="es">11 · Alarma<small>Panel del segundo piso</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
@@ -4479,8 +4487,8 @@ function ocSwitch(panel, btn) {
     </div>
 <div class="wq-panel">
 <section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
-<ol class="wq-ol" data-lang="en"><li>Tap the panel screen</li><li>&quot;Disarmed System&quot;</li><li>&quot;Away Arm&quot;</li><li>Add 60 seconds and leave</li></ol>
-<ol class="wq-ol" data-lang="es"><li>Tocá la pantalla del panel</li><li>«Sistema Desarmado»</li><li>«Armado Ausente»</li><li>Agregá 60 segundos y salí</li></ol>
+<ol class="wq-ol" data-lang="en"><li data-go="n:1">Tap the panel screen</li><li data-go="n:2">&quot;Disarmed System&quot;</li><li data-go="n:3">&quot;Away Arm&quot;</li><li data-go="n:4">Add 60 seconds and leave</li></ol>
+<ol class="wq-ol" data-lang="es"><li data-go="n:1">Tocá la pantalla del panel</li><li data-go="n:2">«Sistema Desarmado»</li><li data-go="n:3">«Armado Ausente»</li><li data-go="n:4">Agregá 60 segundos y salí</li></ol>
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://docs.google.com/document/d/1GQvuwrUpjcJIDyWpxgpSvLMUbhUSUzE1Q3aZOSWOUCk/edit?tab=t.3lgzkodg8fp7" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Photo guide<small>Google Docs</small></span><span class="es">Guía con fotos<small>Google Docs</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('opening');return false;"><span class="wq-lt"><span class="bi"><span class="en">10 · Closing checklist<small>Opening &amp; Closing</small></span><span class="es">10 · Checklist de cierre<small>Apertura y Cierre</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 </div>
@@ -4570,8 +4578,8 @@ function ocSwitch(panel, btn) {
     </div>
 <div class="wq-panel">
 <section class="wq-card wq-steps"><div class="wq-h">⚡ <span class="bi"><span class="en">Quick steps</span><span class="es">Pasos rápidos</span></span></div>
-<ol class="wq-ol" data-lang="en"><li>Open: Billo and ₡55,000 and $40 float</li><li>Sale: Facturación → Cobrar → payment method</li><li>Card: card machine F1; enter receipt no. in Billo</li><li>Close: POS report, then Caja in Billo</li><li>Excess in an envelope with date and amount</li><li>No WiFi: Date and time → Refresh</li></ol>
-<ol class="wq-ol" data-lang="es"><li>Abrir: Billo y fondo de ₡55,000 y $40</li><li>Venta: Facturación → Cobrar → método de pago</li><li>Tarjeta: datáfono F1; anotá el comprobante en Billo</li><li>Cerrar: reporte del POS, después Caja en Billo</li><li>Excedente en un sobre con fecha y monto</li><li>Sin WiFi: Fecha y hora → Actualizar</li></ol>
+<ol class="wq-ol" data-lang="en"><li data-go="n:2">Open: Billo and ₡55,000 and $40 float</li><li data-go="n:19">Sale: Facturación → Cobrar → payment method</li><li data-go="n:23">Card: card machine F1; enter receipt no. in Billo</li><li data-go="n:3">Close: POS report, then Caja in Billo</li><li data-go="n:15">Excess in an envelope with date and amount</li><li data-go="n:27">No WiFi: Date and time → Refresh</li></ol>
+<ol class="wq-ol" data-lang="es"><li data-go="n:2">Abrir: Billo y fondo de ₡55,000 y $40</li><li data-go="n:19">Venta: Facturación → Cobrar → método de pago</li><li data-go="n:23">Tarjeta: datáfono F1; anotá el comprobante en Billo</li><li data-go="n:3">Cerrar: reporte del POS, después Caja en Billo</li><li data-go="n:15">Excedente en un sobre con fecha y monto</li><li data-go="n:27">Sin WiFi: Fecha y hora → Actualizar</li></ol>
 </section>
 <section class="wq-card wq-links"><div class="wq-h">🔗 <span class="bi"><span class="en">Open directly</span><span class="es">Abrir directamente</span></span></div><a class="wq-link ext" href="https://forms.zoho.com/wearsos/form/StoreShiftSummaryForm" target="_blank" rel="noopener"><span class="wq-lt"><span class="bi"><span class="en">Shift summary form<small>Zoho Forms · at closing</small></span><span class="es">Formulario de Resumen del Turno<small>Zoho Forms · al cerrar</small></span></span></span><span class="wq-ic" aria-hidden="true">↗</span></a><a class="wq-link" href="#" onclick="showPage('opening');return false;"><span class="wq-lt"><span class="bi"><span class="en">10 · Opening &amp; Closing<small>Day&#x27;s checklist</small></span><span class="es">10 · Apertura y Cierre<small>Checklist del día</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a><a class="wq-link" href="#" onclick="showPage('barcodes');return false;"><span class="wq-lt"><span class="bi"><span class="en">13 · Barcodes<small>Scanning at checkout</small></span><span class="es">13 · Códigos de Barras<small>Escanear en la venta</small></span></span></span><span class="wq-ic" aria-hidden="true">→</span></a></section>
 <section class="wq-card wq-src"><div class="wq-srchead"><div class="wq-h">📍 <span class="bi"><span class="en">Where each piece of data comes from</span><span class="es">De dónde sale cada dato</span></span></div></div><div class="wq-srcgrid">
@@ -5610,6 +5618,72 @@ document.addEventListener('keydown', function(e) {
     document.body.appendChild(bg);
     bg.querySelector('#wn-ok').addEventListener('click', function () { bg.parentNode.removeChild(bg); });
   };
+
+  // ── 6. Clickable quick steps: jump to the matching step on the page ────────
+  var STOP = { para: 1, como: 1, cada: 1, todo: 1, todos: 1, with: 1, from: 1, that: 1, this: 1, your: 1, the: 1, and: 1, los: 1, las: 1, del: 1, una: 1, uno: 1, que: 1, con: 1, por: 1, sus: 1 };
+  function words(t) {
+    return norm(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9 ]/g, ' ').split(' ')
+      .filter(function (w) { return w.length > 2 && !STOP[w]; });
+  }
+  function revealTab(target) {
+    var panel = target.closest('.oc-panel, .pos-panel');
+    if (!panel || panel.classList.contains('active')) return;
+    var panels = Array.prototype.filter.call(panel.parentNode.children, function (c) { return c.classList.contains(panel.classList.contains('oc-panel') ? 'oc-panel' : 'pos-panel'); });
+    var tabs = panel.closest('.pg').querySelectorAll(panel.classList.contains('oc-panel') ? '.oc-tab' : '.pos-tab');
+    var i = panels.indexOf(panel);
+    if (tabs[i]) tabs[i].click();
+  }
+  function jumpToStep(li) {
+    var pg = li.closest('.pg'); if (!pg) return;
+    var other = lang() === 'en' ? 'es' : 'en';
+    function shown(c) { return !c.closest('.wq-panel') && !c.closest('[data-lang="' + other + '"]') && !c.closest('#calc-modal-overlay'); }
+    var cands = Array.prototype.filter.call(pg.querySelectorAll('.step, .oc-step, .alarm-step, .subsection-title'), shown);
+    var go = li.getAttribute('data-go') || '', best = null;
+    if (go.indexOf('n:') === 0) best = cands[parseInt(go.slice(2), 10) - 1] || null;
+    else if (go.indexOf('s:') === 0) best = Array.prototype.filter.call(pg.querySelectorAll(go.slice(2)), shown)[0] || null;
+    else if (go.indexOf('t:') === 0) {
+      var needle = norm(go.slice(2)).toLowerCase();
+      best = Array.prototype.filter.call(pg.querySelectorAll('p, li, .oc-step, .step, div'), function (e) {
+        return shown(e) && norm(e.textContent).toLowerCase().indexOf(needle) >= 0;
+      }).pop() || null;   // innermost match
+      if (best && best.closest('.oc-step, .step')) best = best.closest('.oc-step, .step');
+    }
+    if (best) { reveal(best); return; }
+    if (!cands.length) return;
+    var q = words(li.textContent), bestScore = 0;
+    cands.forEach(function (c) {
+      var cw = words(c.textContent), set = {};
+      cw.forEach(function (w) { set[w] = 1; });
+      var score = 0;
+      q.forEach(function (w) { if (set[w]) score++; else if (w.length > 4 && cw.some(function (x) { return x.indexOf(w.slice(0, 5)) === 0; })) score += 0.5; });
+      score = score / Math.max(q.length, 1);
+      if (score > bestScore) { bestScore = score; best = c; }
+    });
+    if (!best || bestScore < 0.2) {
+      var idx = Array.prototype.indexOf.call(li.parentNode.children, li);
+      best = cands[Math.min(idx, cands.length - 1)];
+    }
+    reveal(best);
+  }
+  function reveal(target) {
+    revealTab(target);
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    target.classList.remove('wq-flash'); void target.offsetWidth; target.classList.add('wq-flash');
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.wq-ol li'), function (li) {
+    li.setAttribute('tabindex', '0');
+    li.setAttribute('role', 'link');
+    li.setAttribute('title', T('Ir a este paso', 'Go to this step'));
+  });
+  document.addEventListener('click', function (ev) {
+    var li = ev.target.closest('.wq-ol li');
+    if (li && !editing) jumpToStep(li);
+  });
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key !== 'Enter') return;
+    var li = ev.target.closest && ev.target.closest('.wq-ol li');
+    if (li && !editing) { ev.preventDefault(); jumpToStep(li); }
+  });
 
   loadContent();
 })();
